@@ -1,0 +1,40 @@
+﻿@model Domain.Models.CreateQuestionViewModel
+@using Domain.App_GlobalResources;
+@using Domain.Constants;
+
+<strong>
+    @CommonResources.GoogleSearchKeywords
+    <a href="#" data-toggle="tooltip" title="@CommonResources.GoogleSearchKeywordsDescr">@CommonResources.QuestionMarkLinkSymbol</a>
+</strong>
+@Html.Raw(CommonResources.GoogleSearchKeywordsDescr)
+
+<div class="editor-field">
+    @Html.TextBoxFor(model => model.GoogleSearchKeywords1, new { @class = "form-control", placeholder = CommonResources.GoogleSearchKeywordsPlaceHolder1, maxLength = Size.GoogleSearchKeyWordMaxCharacters })
+</div>
+@Html.ValidationMessageFor(model => model.GoogleSearchKeywords1, "", new { @class = "text-danger" })
+<br />
+
+<div class="editor-field">
+    @Html.TextBoxFor(model => model.GoogleSearchKeywords2, new { @class = "form-control", placeholder = CommonResources.GoogleSearchKeywordsPlaceHolder2, maxLength = Size.GoogleSearchKeyWordMaxCharacters })
+</div>
+@Html.ValidationMessageFor(model => model.GoogleSearchKeywords2, "", new { @class = "text-danger" })
+<br />
+
+<div class="editor-field">
+    @Html.TextBoxFor(model => model.GoogleSearchKeywords3, new { @class = "form-control", placeholder = CommonResources.GoogleSearchKeywordsPlaceHolder3, maxLength = Size.GoogleSearchKeyWordMaxCharacters })
+</div>
+@Html.ValidationMessageFor(model => model.GoogleSearchKeywords3, "", new { @class = "text-danger" })
+<br />
+
+<div class="editor-field">
+    @Html.TextBoxFor(model => model.GoogleSearchKeywords4, new { @class = "form-control", placeholder = CommonResources.GoogleSearchKeywordsPlaceHolder4, maxLength = Size.GoogleSearchKeyWordMaxCharacters })
+</div>
+@Html.ValidationMessageFor(model => model.GoogleSearchKeywords4, "", new { @class = "text-danger" })
+<br />
+
+<div class="editor-field">
+    @Html.TextBoxFor(model => model.GoogleSearchKeywords5, new { @class = "form-control", placeholder = CommonResources.GoogleSearchKeywordsPlaceHolder5, maxLength = Size.GoogleSearchKeyWordMaxCharacters })
+</div>
+@Html.ValidationMessageFor(model => model.GoogleSearchKeywords5, "", new { @class = "text-danger" })
+<br />
+

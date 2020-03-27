@@ -1,0 +1,43 @@
+﻿@{
+    ViewBag.Title = "Alert";
+}
+
+<h2>Alert</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+    
+    
+    @*<div class="row">
+      <div class="col-lg-4">
+        <div class="input-group">
+          <input type="text" class="form-control" id="typeahead">
+          <textarea class="form-control" rows="3"></textarea>
+          <span class="input-group-btn">
+            <a href="#" class="AddSubject" data-id=""><span class="btn btn-success">@CommonResources.BtnAddQuestiongSubject</span></a>
+          </span>
+        </div>
+      </div>
+    </div>*@
+    
+    <div class="form-group">
+        <label for="txtAlert">Alert Message</label>
+        <textarea class="form-control" rows="3" id="txAlert" name="txAlert"></textarea>
+    </div>
+    <div class="form-group">
+        <label for="txAlertType">Alert Type</label>
+        <input type="text" class="form-control" id="txAlertType" name="txAlertType" placeholder="alert-success, alert-warning, alert-danger, alert-info">
+    </div>    
+    
+    @*@Html.Label("Alert message:");
+    @Html.TextArea("txAlert", new { @class = "form-control"});
+    <br />
+    @Html.Label("Alert type:");
+    @Html.TextBox("txAlertType",null, new { @class="form-control", placeholder = "alert-success, warning, danger, info"});*@
+    
+<br />
+<button type="submit" class="btn btn-primary btn-lg">Post Alert</button>
+    
+}

@@ -1,0 +1,26 @@
+﻿@model Domain.Models.ViewModel.AddMoneyViewModel
+@using Domain.App_GlobalResources;
+@using Domain.Constants;
+
+<br/>
+<strong>
+    @CommonResources.txtNumberOfMarketingDays
+    <a href="#" data-toggle="tooltip" title="@CommonResources.NumberOfMarketingDaysDescription">@CommonResources.QuestionMarkLinkSymbol</a>
+</strong>
+@Html.Raw(CommonResources.NumberOfMarketingDaysDescription)
+
+<div class="row">
+    <div class="col-lg-2">
+        <div class="input-group">
+            <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+            @Html.TextBoxFor(model => model.NumberOfCampaignDays, new { @class = "form-control", placeholder = string.Format(CommonResources.NewQuestionAmtPlaceHolder, General.MinimumMarketingDays) })
+            <span class="input-group-addon">days</span>
+        </div>
+    </div>
+</div>
+@Html.ValidationMessageFor(model => model.NumberOfCampaignDays)
+
+<br />
+<p>
+    <button type="submit" class="btn btn-primary btn-lg">@CommonResources.lblPrePost</button>
+</p>

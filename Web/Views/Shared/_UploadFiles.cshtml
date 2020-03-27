@@ -1,0 +1,154 @@
+﻿@model Domain.Models.Helper.UploadFile
+@using Domain.App_GlobalResources
+@using Domain.Constants
+
+<style type="text/css">
+    #selectedFiles img {
+        max-width: 200px;
+        max-height: 200px;
+        float: left;
+        margin-bottom: 10px;
+    }
+
+    input[type='file'] {
+        color: transparent;
+    }
+
+</style>
+
+<script>
+    var nowTemp = new Date();
+    var now = new Date(nowTemp.getFullYear(), nowTemp.getMonth(), nowTemp.getDate(), 0, 0, 0, 0);
+    var files;
+    var storedFiles = [];
+    var upc = 0;
+
+    $(function () {
+        $(":file").attr('title', '  ');
+        var $loading = $('#loadingDiv').hide();
+
+        $("input[id^='fileToUpload']").change(function (e) {
+            doReCreate(e);
+        });
+
+        selDiv = $("#selectedFiles");
+    });
+
+
+    function doReCreate(e) {
+        upc = upc + 1;
+        handleFileSelect(e);
+
+        $("input[id^='fileToUpload']").hide();
+
+        $('<input>').attr({
+            type: 'file',
+            multiple: 'multiple',
+            id: 'fileToUpload' + upc,
+            class: 'fUpload',
+            name: 'Files',
+            style: 'float: left',
+            title: '  ',
+            onchange: "doReCreate(event)"
+
+        }).appendTo('#uploaders');
+    }
+
+
+    function handleFileSelect(e) {
+
+        //selDiv.innerHTML = ""; storedFiles = [];
+        selDiv = document.querySelector("#selectedFiles");
+
+        if (!e.target.files) return;
+
+        //selDiv.innerHTML = "";
+        files = e.target.files;
+        var totalFilesSize = 0;
+
+        for (var i = 0; i < files.length; i++) {
+            totalFilesSize += files[i].size;
+        }
+
+        var maxSizeAllowed = parseInt("@General.MaxAttachmentSizeInGigabytes") * parseInt("@StorageSize.BytesInAGigabyte");
+        if (totalFilesSize >= maxSizeAllowed)
+        {
+            $("#uploadDialog").dialog({
+                modal: true,
+                buttons: {
+                    OK: function () {
+                        location.reload();
+                        //$(this).dialog("close");
+                    }
+                }
+            });
+            jQuery("button.ui-dialog-titlebar-close").hide();
+        }
+        else
+        {
+            for (var i = 0; i < files.length; i++) {
+                var f = files[i];
+                //selDiv.innerHTML += "<div>" + f.name + "<a onclick='removeAtt(this)'> remove </a></div>";
+                selDiv.innerHTML += "<div>" + f.name + " (" + readablizeBytes(f.size) + ")" + "<a class='btn btn-danger btn-xs' onclick='removeAtt(this)'> remove </a></div>";
+                storedFiles.push(f.name);
+            }
+            $('#@Html.IdFor(i => i.FilesToBeUploaded)').val(storedFiles);
+        }
+    }
+
+    function readablizeBytes(bytes) {
+        // 0: NaN undefined
+        // 1 - 1023 bytes
+        // 1 - 1023.12 KB
+        // 1 - 1023.15 MB
+        var maxValue = 10;
+        var s = ['bytes', 'KB', 'MB', 'GB', 'TB', 'PB'];
+        var e = Math.floor(Math.log(bytes) / Math.log(1024));
+        var retVal = (bytes / Math.pow(1024, e)).toFixed(2) + " " + s[e];
+
+        if (retVal == "NaN undefined")
+        {
+            retVal = "0 bytes";
+        }
+        var retValOriginalLength = retVal.length;
+        for (var i = 0; i < (maxValue - retValOriginalLength) ; i++) {
+            retVal += ' ';
+        }
+        return retVal;
+    }
+
+    function removeAtt(t) {
+        var serEle = $(t).parent().text().slice(0, -21);
+        var index = storedFiles.indexOf(serEle);
+        if (index !== -1) {
+            storedFiles.splice(index, 1);
+        }
+        $(t).parent().remove();
+
+        $('#@Html.IdFor(i => i.FilesToBeUploaded)').val(storedFiles);
+
+    }
+</script>
+<div id="uploadDialog" class="dialog" style="display: none;">@CommonResources.MaxStorageAttachmentSizeReached</div>
+@Html.HiddenFor(i => i.FilesToBeUploaded)
+<br/>
+<div class="labelstyle">
+    <i class="glyphicon glyphicon-paperclip"></i>
+    <label>@CommonResources.FilesToUpload</label>
+    <a href="#" data-toggle="tooltip" title="@CommonResources.SelectFilesDescription">@CommonResources.QuestionMarkLinkSymbol</a>
+    @Html.Raw(CommonResources.SelectFilesDescription)
+</div>
+<div id="uploaders">
+    <input type="file" id="fileToUpload" name="Files" multiple="multiple" style="float: left;" />
+    <br />
+    <span id="spnFile" style="float: left; color: #FF0000"></span>
+    @Html.ValidationMessage("File")
+    @Html.Hidden("hdnFileUpload")
+</div>
+<br />
+
+<br />
+<div class="control-section" style="padding: 0px;">
+    <div id="selectedFiles"></div>
+    <br />
+</div>

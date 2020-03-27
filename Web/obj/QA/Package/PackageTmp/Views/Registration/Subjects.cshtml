@@ -1,0 +1,51 @@
+﻿@using Domain.App_GlobalResources;
+
+@{
+    ViewBag.Title = @CommonResources.Subjects;
+}
+
+<link href="~/Content/Modals.css" rel="stylesheet">
+<script type="text/javascript" src="~/Scripts/Custom/Modals.js"></script>
+<script type="text/javascript">
+
+    $('document').ready(function () {
+        var t = $("#tag").tagging();
+        $("#btnSubmit").click(function () {
+            var form = $('#__AjaxAntiForgeryForm');
+            var token = $('input[name="__RequestVerificationToken"]', form).val();
+
+            var commaDelimitedSubjects = $.trim(t[0].tagging("getTags")).toLowerCase();
+            $("#dlgUpdatePage").show().dialog("open");
+            $.post("/Registration/AddSubjects",
+                { __RequestVerificationToken: token, "commaDelimitedSubjects": commaDelimitedSubjects },
+                    function (data) {
+                        location = data.url;
+                    });
+        });
+    });
+
+</script>
+
+<h4>@CommonResources.ViewRegSubjectsTitle</h4>
+
+@using (Html.BeginForm(null, null, FormMethod.Post, new { id = "__AjaxAntiForgeryForm" }))
+{
+    @Html.AntiForgeryToken()
+}
+
+<div id="dlgUpdatePage" class="dialog">@CommonResources.MsgUpdateAjaxPage</div>
+<div class="example-wrapper">
+    <div class="tags well">
+        <label for="tag" class="control-label">@CommonResources.LblMySubjects</label>
+        <div class="tagging-js tagging form-control" data-tags-input-name="taggone" id="tag">
+            @CommonResources.SubjectSamples
+        </div>
+        <p class="help-block">@CommonResources.HowToUseSubjectBoxDescription</p>
+    </div>
+</div>
+
+<br />
+<strong>
+    <button id="btnSubmit" type="submit" class="btn btn-primary btn-lg">@CommonResources.BtnFinishRegistration</button>
+</strong>
+

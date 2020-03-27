@@ -1,0 +1,52 @@
+﻿@model PagedList.IPagedList<Domain.Models.ViewModel.MarketingCampaignViewModel>
+@using PagedList.Mvc
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>List of not started campaigns</h2>
+
+<div class="table table-responsive">
+    <table class="table table-bordered table-hover table-striped">
+        <tr>
+            <th>
+                Action
+            </th>
+            <th>
+                Campaign Manager
+            </th>
+            <th>
+                Status
+            </th>
+            <th>
+                Question title
+            </th>
+            <th>
+                Question amount
+            </th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.ActionLink("Select", "Edit", new { id = item.QuestionPaymentDetailID })
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CampaignManagerUserName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Status)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.QuestionTitle)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Amount)
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>
+@Html.PagedListPager(Model, page => Url.Action(ViewBag.MethodName, new { page }))

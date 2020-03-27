@@ -1,0 +1,41 @@
+﻿body {
+    padding-top: 60px;
+    padding-bottom: 40px;
+}
+
+.dropdown-backdrop{
+    position: static;
+}
+
+.test {
+  display: block;
+  float: left;
+  padding: 10px 20px 10px;
+  margin-left: -20px;
+  font-size: 20px;
+  font-weight: 200;
+  color: #B5F36D;
+  text-shadow: 0 1px 0 #ffffff;
+}
+
+.navbar .brand {
+}
+
+.navbar-default .navbar-brand:hover,
+.navbar-default .navbar-brand:focus {
+  color: #5e5e5e;
+  background-color: transparent;
+}
+
+.navbar-inner{
+border-radius:0px;
+background: #2A4480 !important; 
+background-image: none;
+background-repeat: no-repeat;
+filter: none !important;
+border-top:1px solid #cc412a !important;
+border-bottom:1px solid #cc412a !important;
+border-left:0px !important;
+border-right:0px !important;
+}
+

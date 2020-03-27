@@ -1,0 +1,45 @@
+﻿@model Domain.Models.ValidateQuestionViewModel
+@using Domain.App_GlobalResources;
+
+@{
+    ViewBag.Title = @CommonResources.PreValidationViewBrowswerTitle;
+}
+
+@using (Html.BeginForm()) {
+
+    @Html.AntiForgeryToken()
+
+    @Html.HiddenFor(model => model.QuestionId)
+    @Html.HiddenFor(model => model.PaymentId)
+    @Html.HiddenFor(model => model.Title)
+    @Html.HiddenFor(model => model.Amount)
+    @Html.HiddenFor(model => model.Fee)
+    @Html.HiddenFor(model => model.MarketingBudgetPerDay)
+    @Html.HiddenFor(model => model.NumberOfCampaignDays)
+    @Html.HiddenFor(model => model.TotalMarketingBudget)
+    @Html.HiddenFor(model => model.Total)
+    @Html.HiddenFor(model => model.IdOfUserTryingToMakeUpdate)
+    
+    @Html.Partial("_OrderSummary", Model);
+    @Html.Partial("_ValidationModal");
+}
+
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        $('#PayAnswerFee').click(function () {
+            var total = 0;
+            if ($(this).is(':checked')) {
+                total = parseFloat($('#Amount').val()) + parseFloat($('#Fee').val()) + parseFloat($('#AnswerFee').val());
+            }
+            else {
+                total = parseFloat($('#Amount').val()) + parseFloat($('#Fee').val());
+            }
+            total = parseFloat(total).toFixed(2);
+            $('#total').html("<h3><span class='text-error'>@CommonResources.PreValidationViewOrderTotal" + total + "</span></h3>");
+        });
+
+    });
+
+
+</script>

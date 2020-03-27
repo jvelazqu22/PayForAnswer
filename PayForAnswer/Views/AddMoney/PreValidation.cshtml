@@ -1,0 +1,156 @@
+﻿@model Domain.Models.ValidateAddMoneyViewModel
+@using Domain.App_GlobalResources;
+
+@{
+    ViewBag.Title = @CommonResources.PreValidationViewBrowswerTitle;
+}
+
+@using (Html.BeginForm()) {
+
+    @Html.AntiForgeryToken()
+
+    @Html.HiddenFor(model => model.QuestionId)
+    @Html.HiddenFor(model => model.PaymentId)
+    @Html.HiddenFor(model => model.QuestionPaymentDetailID)
+    @Html.HiddenFor(model => model.Title)
+    @Html.HiddenFor(model => model.Amount)
+    @Html.HiddenFor(model => model.QuestionAmountIncrease)
+    @Html.HiddenFor(model => model.Fee)
+    @Html.HiddenFor(model => model.MarketingBudgetPerDay)
+    @Html.HiddenFor(model => model.NumberOfCampaignDays)
+    @Html.HiddenFor(model => model.TotalMarketingBudget)
+    @Html.HiddenFor(model => model.Total)
+    @Html.HiddenFor(model => model.IdOfUserTryingToMakeUpdate)
+    @Html.HiddenFor(model => model.PaymentStatusId)
+    @Html.HiddenFor(model => model.QuestionStatusId)
+    @Html.HiddenFor(model => model.QuestionUserId)
+    
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <table class="table table-bordered">
+                <tr>
+                    <td colspan="2" style="text-align:center">
+                            <h3><span class="text-info"><strong>@CommonResources.PreValidationViewTitle
+                                </strong></span>
+                            </h3>
+                    </td>
+                </tr>            
+
+                <tr>
+                    <td>
+                        <h4>@CommonResources.QuestionAmtIncrease</h4>
+                    </td>
+                    <td>
+                        <h4>$@Html.DisplayFor(model => model.QuestionAmountIncrease)</h4>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <h4>@CommonResources.QuestionAmtAfterIncrease</h4>
+                    </td>
+                    <td>
+                        <h4>$@Html.DisplayFor(model => model.QuestionAmountAfterIncrease)</h4>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <h4>@string.Format(CommonResources.TotalMarketingBudget, Model.MarketingBudgetPerDay, Model.NumberOfCampaignDays)</h4>
+                    </td>
+                    <td>
+                        <h4>$@Html.DisplayFor(model => model.TotalMarketingBudget)</h4>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <h4>@CommonResources.PreValidationViewQFeeLable</h4>
+                    </td>
+                    <td>
+                        <h4>$@Html.DisplayFor(model => model.Fee)</h4>
+                    </td>
+                </tr>
+
+    @*            <tr>
+                    <td>
+                        <h4>
+                            @Html.EditorFor(model => model.PayAnswerFee)
+                            @CommonResources.PreValidationViewCboxRFee
+                        </h4>
+                    </td>
+                    <td>
+                        <h4>$@Html.DisplayFor(model => model.AnswerFee)</h4>
+                    </td>
+                </tr>*@
+
+                <tr>
+                    <td colspan="2" style="text-align:center">
+    @*                    @if (Model.PayAnswerFee)
+                        {
+                            Model.Total = Math.Round(Model.Amount + Model.QuestionFee + Model.AnswerFee, 2);
+                        }
+                        else
+                        {
+                            Model.Total = Math.Round(Model.Amount + Model.QuestionFee, 2);
+                        }*@
+
+                        <div id="total">
+                            <h3><span class="text-danger">
+                                <strong>@CommonResources.PreValidationViewOrderTotal@Model.Total
+                                </strong></span>
+                            </h3>
+                        </div>
+                    </td>
+                </tr>            
+            </table>
+
+            <br />
+            <p class="text-center">
+                <!-- Button trigger modal -->
+                <a data-toggle="modal" href="#myModal" class="btn btn-primary btn-lg">@CommonResources.PreValidationViewBtnPay</a>
+            </p>
+
+        </div>
+    </div>
+    
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">@CommonResources.LblNoRefundPolicyTitle</h4>
+                </div>
+                <div class="modal-body">
+                    @string.Format(CommonResources.MsgNonRefundableCharge, Model.Total)
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">@CommonResources.lblCancel</button>
+                    <button type="submit" class="btn btn-primary">@CommonResources.PreValidationViewBtnPay</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+}
+
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        $('#PayAnswerFee').click(function () {
+            var total = 0;
+            if ($(this).is(':checked')) {
+                total = parseFloat($('#Amount').val()) + parseFloat($('#Fee').val()) + parseFloat($('#AnswerFee').val());
+            }
+            else {
+                total = parseFloat($('#Amount').val()) + parseFloat($('#Fee').val());
+            }
+            total = parseFloat(total).toFixed(2);
+            $('#total').html("<h3><span class='text-error'>@CommonResources.PreValidationViewOrderTotal" + total + "</span></h3>");
+        });
+
+    });
+
+
+</script>

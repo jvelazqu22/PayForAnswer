@@ -1,0 +1,41 @@
+﻿@model IEnumerable<Domain.Models.ViewModel.SubjectListViewModel>
+@using Domain.App_GlobalResources;
+
+@{
+    ViewBag.Title = @CommonResources.ViewRegSubjectsBrowswerTitle;
+}
+
+
+<script type="text/javascript">
+    $(function () {
+        $('#typeahead').typeahead({
+            name: 'subjects',
+            valueKey: 'Subject',
+            remote: {
+                url: '/Registration/Autocomplete?term=%QUERY'
+            }
+        });
+
+    });
+</script>
+
+
+<h4>@CommonResources.ViewRegSubjectsTitle</h4>
+<form method="post" action="@Url.Action("Subjects")" 
+      data-pfa-ajax="true" data-pfa-target="#subjectList">
+
+    <div class="row">
+      <div class="col-lg-4">
+        <div class="input-group">
+          <input type="text" name="searchTerm" value="" class="form-control" id="typeahead" data-provide="typeahead">
+          <span class="input-group-btn">
+            <button type="submit" class="btn btn-success">@CommonResources.BtnAddNewSubject</button>
+          </span>
+        </div>
+      </div>
+    </div>
+    <br />
+
+</form>
+
+@Html.Partial("_Subjects", Model)

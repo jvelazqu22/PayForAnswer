@@ -1,0 +1,93 @@
+﻿@model Domain.Models.Account.RegisterModel
+@using Domain.App_GlobalResources;
+@using Domain.Constants;
+@using CaptchaMvc.HtmlHelpers
+
+@{
+    ViewBag.Title = CommonResources.Register;
+}
+<script type="text/javascript">
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip({
+            placement: 'top'
+        });
+    });
+</script>
+
+<!-- Custom styles for this template -->
+<link href="~/Content/signin.css" rel="stylesheet">
+
+<div class="container">
+    @using (Html.BeginForm("Register", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-signin" }))
+    {
+        @Html.AntiForgeryToken()
+        <h2 class="form-signin-heading">Create a new account</h2>
+        
+        @Html.TextBoxFor(model => model.UserName, new { @class = "form-control", placeholder = CommonResources.TxtPlaceHolderRegistrationUserName, autofocus = "" })
+        @Html.ValidationMessageFor(m => m.UserName, "", new { @class = "text-danger" })
+
+        @Html.PasswordFor(m => m.Password, new { @class = "form-control", placeholder = "Password" })
+        @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+
+        @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control", placeholder = "Confirm Password" })
+        @Html.ValidationMessageFor(m => m.ConfirmPassword, "", new { @class = "text-danger" })
+        @CommonResources.PwdRequirements
+
+        <br /><br/>
+
+        <div class="bs-example tooltip-demo">
+            @CommonResources.LblEmailAddress
+            <a href="https://www.paypal.com/signup/account" target="_blank" data-toggle="tooltip" title="@string.Format(CommonResources.PaypalEmailNeededMsg,"PayPal")">@CommonResources.LblPayPalPayments</a>
+            @Html.TextBoxFor(m => m.EmailAddress, new { @class = "form-control", type = "email", placeholder = CommonResources.TxtPlaceHolderRegistrationEmail })
+            @Html.ValidationMessageFor(m => m.EmailAddress, "", new { @class = "text-danger" })
+
+            @Html.TextBoxFor(m => m.ConfirmEmailAddress, new { oncopy= "return false", onpaste="return false", @class = "form-control", placeholder = "Confirm Email Address" })
+            @Html.ValidationMessageFor(m => m.ConfirmEmailAddress, "", new { @class = "text-danger" })
+            @{
+                var payPalLink = string.Format(Domain.Constants.Html.LINK_PLACE_HOLDER_NEW_WINDOW, "https://www.paypal.com/signup/account", "PayPal");
+                string emailMsg = string.Format(CommonResources.PaypalEmailNeededMsg, payPalLink);
+            }
+            @Html.Raw(@emailMsg)
+        </div>
+        <br />
+
+        <div>
+            @*@CommonResources.FullName
+            <a href="#" target="_blank" data-toggle="tooltip" title="@CommonResources.TaxDescription">@CommonResources.QuestionMarkLinkSymbol</a>
+            @Html.TextBoxFor(model => model.FullName, new { @class = "form-control", placeholder = CommonResources.FullName, autofocus = "" })
+            @Html.ValidationMessageFor(m => m.FullName, "", new { @class = "text-danger" })*@
+
+            @*@Html.RadioButtonFor(model => model.IsFemale, false, new { @checked = "checked" }) @CommonResources.Male
+            @Html.RadioButtonFor(model => model.IsFemale, true) @CommonResources.Female*@
+        </div>
+        <br/>
+
+        <div>
+            @CommonResources.DateOfBirth
+            <a href="#" data-toggle="tooltip" title="@string.Format(CommonResources.MustBe18YearsOrOlderDescription, Size.MinimumAgeForRegistration)">@string.Format(CommonResources.MustBe18YearsOrOlder, Size.MinimumAgeForRegistration)</a>
+            @Html.DropDownListFor(model => model.Day, Enumerable.Range(1, 31).Select(i => new SelectListItem { Value = i.ToString(), Text = i.ToString() }), CommonResources.Day, new { @class = "form-control" })
+            @Html.DropDownListFor(model => model.Month, Enumerable.Range(1, 12).Select(i => new SelectListItem { Value = i.ToString(), Text = System.Globalization.CultureInfo.InvariantCulture.DateTimeFormat.GetMonthName(i) }), CommonResources.Month, new { @class = "form-control" })
+            @Html.DropDownListFor(model => model.Year, Enumerable.Range(DobRange.MinDobYear, DobRange.MaxDobToAddToMinDobYear).Select(i => new SelectListItem { Value = i.ToString(), Text = i.ToString() }), CommonResources.Year, new { @class = "form-control" })
+        </div>
+        <br/>
+        
+        <br />
+        <div>
+            <a href="@Url.Action("ToS", "Help")" target="_blank">Terms of Service</a> &
+            <a href="@Url.Action("Privacy", "Help")" target="_blank">Privacy Policy</a><br/>
+            @Html.CheckBoxFor(model => model.TermsAndConditionsAccepted) @Html.Raw(CommonResources.LblAcceptTermsText)
+            @Html.ValidationMessageFor(m => m.TermsAndConditionsAccepted, "", new { @class = "text-danger" })
+        </div>
+
+        @Html.Captcha(CommonResources.GetAnotherImage, CommonResources.EnterSecurityValueAbove, 5, CommonResources.IsRequiredField, true)
+        @Html.ValidationMessage("CaptchaInputText", "", new { @class = "text-danger" })
+
+        <br />
+
+        <button class="btn btn-lg btn-warning btn-block" type="submit">@CommonResources.Register</button>
+    }
+</div> <!-- /container -->
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

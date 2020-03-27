@@ -1,0 +1,1 @@
+C:\Code\PayForAnswer\Development\BusinessRules.Errors\obj\Debug\BusinessRules.Errors.csprojResolveAssemblyReference.cache

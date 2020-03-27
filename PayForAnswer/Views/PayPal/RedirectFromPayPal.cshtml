@@ -1,0 +1,39 @@
+﻿@model Domain.Models.RedirectFromPayPalViewModel
+@using Domain.App_GlobalResources;
+@{
+    ViewBag.Title = CommonResources.LblOrderSummary;
+}
+
+<div class="row-fluid">
+    @*This means that the PayPalPaymentStatusNotCompleteException was thrown.*@
+    @if(String.IsNullOrWhiteSpace(Model.Title))
+    {
+        <div style="text-align:center">
+            <h3><span class="text-info">
+                    @Html.Raw(CommonResources.ViewRedirectFromPayPalPostedNoPaymentReceivedYet)
+                </span>
+            </h3>
+        </div>
+    }
+    else
+    {
+        <div style="text-align:center">
+            <h3><span class="text-success">
+                    @Html.Raw(CommonResources.ViewRedirectFromPayPalPostedSuccess)
+                </span>
+            </h3>
+        </div>
+        <div style="text-align:center">
+            <h3>@CommonResources.LblOrderSummary</h3>
+        </div>
+        <div style="text-align:center">
+            <h4>@string.Format(CommonResources.LblPostedQuestionTitle, Model.Title)</h4>
+        </div>
+        <div style="text-align:center">
+            <h4>@string.Format(CommonResources.LblPostedDate, Model.CreatedOn)</h4>
+        </div>
+        <div style="text-align:center">
+            <h4>@string.Format(CommonResources.LblOrderTotal, Model.Total)</h4>
+        </div>
+    }
+</div>

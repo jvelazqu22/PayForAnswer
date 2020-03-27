@@ -1,0 +1,152 @@
+﻿@model Domain.Models.ViewModel.QuestionDetailsViewModel
+@using Domain.Constants;
+@using Domain.App_GlobalResources;
+@using PagedList
+@using PagedList.Mvc
+
+<div class="display-label">
+    <h3>
+        @Model.Answers.Count() @CommonResources.DetailQuestionViewLblAnswers
+    </h3>
+</div>
+<hr />
+
+<div class="table-responsive">
+    <table>
+        @{
+            var questionUserName = Model.User.UserName;
+            var loggedUserName = User.Identity.Name;
+            IPagedList<Domain.Models.Entities.Answer> pagedAnwerList = ViewBag.Answers;
+        }
+
+        @foreach (var item in pagedAnwerList)
+        {
+            <tr>
+                <td>
+                    <div>
+                        <h4>
+                            <strong>@CommonResources.DetailQuestionViewLblAnswersPosted</strong>
+                            <span class="badge">@item.CreatedOn</span>
+                            @CommonResources.DetailQuestionViewLblByUser
+                            <span class="badge">@item.User.UserName</span>
+                        </h4>
+                    </div>
+                </td>
+            </tr>
+            
+            <tr id="row-@item.Id">
+                <td>
+                    <div>
+                        @if (questionUserName == loggedUserName && (Model.StatusId == StatusValues.PayPalIPNNotifyConfirmed || Model.StatusId == StatusValues.PayPalRedirectConfirmed))
+                        {
+                            if(item.StatusId != StatusValues.Reviewed)
+                            {
+                                <a href="#" class="Decline" data-id="@item.Id" data-toggle="tooltip" title="@CommonResources.ReviewedAnswerDescription"><span class="btn btn-warning">@CommonResources.Review</span></a>
+                            }
+                            <a href="#" class="Accept" data-id="@item.Id" data-toggle="tooltip" title="@CommonResources.AcceptedAnswerDescription"><span class="btn btn-success">@CommonResources.DetailQuestionViewLblAccept</span></a>
+                            <br/>
+                            <ul>
+                              <li>
+                                  <small>
+                                      @Html.Raw(CommonResources.ReviewedAnswerDescription)
+                                  </small>
+                              </li>
+                              <li>
+                                  <small>
+                                      @Html.Raw(CommonResources.AcceptedAnswerDescription)
+                                  </small>
+                              </li>
+                            </ul>  
+                        }
+                    </div>
+                </td>
+            </tr>
+            
+            <tr>
+                <td id="item-status-@item.Id">
+                    <div>
+                        <h5>
+                            <strong>@CommonResources.DetailQuestionViewLblCurrentStatus</strong> 
+                            <button class="btn @item.StatusStyle btn-xs active" type="button"> @item.Status.DisplayName </button>
+                        </h5>
+                    </div>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <small>
+                        @Html.Raw(CommonResources.LargeFilesSlowDownloadMsg)
+                    </small>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <strong>
+                        @CommonResources.AttachedFiles:
+                    </strong>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="5">
+                    <div>
+                        @foreach (var attachment in item.Attachments)
+                        {
+                            <a href=@attachment.PrimaryUri><span class="btn btn-link">@attachment.Name</span></a>
+                        }
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <br />
+                    <strong>@CommonResources.Description</strong>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="5">
+                    @Html.Raw(item.Description)
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <br/>
+                    <strong> @CommonResources.Comments: </strong>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="5">
+                    <div style="max-height: 200px; overflow: auto;">
+                        <table class="table table-bordered table-striped">
+                            @Html.Raw(item.Comments)
+                        </table>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="5">
+                    @if (Request.IsAuthenticated && StatusList.CONFIRM_PAYMENT_STATUS.Contains(Model.StatusId))
+                    {
+                        <input type="text" maxlength="@Size.MaxCommentCharacters" id="answer-comment-@item.Id" class="form-control input-sm" placeholder="@CommonResources.MsgAddCommentsPlaceHolder" />
+                        <a href="#" class="AddAnswerComment" data-id="@item.Id" data-toggle="tooltip" title="@CommonResources.MsgAddCommentsToolTip"><span class="btn btn-primary btn-xs">@CommonResources.MsgAddCommentsButton</span></a>
+                    }
+                    else if (StatusList.CONFIRM_PAYMENT_STATUS.Contains(Model.StatusId))
+                    {
+                        <input type="text" maxlength="@Size.MaxCommentCharacters" id="answer-comment-@item.Id" class="form-control input-sm" placeholder="@CommonResources.MsgAddCommentsPlaceHolder" />
+                        <button disabled type="submit" class="btn btn-primary btn-xs">@CommonResources.MsgAddCommentsButton</button>
+                        <br />
+                        <small>
+                            @Html.Raw(CommonResources.lblEnablePostButton)
+                        </small>
+                    }
+                </td>
+            </tr>
+            <tr>
+                <td colspan="5">
+                    <hr />
+                </td>
+            </tr>
+        }
+    </table>
+</div>
+@Html.PagedListPager(pagedAnwerList, page => Url.Action(ViewBag.MethodName, new { page }))

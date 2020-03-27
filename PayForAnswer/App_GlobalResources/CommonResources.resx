@@ -1,0 +1,387 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="BtnSave" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="CreateQuestionViewBrowswerTitle" xml:space="preserve">
+    <value>Create</value>
+  </data>
+  <data name="CreateQuestionViewTitle" xml:space="preserve">
+    <value>Question</value>
+  </data>
+  <data name="DetailQuestionViewAcceptedAnswerLbl" xml:space="preserve">
+    <value>No more answers accepted!</value>
+  </data>
+  <data name="DetailQuestionViewAnswerLabel" xml:space="preserve">
+    <value>New Answer Editor</value>
+  </data>
+  <data name="DetailQuestionViewBrowswerTitle" xml:space="preserve">
+    <value>Details</value>
+  </data>
+  <data name="DetailQuestionViewBtnPost" xml:space="preserve">
+    <value>Post Answer</value>
+  </data>
+  <data name="DetailQuestionViewLblAccept" xml:space="preserve">
+    <value>Accept</value>
+  </data>
+  <data name="DetailQuestionViewLblAnswers" xml:space="preserve">
+    <value>Answer(s)</value>
+  </data>
+  <data name="DetailQuestionViewLblAnswersPosted" xml:space="preserve">
+    <value>Answer posted on </value>
+  </data>
+  <data name="DetailQuestionViewLblByUser" xml:space="preserve">
+    <value>by user</value>
+  </data>
+  <data name="DetailQuestionViewLblCurrentStatus" xml:space="preserve">
+    <value>Current status:</value>
+  </data>
+  <data name="DetailQuestionViewLblQuestion" xml:space="preserve">
+    <value>Question posted on </value>
+  </data>
+  <data name="DetailQuestionViewLblReply" xml:space="preserve">
+    <value>Reply</value>
+  </data>
+  <data name="DetailQuestionViewLblUnrelated" xml:space="preserve">
+    <value>Unrelated</value>
+  </data>
+  <data name="DetailQuestionViewPaidAnswerLbl" xml:space="preserve">
+    <value>PAID - No more answers accepted!</value>
+  </data>
+  <data name="DetailQuestionViewSubjectLabel" xml:space="preserve">
+    <value>Subjects</value>
+  </data>
+  <data name="EmailPreferencesSuccessMsg" xml:space="preserve">
+    <value>Your email preferences have been saved.</value>
+  </data>
+  <data name="ENotificationsViewChkLblNotifyMyAnswersQs" xml:space="preserve">
+    <value>Notify me when there is a change in status to a question where I posted an answer.</value>
+  </data>
+  <data name="ENotificationsViewChkLblNotifyMySubjects" xml:space="preserve">
+    <value>Notify me when there is a new question related to my subjects of expertise.</value>
+  </data>
+  <data name="ENotificationsViewChkLblNotifyReplyToMyQ" xml:space="preserve">
+    <value>Notify me when there is a reply to my question(s).</value>
+  </data>
+  <data name="NewQuestionSubjectPlaceHolder" xml:space="preserve">
+    <value>at least one tag such as (ruby-on-rails django phone), max 5 subjects</value>
+  </data>
+  <data name="NewQuestionTitlePlaceHolder" xml:space="preserve">
+    <value>what's your question? be specific</value>
+  </data>
+  <data name="PreValidationViewBrowswerTitle" xml:space="preserve">
+    <value>PreValidation</value>
+  </data>
+  <data name="PreValidationViewBtnPay" xml:space="preserve">
+    <value>Pay with PayPal</value>
+  </data>
+  <data name="PreValidationViewCboxRFee" xml:space="preserve">
+    <value>Include responder's processing fee:</value>
+  </data>
+  <data name="PreValidationViewOrderTotal" xml:space="preserve">
+    <value>Order Total: $</value>
+  </data>
+  <data name="PreValidationViewQAmtLable" xml:space="preserve">
+    <value>Question amount:</value>
+  </data>
+  <data name="PreValidationViewQFeeLable" xml:space="preserve">
+    <value>Fee:</value>
+  </data>
+  <data name="PreValidationViewTitle" xml:space="preserve">
+    <value>Order Summary</value>
+  </data>
+  <data name="SettingsENotificationBrowserTitle" xml:space="preserve">
+    <value>ENotifications</value>
+  </data>
+  <data name="SettingsENotificationTitle" xml:space="preserve">
+    <value>Email Notifications</value>
+  </data>
+  <data name="SettingsMyProfileBrowserTitle" xml:space="preserve">
+    <value>My Profile</value>
+  </data>
+  <data name="SettingsMyProfileTitle" xml:space="preserve">
+    <value>My Profile</value>
+  </data>
+  <data name="UserProfileModelUserName" xml:space="preserve">
+    <value>User Name:</value>
+  </data>
+  <data name="FromAutoConfirmEmailAddress" xml:space="preserve">
+    <value>auto-confirm@payforanswer.com</value>
+  </data>
+  <data name="EmailUpdateConfirmationEmailSent" xml:space="preserve">
+    <value>Please confirm your new email address. A confirmation email was sent to </value>
+  </data>
+  <data name="EmailUpdatedSuccessMsg" xml:space="preserve">
+    <value>Your email was successfully updated.</value>
+  </data>
+  <data name="BtmSubmit" xml:space="preserve">
+    <value>Submit</value>
+  </data>
+  <data name="BtnAddNewSubject" xml:space="preserve">
+    <value>Add new subject</value>
+  </data>
+  <data name="BtnContinue" xml:space="preserve">
+    <value>Continue</value>
+  </data>
+  <data name="BtnRequestPwdReset" xml:space="preserve">
+    <value>Request Password Reset</value>
+  </data>
+  <data name="ErrirMsgUnAndPwd" xml:space="preserve">
+    <value>The user name or password provided is incorrect.</value>
+  </data>
+  <data name="ErrorMsgEmailAddressNotFound" xml:space="preserve">
+    <value>The email address provided was not found.</value>
+  </data>
+  <data name="ErrorMsgException" xml:space="preserve">
+    <value>An has occurred. Please try again.</value>
+  </data>
+  <data name="ErrorMsgPwd" xml:space="preserve">
+    <value>The current password is incorrect or the new password is invalid.</value>
+  </data>
+  <data name="ErrorViewMsg" xml:space="preserve">
+    <value>An error has occurred while processing your request.</value>
+  </data>
+  <data name="LblEmailAddress" xml:space="preserve">
+    <value>Email address:</value>
+  </data>
+  <data name="LblMySubjects" xml:space="preserve">
+    <value>My Subjects:</value>
+  </data>
+  <data name="LblResetPassword" xml:space="preserve">
+    <value>Reset password</value>
+  </data>
+  <data name="LblSubjectsLeft" xml:space="preserve">
+    <value>more subject(s) left to complete the registration process.</value>
+  </data>
+  <data name="LoginViewBrowswerTitle" xml:space="preserve">
+    <value>Log in</value>
+  </data>
+  <data name="LoginViewRegisterLink" xml:space="preserve">
+    <value>Register</value>
+  </data>
+  <data name="LoginViewTitle" xml:space="preserve">
+    <value>Please sign in.</value>
+  </data>
+  <data name="MethodDiassociateLogin" xml:space="preserve">
+    <value>The external login was removed.</value>
+  </data>
+  <data name="MsgErrorDefault" xml:space="preserve">
+    <value>An unknown error occurred. Please verify your entry and try again. If the problem persists, please report this as an issue.</value>
+  </data>
+  <data name="MsgErrorInvalidAnswer" xml:space="preserve">
+    <value>"The password retrieval answer provided is invalid. Please check the value and try again."</value>
+  </data>
+  <data name="MsgErrorInvalidEmail" xml:space="preserve">
+    <value>The e-mail address provided is invalid. Please check the value and try again.</value>
+  </data>
+  <data name="MsgErrorInvalidPassword" xml:space="preserve">
+    <value>The password provided is invalid. Please enter a valid password value.</value>
+  </data>
+  <data name="MsgErrorInvalidQuestion" xml:space="preserve">
+    <value>The password retrieval question provided is invalid. Please check the value and try again.</value>
+  </data>
+  <data name="MsgErrorInvalidUserName" xml:space="preserve">
+    <value>The user name provided is invalid. Please check the value and try again.</value>
+  </data>
+  <data name="MsgErrorProviderError" xml:space="preserve">
+    <value>The authentication provider returned an error. Please verify your entry and try again. If the problem persists, please contact your system administrator.</value>
+  </data>
+  <data name="MsgErrorViewBrowserTitle" xml:space="preserve">
+    <value>Error</value>
+  </data>
+  <data name="MsgErrorViewTitle" xml:space="preserve">
+    <value>Error.</value>
+  </data>
+  <data name="MsgExceptionResetPwd" xml:space="preserve">
+    <value>An error occur trying to update your password. Please start over by making a request to change your password, so a new email is sent to you.</value>
+  </data>
+  <data name="MsgInfoDuplicateEmail" xml:space="preserve">
+    <value>A user name for that e-mail address already exists. Please enter a different e-mail address.</value>
+  </data>
+  <data name="MsgInfoDuplicateUserName" xml:space="preserve">
+    <value>User name already exists. Please enter a different user name.</value>
+  </data>
+  <data name="MsgInfoEmailSentTo" xml:space="preserve">
+    <value>An email was sent to </value>
+  </data>
+  <data name="MsgSuccessPwdChanged" xml:space="preserve">
+    <value>Your password has been successfully changed.</value>
+  </data>
+  <data name="MsgWarningUserRejected" xml:space="preserve">
+    <value>The user creation request has been canceled. Please verify your entry and try again. If the problem persists, please report this as an issue.</value>
+  </data>
+  <data name="RequestPwdResetViewBrowserTitle" xml:space="preserve">
+    <value>Reset pwd</value>
+  </data>
+  <data name="RequestPwdResetViewTitle" xml:space="preserve">
+    <value>Request Password Reset</value>
+  </data>
+  <data name="ResetPwdTokenMissing" xml:space="preserve">
+    <value>The url is missing a parameter or your time limit has expired to change your password. Please submit a new request.</value>
+  </data>
+  <data name="ViewManageBrowswerTitle" xml:space="preserve">
+    <value>Manage Account</value>
+  </data>
+  <data name="ViewRegSubjectsBrowswerTitle" xml:space="preserve">
+    <value>Subjects</value>
+  </data>
+  <data name="ViewRegSubjectsTitle" xml:space="preserve">
+    <value>Add subjects of knowledge or expertise.</value>
+  </data>
+  <data name="LblAcceptTermsText" xml:space="preserve">
+    <value>By clicking the button, you agree to the &lt;br /&gt;Terms of Service and Privacy Policy above.</value>
+  </data>
+  <data name="LblPayPalPayments" xml:space="preserve">
+    <value>PayPal Payments</value>
+  </data>
+  <data name="TxtPlaceHolderRegistrationEmail" xml:space="preserve">
+    <value>Payments made to this address</value>
+  </data>
+  <data name="ViewRegisterPopOverPayPalText" xml:space="preserve">
+    <value>In order to get paid for your accepted answers, you need an email address that is connected to an active PayPal account.</value>
+  </data>
+  <data name="ViewRegisterPopOverPayPalTitle" xml:space="preserve">
+    <value>PayPal Account</value>
+  </data>
+  <data name="LblUpdateEmailAddressTo" xml:space="preserve">
+    <value>Update my email address to:</value>
+  </data>
+  <data name="MsgErrorEmailAddressIsEmpty" xml:space="preserve">
+    <value>The email address field cannot be empty!</value>
+  </data>
+  <data name="MsgErrorNewEmailAddressEqualsCurrent" xml:space="preserve">
+    <value>Your new email address is the same as your current email address!</value>
+  </data>
+  <data name="MsgErrorRegComfirmationCodeMissing" xml:space="preserve">
+    <value>Unable to read your confirmation code.</value>
+  </data>
+  <data name="MsgErrorRegistration" xml:space="preserve">
+    <value>There was problem while confirming your account.</value>
+  </data>
+  <data name="MsgInfoRegConfirmation" xml:space="preserve">
+    <value>Your account has been confirmed. Thank you!</value>
+  </data>
+  <data name="MsgAttentionPwdResetEmailSent" xml:space="preserve">
+    <value>An email has been sent to {0}.  Please check your email and use the enclosed link to reset your password.</value>
+  </data>
+  <data name="MsgAttentionRegEmailSent" xml:space="preserve">
+    <value>Thank you for registering. An email has been sent to {0}.  Please check your email and use the enclosed link to finish registration.</value>
+  </data>
+</root>

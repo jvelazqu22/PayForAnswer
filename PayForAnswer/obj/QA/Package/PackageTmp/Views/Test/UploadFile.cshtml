@@ -1,0 +1,32 @@
+﻿@model Domain.Models.Helper.UploadFile
+
+@{
+    ViewBag.Title = "UploadFile";
+}
+
+<h2>File Upload Test</h2>
+
+<script type="text/javascript">
+    $('document').ready(function () {
+        //document.getElementById("includedContent").innerHTML = '<object type="text/html" data="http://payforanswer.blob.core.windows.net/comments/1/comment.html" ></object>';
+        //$("#includedContent").load("test.html");
+        $("#includedContent").html('<object data="http://payforanswer.blob.core.windows.net/comments/1/comment.html">');
+    });
+</script>
+
+
+@using (Html.BeginForm("UpLoadFile", "Test", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <table>
+        <tr>
+            <td>File:</td>
+            <td><input type="file" name="Files" id="Files" multiple /></td>
+        </tr>
+        <tr>
+            <td>&nbsp;</td>
+            <td><input type="submit" name="submit" value="Upload" /> </td>
+        </tr>
+    </table>
+}
+
+<div id="includedContent"></div>

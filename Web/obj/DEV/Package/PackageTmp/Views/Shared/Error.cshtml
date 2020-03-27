@@ -1,0 +1,20 @@
+﻿@model System.Web.Mvc.HandleErrorInfo
+@using Domain.Constants
+@using Domain.App_GlobalResources
+@{
+    ViewBag.Title = "Error";
+
+    <h1 class="text-danger">Error.</h1>
+    if (Model.Exception != null && Model.Exception is HttpRequestValidationException)
+    {
+        string errorMsg = string.Format(CommonResources.InvalidCharactersInTitle, Errors.SPECIAL_CHARACTERS);
+        <h2 class="text-danger">@errorMsg</h2>
+    }
+    else
+    {
+        <h2 class="text-danger">@CommonResources.ErrorMsgException</h2>
+    }
+}
+
+
+

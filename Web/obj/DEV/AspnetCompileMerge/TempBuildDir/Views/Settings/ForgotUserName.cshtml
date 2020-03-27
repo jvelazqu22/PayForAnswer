@@ -1,0 +1,31 @@
+﻿@model Domain.Models.Account.ForgotPasswordViewModel
+@using Domain.App_GlobalResources;
+
+@{
+    ViewBag.Title = CommonResources.UserProfileModelUserName;
+}
+
+<h2>@CommonResources.ForgotUserName</h2>
+
+@using (Html.BeginForm("ForgotUserName", "Settings")) {
+    @Html.AntiForgeryToken()
+   
+    <hr />
+    
+    <strong>@CommonResources.LblEmailAddress</strong>
+    <br />
+   
+    <div class="row">
+        <div class="col-lg-3">
+        <div class="input-group merged">
+            <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
+            @Html.TextBoxFor(m => m.Email, new { type = "email", @class="form-control", autofocus = ""})
+        </div>
+        @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" }) <br />
+        </div>
+    </div>
+        
+    <br /> <br />
+    <button type="submit" class="btn btn-primary btn-lg">@CommonResources.EmailLink</button>
+    
+}

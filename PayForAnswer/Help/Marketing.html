@@ -1,0 +1,102 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8">
+    <title>Marketing</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="/Content/Bootstrap/bootstrap.css" rel="stylesheet" />
+    <script type="text/javascript" src="~/Scripts/bootstrap.min.js"></script>
+
+    <!--Google Analytics code-->
+    <script>
+        (function (i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date(); a = s.createElement(o),
+            m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+        ga('create', 'UA-45973465-1', 'payforanswer.com');
+        ga('send', 'pageview');
+
+    </script>
+</head>
+<body>
+
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @*            <a class="navbar-brand" href="#">Pay For Answer</a>*@
+                <label class="test">Pay For Answer</label>
+                @*            <a class="test" href="#">Pay For Answer</a>*@
+            </div>
+
+            <div class="navbar-collapse collapse">
+                <a href="#" class="btn btn-info navbar-btn">Home</a>
+                <a href="#" class="btn btn-info navbar-btn">New Post</a>
+
+                <div class="btn-group">
+                    <button type="button" class="btn btn-info">Filter by</button>
+                    <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown">
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" role="menu">
+                        <li><a href="#">All Open Question</a></li>
+                        <li><a href="#">All Paid Or Self Accepted Questions</a></li>
+                        <li><a href="#"><i class="glyphicon glyphicon-lock"></i> @CommonResources.LblMySubjects</a></li>
+                        <li><a href="#"><i class="glyphicon glyphicon-lock"></i> @CommonResources.lblMyQuestions</a></li>
+                        <li><a href="#"><i class="glyphicon glyphicon-lock"></i> @CommonResources.lblMyOpenQuestions</a></li>
+                        <li><a href="#"><i class="glyphicon glyphicon-lock"></i> @CommonResources.lblMyAcceptedQuestions</a></li>
+                        <li><a href="#"><i class="glyphicon glyphicon-lock"></i> @CommonResources.lblQuestionsWithMyAnswers</a></li>
+                        <li><a href="#"><i class="glyphicon glyphicon-lock"></i> @CommonResources.MyAnswers</a></li>
+                        <li><a href="#"><i class="glyphicon glyphicon-lock"></i> @CommonResources.MyPaidAnswers</a></li>
+                    </ul>
+                </div>
+
+                <div class="btn-group">
+                    <button type="button" class="btn btn-info">@CommonResources.lblSettings</button>
+                    <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown">
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" role="menu">
+                        <li><a href="#"><i class="glyphicon glyphicon-lock"></i> @CommonResources.lblChangePassword</a></li>
+                        @*
+                        <li><a href="#"><i class="glyphicon glyphicon-envelope"></i> @CommonResources.lblSettingsNotification</a></li>*@
+                        <li><a href="#"><i class="glyphicon glyphicon-lock"></i> @CommonResources.lblProfile</a></li>
+                    </ul>
+                </div>
+
+                <div class="btn-group">
+                    <button type="button" class="btn btn-info">@CommonResources.lblHelp</button>
+                    <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown">
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" role="menu">
+                        <li><a href="#">@CommonResources.lblAboutUs</a></li>
+                        <li><a href="#">@CommonResources.lblContactUs</a></li>
+                        <li><a href="#">@CommonResources.lblTheBasics</a></li>
+                    </ul>
+                </div>
+
+
+            </div><!--/.navbar-collapse -->
+        </div>
+    </div>
+    <br /><br />
+
+
+    <h2>Marketing</h2>
+
+    <p>
+    </p>
+    <p>
+        PayForAnswer is owned by Developer Answer LLC.
+    </p>
+</body>
+</html>

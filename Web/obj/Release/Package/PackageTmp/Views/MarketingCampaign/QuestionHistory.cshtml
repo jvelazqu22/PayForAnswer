@@ -1,0 +1,88 @@
+﻿@model PagedList.IPagedList<Domain.Models.ViewModel.QuestionMarketingHistoryViewModel>
+@using PagedList.Mvc
+
+@{
+    ViewBag.Title = "History";
+}
+
+<h2>@Model.FirstOrDefault().QuestionTitle</h2>
+<div class="table table-responsive">
+    <table class="table table-bordered table-hover table-striped">
+        <tr>
+            <th>
+                Action
+            </th>
+            <th>
+                Created on:
+            </th>
+            <th>
+                Start date:
+            </th>
+            <th>
+                Budget per day:
+            </th>
+            <th>
+                Number of days to run:
+            </th>
+            <th>
+                Total marketing budget
+            </th>
+            <th>
+                Question amount increase
+            </th>
+            <th>
+                Question amount before increase
+            </th>
+            <th>
+                Status:
+            </th>
+            <th>
+                End date:
+            </th>
+            <th>
+                ID:
+            </th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.ActionLink("Details", "Details", "Main", new { id = item.QuestionID }, null)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CreatedOnString)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.StartDateString)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PerDayBudget)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NumberOfDaysToRun)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TotalMarketingBudget)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.QuestionAmountIncrease)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.QuestionAmountBeforeIncrease)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Status)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EndDateString)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.QuestionPaymentDetailID)
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>
+    @Html.PagedListPager(Model, page => Url.Action(ViewBag.MethodName, new { page }))

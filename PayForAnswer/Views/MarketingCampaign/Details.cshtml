@@ -1,0 +1,64 @@
+﻿@model Domain.Models.Entities.MarketingCampaign
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>MarketingCampaign</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Question.Title)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Question.Title)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.TotalBudget)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.TotalBudget)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.StatudId)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.StatudId)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.PerDayBudget)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.PerDayBudget)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.StartDate)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.StartDate)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.EndDate)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.EndDate)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.UserIdThatStartedCampaign)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.UserIdThatStartedCampaign)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

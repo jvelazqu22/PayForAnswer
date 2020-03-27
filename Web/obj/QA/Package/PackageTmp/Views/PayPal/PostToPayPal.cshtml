@@ -1,0 +1,44 @@
+﻿@model Domain.Models.Helper.PayPalModel
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width" />
+        <title>Index</title>
+        @Styles.Render("~/Content/css")
+        @Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/bootstrap")
+        <link href="~/Content/Modals.css" rel="stylesheet">
+        <script type="text/javascript" src="~/Scripts/Custom/Modals.js"></script>
+    </head>
+    <body>
+        <div id="dlgUpdatePage" class="dialog">Redirecting to PayPal...</div>
+        <form id="frm" action="@ViewBag.actionURL">
+            @Html.HiddenFor(model => model.cmd)
+            @Html.HiddenFor(model => model.business)
+            @Html.HiddenFor(model => model.no_shipping)
+            @Html.HiddenFor(model => model.@return)
+            @Html.HiddenFor(model => model.cancel_return)
+            @Html.HiddenFor(model => model.notify_url)
+            @Html.HiddenFor(model => model.current_code)
+            @Html.HiddenFor(model => model.item_name)
+            @Html.HiddenFor(model => model.amount)
+            @Html.HiddenFor(model => model.custom)
+        </form>
+        <p style="text-align:center">
+            <h4>Redirecting to PayPal...</h4>
+        </p>
+    </body>
+</html>
+
+<script type="text/javascript">
+    $(this.document).ready(function () {
+        $("#dlgUpdatePage").show().dialog("open");
+        var frm = $("form");
+        frm.submit();
+    });
+</script>

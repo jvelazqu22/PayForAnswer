@@ -1,0 +1,26 @@
+﻿@model Domain.Models.ViewModel.QuestionDetailsViewModel
+@using Domain.App_GlobalResources;
+
+<div class="display-label">
+        <strong>
+            @CommonResources.DetailQuestionViewSubjectLabel:
+    </strong>
+
+    <table>
+        <tr>
+            @foreach (var subject in Model.Subjects)
+            {
+                <td>
+                    <span class="label label-primary">@subject.SubjectName</span>
+                </td>
+            }
+        </tr>
+    </table>
+
+</div>
+<hr />
+
+<div id="divDescription" class="display-field">
+    @Html.Raw(Model.Description)
+</div>
+<hr />

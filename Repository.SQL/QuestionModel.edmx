@@ -1,0 +1,472 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="QuestionsModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="QuestionsModelStoreContainer">
+          <EntitySet Name="Answer" EntityType="QuestionsModel.Store.Answer" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Question" EntityType="QuestionsModel.Store.Question" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="QuestionAnswers" EntityType="QuestionsModel.Store.QuestionAnswers" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="QuestionSubjects" EntityType="QuestionsModel.Store.QuestionSubjects" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Status" EntityType="QuestionsModel.Store.Status" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="StatusCategory" EntityType="QuestionsModel.Store.StatusCategory" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Subject" EntityType="QuestionsModel.Store.Subject" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_Answer_Status" Association="QuestionsModel.Store.FK_Answer_Status">
+            <End Role="Status" EntitySet="Status" />
+            <End Role="Answer" EntitySet="Answer" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Question_Status" Association="QuestionsModel.Store.FK_Question_Status">
+            <End Role="Status" EntitySet="Status" />
+            <End Role="Question" EntitySet="Question" />
+          </AssociationSet>
+          <AssociationSet Name="FK_QuestionAnswers_Answer" Association="QuestionsModel.Store.FK_QuestionAnswers_Answer">
+            <End Role="Answer" EntitySet="Answer" />
+            <End Role="QuestionAnswers" EntitySet="QuestionAnswers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_QuestionAnswers_Question" Association="QuestionsModel.Store.FK_QuestionAnswers_Question">
+            <End Role="Question" EntitySet="Question" />
+            <End Role="QuestionAnswers" EntitySet="QuestionAnswers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_QuestionSubjects_Question" Association="QuestionsModel.Store.FK_QuestionSubjects_Question">
+            <End Role="Question" EntitySet="Question" />
+            <End Role="QuestionSubjects" EntitySet="QuestionSubjects" />
+          </AssociationSet>
+          <AssociationSet Name="FK_QuestionSubjects_Subject" Association="QuestionsModel.Store.FK_QuestionSubjects_Subject">
+            <End Role="Subject" EntitySet="Subject" />
+            <End Role="QuestionSubjects" EntitySet="QuestionSubjects" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Status_StatusCategory" Association="QuestionsModel.Store.FK_Status_StatusCategory">
+            <End Role="StatusCategory" EntitySet="StatusCategory" />
+            <End Role="Status" EntitySet="Status" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Answer">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="StatusId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Question">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="nvarchar" Nullable="false" MaxLength="300" />
+          <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Amount" Type="money" Nullable="false" />
+          <Property Name="StatusId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="QuestionAnswers">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="QuestionId" Type="bigint" Nullable="false" />
+          <Property Name="AnswerId" Type="bigint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="QuestionSubjects">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="QuestionId" Type="bigint" Nullable="false" />
+          <Property Name="SubjectName" Type="bigint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Status">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="StatusCategoryId" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="StatusCategory">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Category" Type="nvarchar" Nullable="false" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Subject">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="SubjectName" Type="nchar" Nullable="false" MaxLength="100" />
+        </EntityType>
+        <Association Name="FK_Answer_Status">
+          <End Role="Status" Type="QuestionsModel.Store.Status" Multiplicity="1" />
+          <End Role="Answer" Type="QuestionsModel.Store.Answer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Status">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Answer">
+              <PropertyRef Name="StatusId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Question_Status">
+          <End Role="Status" Type="QuestionsModel.Store.Status" Multiplicity="1" />
+          <End Role="Question" Type="QuestionsModel.Store.Question" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Status">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Question">
+              <PropertyRef Name="StatusId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_QuestionAnswers_Answer">
+          <End Role="Answer" Type="QuestionsModel.Store.Answer" Multiplicity="1" />
+          <End Role="QuestionAnswers" Type="QuestionsModel.Store.QuestionAnswers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Answer">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="QuestionAnswers">
+              <PropertyRef Name="AnswerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_QuestionAnswers_Question">
+          <End Role="Question" Type="QuestionsModel.Store.Question" Multiplicity="1" />
+          <End Role="QuestionAnswers" Type="QuestionsModel.Store.QuestionAnswers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Question">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="QuestionAnswers">
+              <PropertyRef Name="QuestionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_QuestionSubjects_Question">
+          <End Role="Question" Type="QuestionsModel.Store.Question" Multiplicity="1" />
+          <End Role="QuestionSubjects" Type="QuestionsModel.Store.QuestionSubjects" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Question">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="QuestionSubjects">
+              <PropertyRef Name="QuestionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_QuestionSubjects_Subject">
+          <End Role="Subject" Type="QuestionsModel.Store.Subject" Multiplicity="1" />
+          <End Role="QuestionSubjects" Type="QuestionsModel.Store.QuestionSubjects" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Subject">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="QuestionSubjects">
+              <PropertyRef Name="SubjectName" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Status_StatusCategory">
+          <End Role="StatusCategory" Type="QuestionsModel.Store.StatusCategory" Multiplicity="1" />
+          <End Role="Status" Type="QuestionsModel.Store.Status" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StatusCategory">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Status">
+              <PropertyRef Name="StatusCategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="QuestionsModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="QuestionEntities" p1:LazyLoadingEnabled="true">
+          <EntitySet Name="Answers" EntityType="QuestionsModel.Answer" />
+          <EntitySet Name="Questions" EntityType="QuestionsModel.Question" />
+          <EntitySet Name="QuestionAnswers" EntityType="QuestionsModel.QuestionAnswer" />
+          <EntitySet Name="QuestionSubjects" EntityType="QuestionsModel.QuestionSubject" />
+          <EntitySet Name="Status" EntityType="QuestionsModel.Status" />
+          <EntitySet Name="StatusCategories" EntityType="QuestionsModel.StatusCategory" />
+          <EntitySet Name="Subjects" EntityType="QuestionsModel.Subject" />
+          <AssociationSet Name="FK_Answer_Status" Association="QuestionsModel.FK_Answer_Status">
+            <End Role="Status" EntitySet="Status" />
+            <End Role="Answer" EntitySet="Answers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_QuestionAnswers_Answer" Association="QuestionsModel.FK_QuestionAnswers_Answer">
+            <End Role="Answer" EntitySet="Answers" />
+            <End Role="QuestionAnswers" EntitySet="QuestionAnswers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Question_Status" Association="QuestionsModel.FK_Question_Status">
+            <End Role="Status" EntitySet="Status" />
+            <End Role="Question" EntitySet="Questions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_QuestionAnswers_Question" Association="QuestionsModel.FK_QuestionAnswers_Question">
+            <End Role="Question" EntitySet="Questions" />
+            <End Role="QuestionAnswers" EntitySet="QuestionAnswers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_QuestionSubjects_Question" Association="QuestionsModel.FK_QuestionSubjects_Question">
+            <End Role="Question" EntitySet="Questions" />
+            <End Role="QuestionSubjects" EntitySet="QuestionSubjects" />
+          </AssociationSet>
+          <AssociationSet Name="FK_QuestionSubjects_Subject" Association="QuestionsModel.FK_QuestionSubjects_Subject">
+            <End Role="Subject" EntitySet="Subjects" />
+            <End Role="QuestionSubjects" EntitySet="QuestionSubjects" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Status_StatusCategory" Association="QuestionsModel.FK_Status_StatusCategory">
+            <End Role="StatusCategory" EntitySet="StatusCategories" />
+            <End Role="Status" EntitySet="Status" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Answer">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Description" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="StatusId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Status" Relationship="QuestionsModel.FK_Answer_Status" FromRole="Answer" ToRole="Status" />
+          <NavigationProperty Name="QuestionAnswers" Relationship="QuestionsModel.FK_QuestionAnswers_Answer" FromRole="Answer" ToRole="QuestionAnswers" />
+        </EntityType>
+        <EntityType Name="Question">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" Nullable="false" MaxLength="300" Unicode="true" FixedLength="false" />
+          <Property Name="Description" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="Amount" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="StatusId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Status" Relationship="QuestionsModel.FK_Question_Status" FromRole="Question" ToRole="Status" />
+          <NavigationProperty Name="QuestionAnswers" Relationship="QuestionsModel.FK_QuestionAnswers_Question" FromRole="Question" ToRole="QuestionAnswers" />
+          <NavigationProperty Name="QuestionSubjects" Relationship="QuestionsModel.FK_QuestionSubjects_Question" FromRole="Question" ToRole="QuestionSubjects" />
+        </EntityType>
+        <EntityType Name="QuestionAnswer">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="QuestionId" Type="Int64" Nullable="false" />
+          <Property Name="AnswerId" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="Answer" Relationship="QuestionsModel.FK_QuestionAnswers_Answer" FromRole="QuestionAnswers" ToRole="Answer" />
+          <NavigationProperty Name="Question" Relationship="QuestionsModel.FK_QuestionAnswers_Question" FromRole="QuestionAnswers" ToRole="Question" />
+        </EntityType>
+        <EntityType Name="QuestionSubject">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="QuestionId" Type="Int64" Nullable="false" />
+          <Property Name="SubjectName" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="Question" Relationship="QuestionsModel.FK_QuestionSubjects_Question" FromRole="QuestionSubjects" ToRole="Question" />
+          <NavigationProperty Name="Subject" Relationship="QuestionsModel.FK_QuestionSubjects_Subject" FromRole="QuestionSubjects" ToRole="Subject" />
+        </EntityType>
+        <EntityType Name="Status">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="StatusCategoryId" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="Answers" Relationship="QuestionsModel.FK_Answer_Status" FromRole="Status" ToRole="Answer" />
+          <NavigationProperty Name="Questions" Relationship="QuestionsModel.FK_Question_Status" FromRole="Status" ToRole="Question" />
+          <NavigationProperty Name="StatusCategory" Relationship="QuestionsModel.FK_Status_StatusCategory" FromRole="Status" ToRole="StatusCategory" />
+        </EntityType>
+        <EntityType Name="StatusCategory">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Category" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="Status" Relationship="QuestionsModel.FK_Status_StatusCategory" FromRole="StatusCategory" ToRole="Status" />
+        </EntityType>
+        <EntityType Name="Subject">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="SubjectName" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="true" />
+          <NavigationProperty Name="QuestionSubjects" Relationship="QuestionsModel.FK_QuestionSubjects_Subject" FromRole="Subject" ToRole="QuestionSubjects" />
+        </EntityType>
+        <Association Name="FK_Answer_Status">
+          <End Role="Status" Type="QuestionsModel.Status" Multiplicity="1" />
+          <End Role="Answer" Type="QuestionsModel.Answer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Status">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Answer">
+              <PropertyRef Name="StatusId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_QuestionAnswers_Answer">
+          <End Role="Answer" Type="QuestionsModel.Answer" Multiplicity="1" />
+          <End Role="QuestionAnswers" Type="QuestionsModel.QuestionAnswer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Answer">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="QuestionAnswers">
+              <PropertyRef Name="AnswerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Question_Status">
+          <End Role="Status" Type="QuestionsModel.Status" Multiplicity="1" />
+          <End Role="Question" Type="QuestionsModel.Question" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Status">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Question">
+              <PropertyRef Name="StatusId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_QuestionAnswers_Question">
+          <End Role="Question" Type="QuestionsModel.Question" Multiplicity="1" />
+          <End Role="QuestionAnswers" Type="QuestionsModel.QuestionAnswer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Question">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="QuestionAnswers">
+              <PropertyRef Name="QuestionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_QuestionSubjects_Question">
+          <End Role="Question" Type="QuestionsModel.Question" Multiplicity="1" />
+          <End Role="QuestionSubjects" Type="QuestionsModel.QuestionSubject" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Question">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="QuestionSubjects">
+              <PropertyRef Name="QuestionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_QuestionSubjects_Subject">
+          <End Role="Subject" Type="QuestionsModel.Subject" Multiplicity="1" />
+          <End Role="QuestionSubjects" Type="QuestionsModel.QuestionSubject" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Subject">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="QuestionSubjects">
+              <PropertyRef Name="SubjectName" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Status_StatusCategory">
+          <End Role="StatusCategory" Type="QuestionsModel.StatusCategory" Multiplicity="1" />
+          <End Role="Status" Type="QuestionsModel.Status" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StatusCategory">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Status">
+              <PropertyRef Name="StatusCategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="QuestionsModelStoreContainer" CdmEntityContainer="QuestionEntities">
+          <EntitySetMapping Name="Answers">
+            <EntityTypeMapping TypeName="QuestionsModel.Answer">
+              <MappingFragment StoreEntitySet="Answer">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="StatusId" ColumnName="StatusId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Questions">
+            <EntityTypeMapping TypeName="QuestionsModel.Question">
+              <MappingFragment StoreEntitySet="Question">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="StatusId" ColumnName="StatusId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="QuestionAnswers">
+            <EntityTypeMapping TypeName="QuestionsModel.QuestionAnswer">
+              <MappingFragment StoreEntitySet="QuestionAnswers">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="QuestionId" ColumnName="QuestionId" />
+                <ScalarProperty Name="AnswerId" ColumnName="AnswerId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="QuestionSubjects">
+            <EntityTypeMapping TypeName="QuestionsModel.QuestionSubject">
+              <MappingFragment StoreEntitySet="QuestionSubjects">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="QuestionId" ColumnName="QuestionId" />
+                <ScalarProperty Name="SubjectName" ColumnName="SubjectName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Status">
+            <EntityTypeMapping TypeName="QuestionsModel.Status">
+              <MappingFragment StoreEntitySet="Status">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="StatusCategoryId" ColumnName="StatusCategoryId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StatusCategories">
+            <EntityTypeMapping TypeName="QuestionsModel.StatusCategory">
+              <MappingFragment StoreEntitySet="StatusCategory">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Category" ColumnName="Category" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Subjects">
+            <EntityTypeMapping TypeName="QuestionsModel.Subject">
+              <MappingFragment StoreEntitySet="Subject">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="SubjectName" ColumnName="SubjectName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

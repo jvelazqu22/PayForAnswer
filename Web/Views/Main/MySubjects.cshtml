@@ -1,0 +1,63 @@
+﻿@model Domain.Models.ViewModel.QuestionsBySubjectModel
+@using Domain.App_GlobalResources;
+@using PagedList;
+@using Domain.Constants;
+
+<link href="~/Content/Modals.css" rel="stylesheet">
+<script type="text/javascript" src="~/Scripts/Custom/Modals.js"></script>
+<script type="text/javascript">
+
+    $('document').ready(function () {
+        var t = $("#tag").tagging();
+        $("#btnSubmit").click(function () {
+            var form = $('#__AjaxAntiForgeryForm');
+            var token = $('input[name="__RequestVerificationToken"]', form).val();
+
+            var commaDelimitedSubjects = $.trim(t[0].tagging("getTags")).toLowerCase();
+            $("#dlgUpdatePage").show().dialog("open");
+            $.post("/Main/UpdateSubjects", { __RequestVerificationToken: token, "commaDelimitedSubjects": commaDelimitedSubjects },
+                    function (data) {
+                        location = data.url;
+                    });
+        });
+    });
+
+</script>
+
+<h2>@CommonResources.AddUpdateSubjects</h2>
+
+<h4>@CommonResources.AddUpdateSubjectsDescription</h4>
+@using (Html.BeginForm(null, null, FormMethod.Post, new { id = "__AjaxAntiForgeryForm" }))
+{
+    @Html.AntiForgeryToken()
+}
+
+<div id="dlgUpdatePage" class="dialog">@CommonResources.UpdatingDataMsg</div>
+<div class="example-wrapper">
+    <div class="tags well">
+        <label for="tag" class="control-label">@CommonResources.LblMySubjects</label>
+        <div class="tagging-js tagging form-control" data-tags-input-name="taggone" id="tag">
+            @Model.CommaSpaceDelimitedSubjects
+        </div>
+        <div>
+            @CommonResources.HowToUseSubjectBoxDescription
+        </div>
+        <br />
+        <strong>
+            <button id="btnSubmit" type="submit" class="btn btn-success btn">@CommonResources.SaveAndRefresh</button>
+        </strong>
+    </div>
+</div>
+
+@if(Model.Questions.Count() == 0)
+{
+    <div class="text-center">
+        <p class="bg-primary">@CommonResources.NoQuestionsThatMatchYourSubjects</p>
+    </div>
+}
+else
+{
+    @Html.Partial("~/Views/Shared/_Questions.cshtml", Model.Questions.ToPagedList(Model.PageNumber, Size.QuestionPagerPageSize))    
+}
+
+

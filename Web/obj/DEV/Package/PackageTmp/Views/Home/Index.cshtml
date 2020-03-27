@@ -1,0 +1,93 @@
+﻿@using Domain.App_GlobalResources
+@using Domain.Constants
+@model PagedList.IPagedList<Domain.Models.Entities.Question>
+@using PagedList.Mvc
+
+@if (General.RunningInProduction)
+{
+    @*<a href="https://twitter.com/share" class="twitter-share-button" data-url="https://www.payforanswer.com" data-text="Pay For Answer">Tweet</a>*@
+    <div class="fb-like" data-href="@Urls.MainUrl" data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div>
+    <strong>@CommonResources.VisitUs</strong>
+    <a href="@Urls.FACEBOOK_BIZ_PAGE_URL" target="_blank" title="Facebook"><img src="~/Content/Images/social/Facebook.png"></a>
+    <a href="@Urls.TWITTER_PAGE_URL" target="_blank" title="Tweeter"><img src="~/Content/Images/social/Twitter.png"></a>
+    <a href="@Urls.LINKEDIN_PAGE_URL" target="_blank" title="Share on LinkedIn"><img src="~/Content/Images/social/LinkedIn.png"></a>
+    <a href="@Urls.GOOGLE_PAGE_URL" target="_blank" title="Share on Google+"><img src="~/Content/Images/social/Google.png"></a>
+
+    @*<ul class="share-buttons">
+        <li><a href="@Urls.MAIN_SHARE_FACEBOOK_URL" target="_blank" title="Share on Facebook"><img src="~/Content/Images/social/Facebook.png"></a></li>
+        <li><a href="@Urls.MAIN_SHARE_TWITTER_URL" target="_blank" title="Tweet"><img src="~/Content/Images/social/Twitter.png"></a></li>
+        <li><a href="@Urls.MAIN_SHARE_LINKEDIN_URL" target="_blank" title="Share on LinkedIn"><img src="~/Content/Images/social/LinkedIn.png"></a></li>
+        <li><a href="@Urls.MAIN_SHAREE_GOOGLE_URL" target="_blank" title="Share on Google+"><img src="~/Content/Images/social/Google.png"></a></li>
+    </ul>*@
+}
+
+@{
+    ViewBag.Title = CommonResources.ViewHomeIndexBrowserTitle;
+}
+<div class="embed-responsive embed-responsive-16by9">
+    <iframe class="embed-responsive-item" src="//www.youtube.com/embed/o7BMMdgfqOY?rel=0"></iframe>
+@*    <iframe class="embed-responsive-item" src="//www.youtube.com/embed/wT-k9gnDY4U?rel=0"></iframe>*@
+</div>
+
+<div class="container">
+    <!-- Example row of columns -->
+    <div class="row">
+        <div class="col-lg-4">
+            <h2>@CommonResources.ViewHomeIndexSubHeader3</h2>
+            <p>@CommonResources.ViewHomeIndexSubHeader3Text </p>
+            <p><a class="btn btn-primary" href="@Url.Action("Index", "Help")" target="_blank">Learn more &raquo;</a></p>
+        </div>
+
+        <div class="col-lg-4">
+            <h2>@CommonResources.ViewHomeIndexSubHeader1</h2>
+            <p>@CommonResources.ViewHomeIndexSubHeader1Text </p>
+            <p><a class="btn btn-primary" href="@Url.Action("Index", "Help")" target="_blank">Learn more &raquo;</a></p>
+        </div>
+
+        <div class="col-lg-4">
+            <h2>@CommonResources.ViewHomeIndexSubHeader2</h2>
+            <p>@CommonResources.ViewHomeIndexSubHeader2Text </p>
+            <p><a class="btn btn-primary" href="@Url.Action("Index", "Help")" target="_blank">Learn more &raquo;</a></p>
+        </div>
+
+    </div>
+
+    <div class="row">
+        <div class="col-lg-4">
+            <h2>@CommonResources.ViewHomeIndexSubHeader4</h2>
+            <p>@CommonResources.ViewHomeIndexSubHeader4Text </p>
+            <p><a class="btn btn-primary" href="@Url.Action("AllOpenQuestions", "Main")" target="_blank">Open questions/projects &raquo;</a></p>
+        </div>
+
+        <div class="col-lg-4">
+            <h2>@CommonResources.ViewHomeIndexSubHeader5</h2>
+            <p>@CommonResources.ViewHomeIndexSubHeader5Text </p>
+            @if(User.Identity.IsAuthenticated)
+            {
+                <p><a class="btn btn-primary" href="@Url.Action("MySubjects", "Main")" target="_blank">Open questions/projects &raquo;</a></p>
+            }
+            else
+            {
+                <p><a class="btn btn-primary" href="@Url.Action("BySubject", "UnauthSubject")" target="_blank">Open questions/projects &raquo;</a></p>
+            }
+        </div>
+
+        <div class="col-lg-4">
+            <h2>@CommonResources.ViewHomeIndexSubHeader6</h2>
+            <p>@CommonResources.ViewHomeIndexSubHeader6Text </p>
+            <p><a class="btn btn-primary" href="@Url.Action("Index", "Help")" target="_blank">Learn more &raquo;</a></p>
+        </div>
+    </div>
+
+    <hr>
+</div> <!-- /container -->
+
+@if (Model.Count() > 0)
+{
+    <div class="text-center">
+        <p class="bg-primary">@CommonResources.TopQuestionsProjects</p>
+    </div>
+    @Html.Partial("~/Views/Shared/_Questions.cshtml", Model)
+}
+
+

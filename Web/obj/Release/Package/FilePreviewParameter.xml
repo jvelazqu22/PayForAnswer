@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="IIS Web Application Name" description="" value="payforanswer" tags="IisApp">
+    <parameterEntry kind="ProviderPath" scope="IisApp" match="^C:\\Code\\PayForAnswer\\Development\\Web\\obj\\Release\\Package\\PackageTmp$" />
+    <parameterEntry kind="ProviderPath" scope="setAcl" match="^C:\\Code\\PayForAnswer\\Development\\Web\\obj\\Release\\Package\\PackageTmp$" />
+  </parameter>
+  <parameter name="PfaDb-Web.config Connection String" description="" value="Data Source=tcp:xjm42a0its.database.windows.net,1433;Initial Catalog=PPFADB;User Id=maincsun;Password=Mypwd@001" tags="">
+    <parameterEntry kind="XmlFile" scope="C:\\Code\\PayForAnswer\\Development\\Web\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='PfaDb']/@connectionString" />
+  </parameter>
+</parameters>

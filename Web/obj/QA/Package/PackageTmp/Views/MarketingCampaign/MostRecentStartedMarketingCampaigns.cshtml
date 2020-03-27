@@ -1,0 +1,129 @@
+﻿@model PagedList.IPagedList<Domain.Models.ViewModel.MarketingCampaignViewModel>
+@using PagedList.Mvc
+@using Domain.Constants;
+
+@{
+    ViewBag.Title = "Campaigns";
+}
+
+<h2>Top @Size.TopStartedMarketingCampaigns Started Campaigns</h2>
+
+<div class="table table-responsive">
+    <table class="table table-bordered table-hover table-striped">
+        <tr>
+            <th>
+                Question
+            </th>
+            <th>
+                Campaign Manager
+            </th>
+            <th>
+                Status
+            </th>
+            <th>
+                Question title
+            </th>
+            <th>
+                Per day budget
+            </th>
+            <th>
+                Campaign days
+            </th>
+            <th>
+                Total marketing budget
+            </th>
+            <th>
+                Question amount
+            </th>
+            <th>
+                Question amount increase
+            </th>
+            <th>
+                Marketing start date
+            </th>
+            <th>
+                Marketing end date
+            </th>
+            <th>
+                Created on
+            </th>
+            <th>
+                Question ID
+            </th>
+            <th>
+                Campaign ID
+            </th>
+            <th>
+                User name
+            </th>
+            <th>
+                User Email
+            </th>
+            <th>
+                Subjects
+            </th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.ActionLink("Question", "Details", "Main", new { id = item.QuestionID }, null)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CampaignManagerUserName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Status)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.QuestionTitle)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PerDayBudget)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NumberOfDaysToRun)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TotalMarketingBudget)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Amount)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.QuestionAmountIncrease)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.StartDateString)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EndDateString)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CreatedOnString)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.QuestionID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.QuestionPaymentDetailID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.QuestionPosterUserName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.QuestionPosterEmailAddress)
+                </td>
+                <td>
+                    @foreach (var subject in item.QuestionSubjects)
+                    {
+                        <button class="btn btn-warning btn-sm active" type="button"> @subject </button>
+                    }
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>
+@Html.PagedListPager(Model, page => Url.Action(ViewBag.MethodName, new { page }))

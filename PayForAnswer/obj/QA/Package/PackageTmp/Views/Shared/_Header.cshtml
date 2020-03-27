@@ -1,0 +1,120 @@
+﻿@using System.Activities.Expressions
+@using Domain.Constants
+@using Domain.App_GlobalResources
+
+@helper ActiveItem(string actionName, string controllerName, string areaName)
+{
+    if (ViewContext.RouteData.Values["action"].ToString() == actionName &&
+            ViewContext.RouteData.Values["controller"].ToString() == controllerName &&
+            (ViewContext.RouteData.DataTokens["area"] == null || ViewContext.RouteData.DataTokens["area"].ToString() == areaName))
+    {
+        @:active
+    }
+}
+
+@using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                </button>
+    @*            <a class="navbar-brand" href="#">Pay For Answer</a>*@
+                <label class="test">Pay For Answer</label>
+    @*            <a class="test" href="#">Pay For Answer</a>*@
+            </div>
+
+            <div class="navbar-collapse collapse">
+                <a href="@Url.Action("Index", "Home")" class="btn btn-info navbar-btn">@CommonResources.lblHome</a>
+                <a href="@Url.Action("Create", "NewQuestion")" class="btn btn-info navbar-btn">@CommonResources.lblNewPost</a>
+
+                <div class="btn-group">
+                    <button type="button" class="btn btn-info">@CommonResources.lblFilterBy</button>
+                    <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown">
+                    <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" role="menu">
+                        <li><a href="@Url.Action("AllOpenQuestions", "Main")">@CommonResources.lblAllOpenQuestions</a></li>
+                        <li><a href="@Url.Action("AllPaidOrAcceptedQuestions", "Main")">@CommonResources.lblAllPaidOrSelfAcceptedQuestions</a></li>
+                        @if (!WebSecurity.IsAuthenticated)
+                        {
+                            <li><a href="@Url.Action("BySubject", "UnauthSubject")">@CommonResources.lblBySubjects</a></li>
+                        }
+                        <li><a href="@Url.Action("BySubject", "Main")"><i class="fa fa-lock"></i> @CommonResources.LblMySubjects</a></li>
+                        <li><a href="@Url.Action("MyQuestions", "Main")"><i class="fa fa-lock"></i> @CommonResources.lblMyQuestions</a></li>
+                        <li><a href="@Url.Action("MyOpenQuestions", "Main")"><i class="fa fa-lock"></i> @CommonResources.lblMyOpenQuestions</a></li>
+                        <li><a href="@Url.Action("MyAcceptedQuestions", "Main")"><i class="fa fa-lock"></i> @CommonResources.lblMyAcceptedQuestions</a></li>
+                        <li><a href="@Url.Action("MyAnswers", "Answer")"><i class="fa fa-lock"></i> @CommonResources.lblQuestionsWithMyAnswers</a></li>
+                        <li><a href="@Url.Action("MyAnswers", "Answer")"><i class="fa fa-lock"></i> @CommonResources.MyAnswers</a></li>
+                        <li><a href="@Url.Action("MyPaidAnswers", "Answer")"><i class="fa fa-lock"></i> @CommonResources.MyPaidAnswers</a></li>
+                    </ul>
+                </div>                    
+
+                <div class="btn-group">
+                    <button type="button" class="btn btn-info">@CommonResources.lblSettings</button>
+                    <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown">
+                    <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" role="menu">
+                        <li><a href="@Url.Action("Manage", "Account", new { title = "Manage" })"><i class="fa fa-lock"></i> @CommonResources.lblChangePassword</a></li>
+                        @*<li><a href="@Url.Action("ENotifications", "Settings")"><i class="glyphicon glyphicon-envelope"></i> @CommonResources.lblSettingsNotification</a></li>*@
+                        <li><a href="@Url.Action("MyProfile", "Settings")"><i class="fa fa-lock"></i> @CommonResources.lblProfile</a></li>
+                    </ul>
+                </div>                    
+
+                <div class="btn-group">
+                    <button type="button" class="btn btn-info">@CommonResources.lblHelp</button>
+                    <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown">
+                    <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" role="menu">
+                        <li><a href="@Url.Action("About", "Help")">@CommonResources.lblAboutUs</a></li>
+                        <li><a href="@Url.Action("Contact", "Help")">@CommonResources.lblContactUs</a></li>
+                        <li><a href="@Url.Action("Basics", "Help")">@CommonResources.lblTheBasics</a></li>
+                    </ul>
+                </div>                    
+
+                @if (User.IsInRole(Role.Admin))
+                {
+                    @*
+                    <div class="btn-group">
+                        <a href="@Url.Action("Index", "Report")" class="btn btn-info">My Reports</a>
+                    </div><!-- /btn-group -->
+                    *@
+                    
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-info">Admin</button>
+                        <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown">
+                        <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="@Url.Action("Alert", "Admin")">Alert</a></li>
+                            <li><a href="@Url.Action("NotStartedList", "MarketingCampaign")">Not Started Campaigns</a></li>
+                            <li><a href="@Url.Action("MostRecentStartedMarketingCampaigns", "MarketingCampaign")">Started Campaigns</a></li>
+                        </ul>
+                    </div>                    
+                }
+
+    @*            <form class="navbar-form navbar-right">
+                    <div class="form-group">
+                        <input type="text" placeholder= "@CommonResources.lblUserName" class="form-control" autofocus = "">
+                    </div>
+                    <div class="form-group">
+                        <input type="password" placeholder="Password" class="form-control">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Sign in</button>
+                    <button type="submit" class="btn btn-warning">Register</button>
+                </form>*@
+
+                @Html.Partial("_LoginPartial")
+
+            </div><!--/.navbar-collapse -->
+        </div>
+    </div>
+    <br /><br />
+}

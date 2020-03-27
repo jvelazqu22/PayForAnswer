@@ -1,0 +1,117 @@
+﻿@model Domain.Models.ViewModel.MarketingCampaignViewModel
+@using Domain.App_GlobalResources;
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Marketing Campaign</legend>
+
+        @Html.HiddenFor(model => model.QuestionPaymentDetailID)
+        @Html.HiddenFor(model => model.QuestionTitle)
+        @Html.HiddenFor(model => model.CampaignManagerId)
+        @Html.HiddenFor(model => model.QuestionAmountIncrease)
+        @Html.HiddenFor(model => model.CreatedOn)
+        @Html.HiddenFor(model => model.RowVersion)
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.QuestionTitle)
+        </div>
+        <div class="editor-field">
+            @Html.DisplayFor(model => model.QuestionTitle)
+            @Html.ValidationMessageFor(model => model.QuestionTitle)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.StatusId)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("StatusId")
+            @Html.ValidationMessageFor(model => model.StatusId)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.QuestionAmountIncrease)
+        </div>
+        <div class="editor-field">
+            @Html.DisplayFor(model => model.QuestionAmountIncrease)
+            @Html.ValidationMessageFor(model => model.QuestionAmountIncrease)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.QuestionAmountBeforeIncrease)
+        </div>
+        <div class="editor-field">
+            @Html.DisplayFor(model => model.QuestionAmountBeforeIncrease)
+            @Html.ValidationMessageFor(model => model.QuestionAmountBeforeIncrease)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PerDayBudget)
+        </div>
+        <div class="editor-field">
+            @Html.DisplayFor(model => model.PerDayBudget)
+            @Html.ValidationMessageFor(model => model.PerDayBudget)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.NumberOfDaysToRun)
+        </div>
+        <div class="editor-field">
+            @Html.DisplayFor(model => model.NumberOfDaysToRun)
+            @Html.ValidationMessageFor(model => model.NumberOfDaysToRun)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.TotalMarketingBudget)
+        </div>
+        <div class="editor-field">
+            @Html.DisplayFor(model => model.TotalMarketingBudget)
+            @Html.ValidationMessageFor(model => model.TotalMarketingBudget)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.CreatedOn)
+        </div>
+        <div class="editor-field">
+            @Html.DisplayFor(model => model.CreatedOnString)
+            @Html.ValidationMessageFor(model => model.CreatedOn)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.StartDate)
+        </div>
+        <div class="editor-field">
+            @Html.DisplayFor(model => model.StartDateString)
+            @Html.ValidationMessageFor(model => model.StartDate)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.EndDate)
+        </div>
+        <div class="editor-field">
+            @Html.DisplayFor(model => model.EndDateString)
+            @Html.ValidationMessageFor(model => model.EndDateString)
+        </div>
+
+        <br/>
+        <p>
+            <button type="submit" class="btn btn-primary btn-lg">@CommonResources.BtnSave</button>
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "NotStartedList", "MarketingCampaign")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

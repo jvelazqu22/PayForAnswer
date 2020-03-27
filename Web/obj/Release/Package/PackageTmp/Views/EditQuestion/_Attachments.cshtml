@@ -1,0 +1,17 @@
+﻿@model Domain.Models.ViewModel.UpdateQuestionViewModel
+@using Domain.App_GlobalResources;
+@using Microsoft.AspNet.Identity
+
+<div>
+    <small>
+        @Html.Raw(CommonResources.LargeFilesSlowDownloadMsg)
+    </small>
+    <br />
+    <strong> @CommonResources.AttachedFiles:</strong>
+        @foreach (var attachment in Model.Attachments)
+        {
+            <a href=@attachment.PrimaryUri><span class="btn btn-link">@attachment.Name</span></a>
+            @Html.ActionLink(CommonResources.RemoveFile, "DeleteAttachment", "EditQuestion", new { Qid = Model.QuestionID, Aid = attachment.ID }, new { @class = "btn btn-danger btn-xs" })
+        }
+</div>
+<hr />

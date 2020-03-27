@@ -1,0 +1,102 @@
+﻿@model Domain.Models.CreateQuestionViewModel
+@using Domain.App_GlobalResources;
+@using Domain.Constants;
+
+<strong>
+    @CommonResources.LblQuestionTitle
+    <a href="#" data-toggle="tooltip" title="@string.Format(CommonResources.TitleNewQuestionTooltip, Size.GoogleDescrLineMaxCharacters)">@CommonResources.QuestionMarkLinkSymbol</a>
+</strong>
+@Html.Raw(string.Format(CommonResources.TitleNewQuestionTooltip, Size.GoogleDescrLineMaxCharacters))
+
+<div class="editor-field">
+    @Html.TextBoxFor(model => model.Title, new { @class = "form-control", placeholder = string.Format(CommonResources.NewQuestionTitlePlaceHolder, Size.GoogleDescrLineMaxCharacters), maxLength = Size.GoogleDescrLineMaxCharacters })
+</div>
+@Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
+<br/>
+
+<strong>
+    @CommonResources.lblQuestionAmount
+    <a href="#" data-toggle="tooltip" title="@CommonResources.lblQuestionAmountTooltip">@CommonResources.QuestionMarkLinkSymbol</a>
+</strong>
+@Html.Raw(CommonResources.lblQuestionAmountTooltip)
+
+<div class="row">
+    <div class="col-lg-2">
+        <div class="input-group">
+            <span class="input-group-addon">$</span>
+            @Html.TextBoxFor(model => model.Amount, new { @class = "form-control", placeholder = string.Format(CommonResources.NewQuestionAmtPlaceHolder, General.MinimumQuestionAmount) })
+            <span class="input-group-addon">.00</span>
+        </div>
+    </div>
+</div>
+@Html.ValidationMessageFor(model => model.Amount, "", new { @class = "text-danger" })
+<br/>
+
+<strong>
+    @CommonResources.QuestionMarketingAmountPerDay
+    <a href="#" data-toggle="tooltip" title="@CommonResources.lblQuestionAmountMarketingTooltip">@CommonResources.QuestionMarkLinkSymbol</a>
+</strong>
+@Html.Raw(CommonResources.lblQuestionAmountMarketingTooltip)
+<br />
+
+<div class="row">
+    <div class="col-lg-2">
+        <div class="input-group">
+            <span class="input-group-addon">$</span>
+            @Html.TextBoxFor(model => model.MarketingBudgetPerDay, new { @class = "form-control", placeholder = string.Format(CommonResources.NewQuestionAmtPlaceHolder, General.MinimumMarketingBudgetPerDay) })
+            <span class="input-group-addon">.00</span>
+        </div>
+    </div>
+</div>
+
+@Html.ValidationMessageFor(model => model.MarketingBudgetPerDay, "", new { @class = "text-danger" })
+<br/>
+
+<strong>
+    @CommonResources.txtNumberOfMarketingDays
+    <a href="#" data-toggle="tooltip" title="@CommonResources.NumberOfMarketingDaysDescription">@CommonResources.QuestionMarkLinkSymbol</a>
+</strong>
+@Html.Raw(CommonResources.NumberOfMarketingDaysDescription)
+
+<div class="row">
+    <div class="col-lg-2">
+        <div class="input-group"> 
+            <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+            @Html.TextBoxFor(model => model.NumberOfCampaignDays, new { @class = "form-control", placeholder = string.Format(CommonResources.NewQuestionAmtPlaceHolder, General.MinimumMarketingDays) })
+            <span class="input-group-addon">days</span>
+        </div>
+    </div>
+</div>
+@Html.ValidationMessageFor(model => model.NumberOfCampaignDays, "", new { @class = "text-danger" })
+<br/>
+
+<strong>
+    @CommonResources.QuestionSubjects
+    <a href="#" data-toggle="tooltip" title="@string.Format(CommonResources.QuestionSubjectExplanation, Size.MaxNumberOfQuestionSubjects)">@CommonResources.QuestionMarkLinkSymbol</a>
+</strong>
+@Html.Raw(string.Format(CommonResources.QuestionSubjectExplanation, Size.MaxNumberOfQuestionSubjects))
+
+<div class="example-wrapper">
+    <div class="tags well">
+        <div class="tagging-js tagging form-control" data-tags-input-name="taggone" id="tag">
+            @{
+                if(Model == null || string.IsNullOrWhiteSpace(Model.CommaDelimitedSubjects))
+                {
+                    @CommonResources.SubjectSamples
+                }
+                else
+                {
+                    @Model.CommaSpaceDelimitedSubjects
+                }
+            }
+        </div>
+        <div>
+            @CommonResources.HowToUseSubjectBoxDescription
+        </div>
+@*        <p class="help-block">@CommonResources.HowToUseSubjectBoxDescription</p>*@
+        <br/>
+        <strong>
+            <button id="btnSubjects" type="button" class="btn btn-success">@CommonResources.RefreshGoogleAdsBelow</button>
+        </strong>
+    </div>
+</div>

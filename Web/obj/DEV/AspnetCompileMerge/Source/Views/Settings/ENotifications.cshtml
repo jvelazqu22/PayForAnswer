@@ -1,0 +1,49 @@
+﻿@model Domain.Models.Entities.Identity.ApplicationUser
+@using Domain.App_GlobalResources;
+
+@{
+    ViewBag.Title = CommonResources.SettingsENotificationBrowserTitle;
+}
+
+<h2>@CommonResources.lblSettingsNotification</h2>
+
+@using (Html.BeginForm("ENotifications", "Settings"))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary()
+
+    @Html.HiddenFor(model => model.Id)
+    @Html.HiddenFor(model => model.UserName)
+    @Html.HiddenFor(model => model.Email)
+    @Html.HiddenFor(model => model.NewEmail)
+
+    <table class="table">
+        <tr>
+            <td>
+                @Html.EditorFor(model => model.ReplyToMyQuestionNotification)
+            </td>
+            <td>
+                @CommonResources.ENotificationsViewChkLblNotifyReplyToMyQ
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.EditorFor(model => model.NewQuestionRelatedToMySubjectsNotification)
+            </td>
+            <td>
+                @CommonResources.ENotificationsViewChkLblNotifyMySubjects
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.EditorFor(model => model.QuestionStatusChangeWithMyAnswers)
+            </td>
+            <td>
+                @CommonResources.ENotificationsViewChkLblNotifyMyAnswersQs
+            </td>
+        </tr>
+    </table>
+
+    <br />
+    <input type="submit" value="@CommonResources.BtnSave" class="btn btn-lg btn-primary" />
+}

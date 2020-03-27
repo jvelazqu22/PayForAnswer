@@ -1,0 +1,57 @@
+﻿@model Domain.Models.ViewModel.QuestionsBySubjectModel
+@using Domain.App_GlobalResources;
+
+<h2>@CommonResources.ViewUnauthFilterBySubjectsTitle</h2>
+
+<script type="text/javascript">
+    $(function () {
+        // Document.ready -> link up remove event handler
+        $(".RemoveSubject").click(function () {
+            // Get the id from the link
+            var recordToUpdate = $(this).attr("data-id");
+            if (recordToUpdate != '') {
+                alert(recordToUpdate);
+                //// Perform the ajax post
+                //$.post("/Answer/AcceptAnswer", { "id": recordToUpdate},
+                //    function (data) {
+                //        // Successful requests get here
+                //        // Update the page elements
+                //        $('#item-status-' + data.AnswerId).text('Current status: ' + data.AnswerStatusMessage);
+                //        // Call PayPal to pay for this answer
+                //        $.post("/PayPal/MassPay", { "id": recordToUpdate }, null);
+                //    });
+            }
+        });
+
+        $('#typeahead').typeahead({
+            name: 'subjects',
+            valueKey: 'Subject',
+            remote: {
+                url: '/Registration/Autocomplete?term=%QUERY'
+            }
+        });
+
+    });
+</script>
+
+@using (Html.BeginForm("Subjects","UnauthSubject"))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <div class="row">
+      <div class="col-lg-4">
+        <div class="input-group">
+          <input type="text" name="searchTerm" value="" class="form-control" id="typeahead" autofocus="">
+          <span class="input-group-btn">
+            <button type="submit" class="btn btn-success">@CommonResources.BtnAddNewSubject</button>
+          </span>
+        </div>
+      </div>
+    </div>
+    <br />
+}
+
+@Html.Partial("_BySubject", Model)
+
+

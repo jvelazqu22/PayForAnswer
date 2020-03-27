@@ -1,0 +1,13 @@
+﻿@using Domain.App_GlobalResources;
+@{
+    ViewBag.Title = @CommonResources.lblConfirmation;
+}
+
+<div class="row-fluid">
+    <div style="text-align:center">
+        <h3><span class="text-info">
+                @Html.Raw(String.Format(CommonResources.MsgAttentionRegEmailSent, ViewBag.EmailAddress))
+            </span>
+        </h3>
+    </div>
+</div>

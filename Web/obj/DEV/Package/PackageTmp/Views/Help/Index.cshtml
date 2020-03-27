@@ -1,0 +1,165 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="container theme-showcase" role="main">
+
+    <div></div>
+    <!-- Carousel -->
+    <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+        <ol class="carousel-indicators">
+            <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+            <li data-target="#carousel-example-generic" data-slide-to="1" class=""></li>
+            <li data-target="#carousel-example-generic" data-slide-to="2" class=""></li>
+        </ol>
+        <div class="carousel-inner" role="listbox">
+            <div class="item active">
+                <img src="~/Content/Images/Question_Mark_Puzzle.jpg" alt="">
+                <div class="container">
+                    <div class="carousel-caption">
+                        <p><a class="btn btn-lg btn-primary" href="#" role="button">Post questions or projects</a></p>
+                        <p><a class="btn btn-lg btn-success" href="#" role="button">Get a fast answer and/or solution</a></p>
+                    </div>
+                </div>
+            </div>
+            <div class="item">
+                <img src="~/Content/Images/Problem-Solving.png" alt="">
+                <div class="container">
+                    <div class="carousel-caption">
+                        <p><a class="btn btn-lg btn-primary" href="#" role="button">Post answers and/or solutions</a></p>
+                        <p><a class="btn btn-lg btn-success" href="#" role="button">Get paid</a></p>
+                    </div>
+                </div>
+            </div>
+            <div class="item">
+                <img src="~/Content/Images/GoogleAds.png" alt="">
+                <div class="container">
+                    <div class="carousel-caption">
+                        <p><a class="btn btn-lg btn-primary" href="#" role="button">Display question or project by subjects</a></p>
+                        <p><a class="btn btn-lg btn-success" href="#" role="button">Attract knowlegeable users</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+        @*<a class="left carousel-control" href="http://getbootstrap.com/examples/theme/#carousel-example-generic" role="button" data-slide="prev">
+            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="right carousel-control" href="http://getbootstrap.com/examples/theme/#carousel-example-generic" role="button" data-slide="next">
+            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>*@
+    </div>
+
+    <br/>
+
+    <!-- Marketing messaging and featurettes. -->
+    <div class="container marketing">
+        <!-- Three columns of text below the carousel -->
+        <div class="row">
+            <div class="col-lg-6">
+                <img class="img-circle" src="~/Content/Images/Question_Mark_Puzzle.jpg" alt="Generic placeholder image" style="width: 140px; height: 140px;">
+                <h2>Posting question or project</h2>
+                <p>
+                    All you need is a short title, subjects related to your question/project, a question/project amount to pay the winner, 
+                    a marketing budget to display your question/project as a google ad, a description of the problem and criteria for 
+                    the expected answer/solution, and any file(s) that you may want to attach. That's it. See below for
+                    details.
+                </p>
+            </div><!-- /.col-lg-4 -->
+            <div class="col-lg-6">
+                <img class="img-circle" src="~/Content/Images/Problem-Solving.png" alt="Generic placeholder image" style="width: 140px; height: 140px;">
+                <h2>Posting answer and/or solution</h2>
+                <p>
+                    You can post answers/solutions to any questions/projects. You can also attach files in your answer posts.
+                    Answers are display in chronological order. In other words, the first answers will be displayed first.
+                    The person who posted the question/project will be able to decline or accept answers/solutions. If the person 
+                    who posted the question/project accepts your answer, we will deposit the question/project amount into your paypal account.
+                    See below for more details.
+                </p>
+            </div><!-- /.col-lg-4 -->
+        </div><!-- /.row -->
+        <div class="row">
+            <div class="col-lg-6">
+                <img class="img-circle" src="~/Content/Images/GoogleAds.png" alt="Generic placeholder image" style="width: 140px; height: 140px;">
+                <h2>Marketing campaign(s)</h2>
+                <p>
+                    We will create Google ad(s) marketing campaign(s) based on the subjects associated with your question/project.
+                    Your Google ads will be displayed in sites that mentioned your subjects such as Google search engine,
+                    Youtube, Gmail, Blogger, and many other sites that display Google Ads.
+                </p>
+            </div><!-- /.col-lg-4 -->
+            <div class="col-lg-6">
+                <img class="img-circle" src="~/Content/Images/Paypal.jpg" alt="Generic placeholder image" style="width: 140px; height: 140px;">
+                <h2>PayPal Payments</h2>
+                <p>
+                    All payments are handled via Paypal. When you go to post a question/project, you will be re-directed to paypal
+                    to execute the payment. Paypal will notify us when the payment amount has been successfully exectued. Once we 
+                    receive the payment notification, we will dispaly your question to the public and kick start the marketing campaign.
+
+                    Whenever an answer/solution is marked as accepted, we will deposit the question amount to the Paypal account of the user
+                    who posted the answer - as long as the person who posted the answer/solution is not the same as the user who posted the question/project.
+                </p>
+            </div><!-- /.col-lg-4 -->
+        </div><!-- /.row -->
+        <!-- START THE FEATURETTES -->
+        <hr class="featurette-divider">
+        <div class="row featurette">
+            <div class="col-md-7">
+                <h2 class="featurette-heading">Posting question or project instructions. <span class="text-muted">Be specific.</span></h2>
+                <p class="lead">The next slides will walk to through the steps of creating a question/project and provide you with a detail explanation.</p>
+            </div>
+            <div class="col-md-5">
+                @*<img class="featurette-image img-responsive" data-src="holder.js/500x500/auto" alt="500x500" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9InllcyI/PjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iNTAwIiBoZWlnaHQ9IjUwMCIgdmlld0JveD0iMCAwIDUwMCA1MDAiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPjxkZWZzLz48cmVjdCB3aWR0aD0iNTAwIiBoZWlnaHQ9IjUwMCIgZmlsbD0iI0VFRUVFRSIvPjxnPjx0ZXh0IHg9IjE5MC4zMTI1IiB5PSIyNTAiIHN0eWxlPSJmaWxsOiNBQUFBQUE7Zm9udC13ZWlnaHQ6Ym9sZDtmb250LWZhbWlseTpBcmlhbCwgSGVsdmV0aWNhLCBPcGVuIFNhbnMsIHNhbnMtc2VyaWYsIG1vbm9zcGFjZTtmb250LXNpemU6MjNwdDtkb21pbmFudC1iYXNlbGluZTpjZW50cmFsIj41MDB4NTAwPC90ZXh0PjwvZz48L3N2Zz4=" data-holder-rendered="true">*@
+                <iframe src="https://www.slideshare.net/slideshow/embed_code/44968569" width="427" height="356" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe> <div style="margin-bottom:5px"> <strong> <a href="https://www.slideshare.net/secret/H69hBRHUq4klMX" title="PayForAnswer how to post a question/project" target="_blank">PayForAnswer how to post a question/project</a> </strong> from <strong><a href="http://www.slideshare.net/payforanswer" target="_blank">payforanswer</a></strong> </div>
+            </div>
+        <hr class="featurette-divider">
+        <div class="row featurette">
+            <div class="col-md-5">
+                @*<img class="featurette-image img-responsive" data-src="holder.js/500x500/auto" alt="500x500" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9InllcyI/PjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iNTAwIiBoZWlnaHQ9IjUwMCIgdmlld0JveD0iMCAwIDUwMCA1MDAiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPjxkZWZzLz48cmVjdCB3aWR0aD0iNTAwIiBoZWlnaHQ9IjUwMCIgZmlsbD0iI0VFRUVFRSIvPjxnPjx0ZXh0IHg9IjE5MC4zMTI1IiB5PSIyNTAiIHN0eWxlPSJmaWxsOiNBQUFBQUE7Zm9udC13ZWlnaHQ6Ym9sZDtmb250LWZhbWlseTpBcmlhbCwgSGVsdmV0aWNhLCBPcGVuIFNhbnMsIHNhbnMtc2VyaWYsIG1vbm9zcGFjZTtmb250LXNpemU6MjNwdDtkb21pbmFudC1iYXNlbGluZTpjZW50cmFsIj41MDB4NTAwPC90ZXh0PjwvZz48L3N2Zz4=" data-holder-rendered="true">*@
+                <iframe src="https://www.slideshare.net/slideshow/embed_code/44968568" width="427" height="356" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe> <div style="margin-bottom:5px"> <strong> <a href="https://www.slideshare.net/secret/9RQbRpz6E8JEtS" title="How to post an answer/solution and get paid" target="_blank">How to post an answer/solution and get paid</a> </strong> from <strong><a href="http://www.slideshare.net/payforanswer" target="_blank">payforanswer</a></strong> </div>
+            </div>
+            <div class="col-md-7">
+                <h2 class="featurette-heading">Posting answer/solutions instructions. <span class="text-muted">Meet answer criterion.</span></h2>
+                <p class="lead">The next slides will walk to through the steps of posting an answer/solution with a detail explanation.</p>
+            </div>
+        </div>
+        <hr class="featurette-divider">
+        <div class="row featurette">
+            <div class="col-md-7">
+                <h2 class="featurette-heading">How marketing campaigns work. <span class="text-muted">Based on question/project subjects.</span></h2>
+                <p class="lead">The next slides will give an explanation of how the marketing campaigns work.</p>
+            </div>
+            <div class="col-md-5">
+                @*<img class="featurette-image img-responsive" data-src="holder.js/500x500/auto" alt="500x500" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9InllcyI/PjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iNTAwIiBoZWlnaHQ9IjUwMCIgdmlld0JveD0iMCAwIDUwMCA1MDAiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPjxkZWZzLz48cmVjdCB3aWR0aD0iNTAwIiBoZWlnaHQ9IjUwMCIgZmlsbD0iI0VFRUVFRSIvPjxnPjx0ZXh0IHg9IjE5MC4zMTI1IiB5PSIyNTAiIHN0eWxlPSJmaWxsOiNBQUFBQUE7Zm9udC13ZWlnaHQ6Ym9sZDtmb250LWZhbWlseTpBcmlhbCwgSGVsdmV0aWNhLCBPcGVuIFNhbnMsIHNhbnMtc2VyaWYsIG1vbm9zcGFjZTtmb250LXNpemU6MjNwdDtkb21pbmFudC1iYXNlbGluZTpjZW50cmFsIj41MDB4NTAwPC90ZXh0PjwvZz48L3N2Zz4=" data-holder-rendered="true">*@
+                <iframe src="https://www.slideshare.net/slideshow/embed_code/44968565" width="427" height="356" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe> <div style="margin-bottom:5px"> <strong> <a href="https://www.slideshare.net/secret/4SnboAUh9TwS1I" title="How to market your question/project on the web and offer money for solution" target="_blank">How to market your question/project on the web and offer money for solution</a> </strong> from <strong><a href="http://www.slideshare.net/payforanswer" target="_blank">payforanswer</a></strong> </div>
+            </div>
+        </div>
+        <hr class="featurette-divider">
+        <div class="row featurette">
+            <div class="col-md-5">
+                @*<img class="featurette-image img-responsive" data-src="holder.js/500x500/auto" alt="500x500" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9InllcyI/PjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iNTAwIiBoZWlnaHQ9IjUwMCIgdmlld0JveD0iMCAwIDUwMCA1MDAiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPjxkZWZzLz48cmVjdCB3aWR0aD0iNTAwIiBoZWlnaHQ9IjUwMCIgZmlsbD0iI0VFRUVFRSIvPjxnPjx0ZXh0IHg9IjE5MC4zMTI1IiB5PSIyNTAiIHN0eWxlPSJmaWxsOiNBQUFBQUE7Zm9udC13ZWlnaHQ6Ym9sZDtmb250LWZhbWlseTpBcmlhbCwgSGVsdmV0aWNhLCBPcGVuIFNhbnMsIHNhbnMtc2VyaWYsIG1vbm9zcGFjZTtmb250LXNpemU6MjNwdDtkb21pbmFudC1iYXNlbGluZTpjZW50cmFsIj41MDB4NTAwPC90ZXh0PjwvZz48L3N2Zz4=" data-holder-rendered="true">*@
+                @*<iframe src="//www.slideshare.net/slideshow/embed_code/42379013" width="476" height="400" frameborder="0" marginwidth="0" marginheight="0" scrolling="no"></iframe></div>*@
+                <iframe src="https://www.slideshare.net/slideshow/embed_code/44968570" width="427" height="356" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe> <div style="margin-bottom:5px"> <strong> <a href="https://www.slideshare.net/secret/eOp2684hzEEX4c" title="PayForAnswer Paypal Payments" target="_blank">PayForAnswer Paypal Payments</a> </strong> from <strong><a href="http://www.slideshare.net/payforanswer" target="_blank">payforanswer</a></strong> </div>                
+            </div>
+            <div class="col-md-7">
+                <h2 class="featurette-heading">Paypal payments. <span class="text-muted">You need a paypal account.</span></h2>
+                <p class="lead">The next slides will give an explanation of how payment process works using paypal.</p>
+            </div>
+        </div>
+        @*<hr class="featurette-divider">*@
+        <!-- /END THE FEATURETTES -->
+    </div><!-- /.container -->
+    </div>
+</div> <!-- /container -->
+
+

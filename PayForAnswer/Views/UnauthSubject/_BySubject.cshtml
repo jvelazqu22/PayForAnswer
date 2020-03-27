@@ -1,0 +1,8 @@
+﻿@model Domain.Models.ViewModel.QuestionsBySubjectModel
+@using PagedList;
+@using Domain.Constants;
+
+@Html.Partial("~/Views/Shared/_Subjects.cshtml", Model.Subjects)
+@*@Html.Partial("~/Views/Shared/_Questions.cshtml", Model.Questions)*@
+@Html.Partial("~/Views/Shared/_Questions.cshtml", Model.Questions.ToPagedList(Model.PageNumber, Size.QuestionPagerPageSize))
+

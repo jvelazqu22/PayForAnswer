@@ -1,0 +1,34 @@
+﻿@model Domain.Models.ViewModel.QuestionDetailsViewModel
+@using Domain.App_GlobalResources;
+@using Microsoft.AspNet.Identity
+
+@if (Request.IsAuthenticated && User.Identity.GetUserId<int>() == Model.UserId)    
+{
+    <table>
+        <tr>
+            <td>@CommonResources.TotalActiveCampaigns</td>
+            <td><button class="btn btn-default btn-xs active" type="button"> @Model.TotalActiveCampaigns </button></td>
+        </tr>
+        <tr>
+            <td>@CommonResources.txtMarketingBudgetLeft</td>
+            <td><button class="btn btn-default btn-xs active" type="button"> $@Model.MarketingBudgetLeftString </button></td>
+        </tr>
+        <tr>
+            <td>@CommonResources.MarketingEstimationEndDate</td>
+            <td><button class="btn btn-default btn-xs active" type="button"> @Model.LongestCampaignEndDateString </button></td>
+        </tr>
+    </table>
+    <a href="@Url.Action("QuestionHistory", "MarketingCampaign", new { questionID = @Model.Id })"><span class="btn btn-link">@CommonResources.AllMarketingHistory</span></a> <br/>
+    if (Model.IsQuestionOpenForAnswers)
+    {
+        <a href="@Url.Action("Create", "AddMoney", new { id=@Model.Id })"><span class="btn btn-success">@CommonResources.AddMoney</span></a> <br />
+    }
+    else
+    {
+        <button disabled type="submit" class="btn btn-success">@CommonResources.AddMoney</button>
+    }
+    <small>
+        @Html.Raw(CommonResources.AddMoneyBtnDescription)
+    </small>
+    <br /><br/>
+}

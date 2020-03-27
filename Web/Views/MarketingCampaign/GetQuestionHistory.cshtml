@@ -1,0 +1,31 @@
+﻿@model Domain.Models.ViewModel.QMarketingHistoryViewModel
+
+@{
+    ViewBag.Title = "QHistory";
+}
+
+<h2>Get Question History</h2>
+<div class="container">
+@using (Html.BeginForm("QuestionHistory", "MarketingCampaign", FormMethod.Get, new { @class = "form-horizontal", role = "form" }))
+{
+        @Html.AntiForgeryToken()
+
+        <hr />
+        @Html.ValidationSummary("", new { @class = "text-danger" })
+
+        <div class="row">
+            <div class="col-lg-4">
+                <div class="input-group">
+                    <label for="txAlertType">Question ID</label>
+                    @Html.TextBoxFor(model => model.QuestionID, new { @class = "form-control" })
+                </div>
+            </div>
+        </div>
+        <br />
+        <button type="submit" class="btn btn-primary">Get History</button>
+    }
+    <br />
+</div>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

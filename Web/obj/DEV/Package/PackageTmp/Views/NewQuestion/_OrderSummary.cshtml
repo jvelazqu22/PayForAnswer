@@ -1,0 +1,69 @@
+﻿@model Domain.Models.ValidateQuestionViewModel
+@using Domain.App_GlobalResources;
+
+
+<div class="row">
+    <div class="col-md-6 col-md-offset-3">
+        <table class="table table-bordered">
+            <tr>
+                <td colspan="2" style="text-align:center">
+                    <h3>
+                        <span class="text-info">
+                            <strong>
+                                @CommonResources.PreValidationViewTitle
+                        </strong>
+                    </span>
+                </h3>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <h4>@CommonResources.PreValidationViewQAmtLable</h4>
+                </td>
+                <td>
+                    <h4>$@Html.DisplayFor(model => model.Amount)</h4>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <h4>@string.Format(CommonResources.TotalMarketingBudget, Model.MarketingBudgetPerDay, Model.NumberOfCampaignDays)</h4>
+                </td>
+                <td>
+                    <h4>$@Html.DisplayFor(model => model.TotalMarketingBudget)</h4>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <h4>@CommonResources.PreValidationViewQFeeLable</h4>
+                </td>
+                <td>
+                    <h4>$@Html.DisplayFor(model => model.Fee)</h4>
+                </td>
+            </tr>
+
+            <tr>
+                <td colspan="2" style="text-align:center">
+                    <div id="total">
+                        <h3>
+                            <span class="text-danger">
+                                <strong>
+                                    @CommonResources.PreValidationViewOrderTotal@Model.Total
+                                </strong>
+                            </span>
+                        </h3>
+                    </div>
+                </td>
+            </tr>
+        </table>
+
+        <br />
+        <p class="text-center">
+            <!-- Button trigger modal -->
+            <a data-toggle="modal" href="#myModal" class="btn btn-primary btn-lg">@CommonResources.PreValidationViewBtnPay</a>
+        </p>
+
+    </div>
+</div>

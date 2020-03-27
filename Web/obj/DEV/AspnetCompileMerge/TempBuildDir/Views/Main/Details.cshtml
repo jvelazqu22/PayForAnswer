@@ -1,0 +1,25 @@
+﻿@model Domain.Models.ViewModel.QuestionDetailsViewModel
+@using Domain.Constants;
+@using Domain.App_GlobalResources;
+@using PagedList
+@using PagedList.Mvc
+
+@{
+    ViewBag.Title = CommonResources.DetailQuestionViewBrowswerTitle;
+}
+<link href="~/Content/Modals.css" rel="stylesheet">
+<script type="text/javascript" src="~/Scripts/Custom/MainQuestionAndAnswers.js"></script>
+<script type="text/javascript" src="~/Scripts/Custom/Util.js"></script>
+<script type="text/javascript" src="~/Scripts/Custom/Modals.js"></script>
+
+<div id="dlgUpdatePage" class="dialog">@CommonResources.MsgUpdateAjaxPage</div>
+<h2>@Model.Title (<span class="text-success"><strong>$@Model.Amount</strong></span>)</h2> 
+@CommonResources.DetailQuestionViewLblQuestion <strong>@Model.CreatedOn</strong>  @CommonResources.DetailQuestionViewLblByUser <strong>@Model.User.UserName</strong><br /><br />
+
+@Html.Partial("_Summary")
+@Html.Partial("_Attachments", Model)
+@Html.Partial("_SubjectsAndDescription", Model)
+@Html.Partial("_QComments", Model)
+@Html.Partial("_PostAnswer", Model)
+@Html.Partial("_Answers", Model)
+

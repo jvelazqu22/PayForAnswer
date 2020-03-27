@@ -1,0 +1,40 @@
+﻿@model Domain.Models.ValidateQuestionViewModel
+@using Domain.App_GlobalResources;
+
+@{
+    ViewBag.Title = @CommonResources.PreValidationViewBrowswerTitle;
+}
+<link href="~/Content/Modals.css" rel="stylesheet">
+<script type="text/javascript" src="~/Scripts/Custom/Modals.js"></script>
+
+<div id="dlgUpdatePage" class="dialog">@CommonResources.RedirectToPayPalPleaseWaitMsg</div>
+@using (Html.BeginForm(null, null, FormMethod.Post, new { id = "frmPostToPayPal" }))
+{
+
+    @Html.AntiForgeryToken()
+
+    @Html.HiddenFor(model => model.QuestionId)
+    @Html.HiddenFor(model => model.PaymentId)
+    @Html.HiddenFor(model => model.Title)
+    @Html.HiddenFor(model => model.Amount)
+    @Html.HiddenFor(model => model.Fee)
+    @Html.HiddenFor(model => model.MarketingBudgetPerDay)
+    @Html.HiddenFor(model => model.NumberOfCampaignDays)
+    @Html.HiddenFor(model => model.TotalMarketingBudget)
+    @Html.HiddenFor(model => model.Total)
+    @Html.HiddenFor(model => model.IdOfUserTryingToMakeUpdate)
+    
+    @Html.Partial("_OrderSummary", Model);
+    @Html.Partial("_ValidationModal");
+}
+
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        $('#frmPostToPayPal').submit(function () {
+            $('#myModal').modal('toggle');
+            $("#dlgUpdatePage").show().dialog("open");
+            return true;  // <- false will cancel submit
+        });
+    });
+</script>

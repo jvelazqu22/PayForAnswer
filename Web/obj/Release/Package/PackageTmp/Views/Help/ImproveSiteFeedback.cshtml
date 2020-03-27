@@ -1,0 +1,32 @@
+﻿@model Domain.Models.ViewModel.SiteFeedbackViewModel
+@using Domain.App_GlobalResources
+
+@{
+    ViewBag.Title = CommonResources.Feedback;
+}
+
+<h2>@CommonResources.HowToImproveSite</h2>
+
+@using (Html.BeginForm("ImproveSiteFeedback", "Help", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-group">
+        <label for="txtAlert">@CommonResources.Title</label>
+        @Html.TextBoxFor(model => model.Title, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Title, "", new { @class = "text-danger" })
+    </div>
+    <br/>
+    <div class="form-group">
+        <label for="txtAlert">@CommonResources.Feedback</label>
+        @Html.TextAreaFor(model => model.Message, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Message, "", new { @class = "text-danger" })
+    </div>
+
+    <br />
+    <button type="submit" class="btn btn-primary btn-lg">@CommonResources.PostFeedback</button>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

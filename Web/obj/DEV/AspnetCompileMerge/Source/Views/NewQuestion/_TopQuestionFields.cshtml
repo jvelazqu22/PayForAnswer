@@ -1,0 +1,99 @@
+﻿@model Domain.Models.CreateQuestionViewModel
+@using Domain.App_GlobalResources;
+@using Domain.Constants;
+
+<h5>
+    @CommonResources.LblQuestionTitle
+    <a href="#" data-toggle="tooltip" title="@string.Format(CommonResources.TitleNewQuestionTooltip, Size.GoogleDescrLineMaxCharacters)">@CommonResources.QuestionMarkLinkSymbol</a>
+    <br />
+    <small>
+        @Html.Raw(string.Format(CommonResources.TitleNewQuestionTooltip, Size.GoogleDescrLineMaxCharacters))
+    </small>
+</h5>
+<div class="editor-field">
+    @Html.TextBoxFor(model => model.Title, new { @class = "form-control", placeholder = string.Format(CommonResources.NewQuestionTitlePlaceHolder, Size.GoogleDescrLineMaxCharacters), maxLength = Size.GoogleDescrLineMaxCharacters })
+</div>
+@Html.ValidationMessageFor(model => model.Title)
+
+<h5>
+    @CommonResources.lblQuestionAmount
+    <a href="#" data-toggle="tooltip" title="@CommonResources.lblQuestionAmountTooltip">@CommonResources.QuestionMarkLinkSymbol</a>
+    <br />
+    <small>
+        @Html.Raw(CommonResources.lblQuestionAmountTooltip)
+    </small>
+</h5>
+
+<div class="row">
+    <div class="col-lg-2">
+        <div class="input-group">
+            <span class="input-group-addon">$</span>
+            @Html.TextBoxFor(model => model.Amount, new { @class = "form-control", placeholder = string.Format(CommonResources.NewQuestionAmtPlaceHolder, General.MinimumQuestionAmount) })
+            <span class="input-group-addon">.00</span>
+        </div>
+    </div>
+</div>
+@Html.ValidationMessageFor(model => model.Amount)
+
+<h5>
+    @CommonResources.QuestionMarketingAmountPerDay
+    <a href="#" data-toggle="tooltip" title="@CommonResources.lblQuestionAmountMarketingTooltip">@CommonResources.QuestionMarkLinkSymbol</a>
+    <br />
+    <small>
+        @Html.Raw(CommonResources.lblQuestionAmountMarketingTooltip)
+    </small>
+</h5>
+
+<div class="row">
+    <div class="col-lg-2">
+        <div class="input-group">
+            <span class="input-group-addon">$</span>
+            @Html.TextBoxFor(model => model.MarketingBudgetPerDay, new { @class = "form-control", placeholder = string.Format(CommonResources.NewQuestionAmtPlaceHolder, General.MinimumMarketingBudgetPerDay) })
+            <span class="input-group-addon">.00</span>
+        </div>
+    </div>
+</div>
+
+@Html.ValidationMessageFor(model => model.MarketingBudgetPerDay)
+
+
+<h5>
+    @CommonResources.txtNumberOfMarketingDays
+    <a href="#" data-toggle="tooltip" title="@CommonResources.NumberOfMarketingDaysDescription">@CommonResources.QuestionMarkLinkSymbol</a>
+    <br />
+    <small>
+        @Html.Raw(CommonResources.NumberOfMarketingDaysDescription)
+    </small>
+</h5>
+
+<div class="row">
+    <div class="col-lg-2">
+        <div class="input-group"> 
+            <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+            @Html.TextBoxFor(model => model.NumberOfCampaignDays, new { @class = "form-control", placeholder = string.Format(CommonResources.NewQuestionAmtPlaceHolder, General.MinimumMarketingDays) })
+            <span class="input-group-addon">days</span>
+        </div>
+    </div>
+</div>
+@Html.ValidationMessageFor(model => model.NumberOfCampaignDays)
+
+<h5>
+    @CommonResources.QuestionSubjects
+    <a href="#" data-toggle="tooltip" title = "@string.Format(CommonResources.QuestionSubjectExplanation, Size.MaxNumberOfQuestionSubjects)">@CommonResources.QuestionMarkLinkSymbol</a>
+    <br />
+    <small>
+        @Html.Raw(string.Format(CommonResources.QuestionSubjectExplanation, Size.MaxNumberOfQuestionSubjects))
+    </small>
+</h5>
+
+<div class="example-wrapper">
+    <div class="tags well">
+        <div class="tagging-js tagging form-control" data-tags-input-name="taggone" id="tag">
+            @CommonResources.SubjectSamples
+        </div>
+        <p class="help-block">@CommonResources.HowToUseSubjectBoxDescription</p>
+        <strong>
+            <button id="btnSubjects" type="button" class="btn btn-default">@CommonResources.RefreshGoogleAdsBelow</button>
+        </strong>
+    </div>
+</div>

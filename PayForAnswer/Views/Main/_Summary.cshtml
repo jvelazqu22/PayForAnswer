@@ -1,0 +1,33 @@
+﻿@model Domain.Models.ViewModel.QuestionDetailsViewModel
+@using Domain.App_GlobalResources;
+
+@if (WebSecurity.IsAuthenticated && WebSecurity.CurrentUserId == Model.UserId)
+{
+    <table>
+        <tr>
+            <td>@CommonResources.TotalActiveCampaigns</td>
+            <td><span class="label label-default">@Model.TotalActiveCampaigns</span></td>
+        </tr>
+        <tr>
+            <td>@CommonResources.txtMarketingBudgetLeft</td>
+            <td><span class="label label-default">$@Model.MarketingBudgetLeft</span></td>
+        </tr>
+        <tr>
+            <td>@CommonResources.MarketingWillEndOn</td>
+            <td><span class="label label-default">@Model.LongestCampaignEndDateString</span></td>
+        </tr>
+    </table>
+    <a href="@Url.Action("MyHistory", "MarketingCampaign", new { id = @Model.Id })"><span class="btn btn-link">@CommonResources.AllMarketingHistory</span></a> <br/>
+    if (Model.IsQuestionOpenForAnswers)
+    {
+        <a href="@Url.Action("Create", "AddMoney", new { id=@Model.Id })"><span class="btn btn-success">@CommonResources.AddMoney</span></a> <br />
+    }
+    else
+    {
+        <button disabled type="submit" class="btn btn-success">@CommonResources.AddMoney</button>
+    }
+    <small>
+        @Html.Raw(CommonResources.AddMoneyBtnDescription)
+    </small>
+    <br /><br/>
+}

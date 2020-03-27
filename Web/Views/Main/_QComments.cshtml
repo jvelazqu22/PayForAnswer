@@ -1,0 +1,29 @@
+﻿@model Domain.Models.ViewModel.QuestionDetailsViewModel
+@using Domain.App_GlobalResources;
+@using Domain.Constants;
+
+<strong> @CommonResources.Comments: </strong>
+<div id="divComments" class="display-field" style="max-height: 200px; overflow: auto;">
+
+    <table class="table table-bordered table-striped">
+        @Html.Raw(Model.Comments)
+    </table>
+</div>
+<hr />
+<div class="display-field">
+    @if (Request.IsAuthenticated && StatusList.CONFIRM_PAYMENT_STATUS.Contains(Model.StatusId))
+    {
+        <input type="text" maxlength="@Size.MaxCommentCharacters" id="txtQuestionComment" class="form-control input-sm" placeholder="@CommonResources.MsgAddCommentsPlaceHolder" />
+        <a href="#" class="AddQuestionComment" data-id="@Model.Id" data-toggle="tooltip" title="@CommonResources.MsgAddCommentsToolTip"><span class="btn btn-primary btn-xs">@CommonResources.MsgAddCommentsButton</span></a>
+    }
+    else if (StatusList.CONFIRM_PAYMENT_STATUS.Contains(Model.StatusId))
+    {
+        <input type="text" maxlength="@Size.MaxCommentCharacters" id="txtQuestionComment" class="form-control input-sm" placeholder="@CommonResources.MsgAddCommentsPlaceHolder" />
+        <button disabled type="submit" class="btn btn-primary btn-xs">@CommonResources.MsgAddCommentsButton</button>
+        <br />
+        <small>
+            @Html.Raw(CommonResources.lblEnablePostButton)
+        </small>
+    }
+</div>
+<hr />

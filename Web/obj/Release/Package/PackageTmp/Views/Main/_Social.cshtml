@@ -1,0 +1,22 @@
+﻿@model Domain.Models.ViewModel.QuestionDetailsViewModel
+@using Domain.App_GlobalResources;
+@using Microsoft.AspNet.Identity
+@using Domain.Constants
+
+@if (General.RunningInProduction)
+{
+    @*<a href="https://twitter.com/share" class="twitter-share-button" data-url="@Model.QuestionUrl" data-text="($@Model.Amount) @Model.Title">Tweet</a>*@
+    <strong>@CommonResources.SharePost</strong>
+    <div class="fb-share-button" data-href="@Model.QuestionUrl" data-layout="button_count"></div>
+    <a href="@Model.TWITTER_URL" target="_blank" title="Tweet"><img src="~/Content/Images/social/Twitter.png"></a>
+    <a href="@Model.LINKEDIN_URL" target="_blank" title="Share on LinkedIn"><img src="~/Content/Images/social/LinkedIn.png"></a>
+    <a href="@Model.GOOGLE_URL" target="_blank" title="Share on Google+"><img src="~/Content/Images/social/Google.png"></a>
+
+    @*<ul class="share-buttons">
+        <li><a href="@Model.FACEBOOK_URL" target="_blank" title="Share on Facebook"><img src="~/Content/Images/social/Facebook.png"></a></li>
+        <li><a href="@Model.TWITTER_URL" target="_blank" title="Tweet"><img src="~/Content/Images/social/Twitter.png"></a></li>
+        <li><a href="@Model.LINKEDIN_URL" target="_blank" title="Share on LinkedIn"><img src="~/Content/Images/social/LinkedIn.png"></a></li>
+        <li><a href="@Model.GOOGLE_URL" target="_blank" title="Share on Google+"><img src="~/Content/Images/social/Google.png"></a></li>
+    </ul>*@
+
+}

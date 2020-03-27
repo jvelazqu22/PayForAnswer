@@ -1,0 +1,21 @@
+﻿@model Domain.Models.ViewModel.AddMoneyViewModel
+@using Domain.App_GlobalResources;
+@using Domain.Constants;
+
+<br/>
+<strong>
+    @CommonResources.QuestionMarketingAmountPerDay
+    <a href="#" data-toggle="tooltip" title="@CommonResources.lblQuestionAmountMarketingTooltip">@CommonResources.QuestionMarkLinkSymbol</a>
+</strong>
+@Html.Raw(CommonResources.lblQuestionAmountMarketingTooltip)
+
+<div class="row">
+    <div class="col-lg-2">
+        <div class="input-group">
+            <span class="input-group-addon">$</span>
+            @Html.TextBoxFor(model => model.MarketingBudgetPerDay, new { @class = "form-control", placeholder = string.Format(CommonResources.NewQuestionAmtPlaceHolder, General.MinimumMarketingBudgetPerDay) })
+            <span class="input-group-addon">.00</span>
+        </div>
+    </div>
+</div>
+@Html.ValidationMessageFor(model => model.MarketingBudgetPerDay)

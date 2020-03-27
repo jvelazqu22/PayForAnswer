@@ -1,0 +1,94 @@
+﻿@model PagedList.IPagedList<Domain.Models.ViewModel.MarketingCampaignViewModel>
+@using PagedList.Mvc
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>List of not started campaigns</h2>
+
+<div class="table table-responsive">
+    <table class="table table-bordered table-hover">
+        <tr>
+            <th>
+                Question title
+            </th>
+            <th>
+                Per day budget
+            </th>
+            <th>
+                Campaign days
+            </th>
+            <th>
+                Total marketing budget
+            </th>
+            <th>
+                Question amount
+            </th>
+            <th>
+                Question amount increase
+            </th>
+            <th>
+                Marketing start date
+            </th>
+            <th>
+                Marketing end date
+            </th>
+            <th>
+                Marketing Manager
+            </th>
+            <th>
+                Created on
+            </th>
+            <th>
+                Status
+            </th>
+            <th>
+                Action
+            </th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.QuestionTitle)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PerDayBudget)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NumberOfDaysToRun)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TotalMarketingBudget)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Amount)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.QuestionAmountIncrease)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.StartDateString)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EndDateString)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CampaignManagerUserName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CreatedOnString)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Status)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.QuestionPaymentDetailID })
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>
+@Html.PagedListPager(Model, page => Url.Action(ViewBag.MethodName, new { page }))

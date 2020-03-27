@@ -1,0 +1,11 @@
+﻿@using Domain.App_GlobalResources
+@{
+    ViewBag.Title = CommonResources.ContactUs;
+}
+
+<h2>@CommonResources.ContactUs</h2>
+
+<p>
+    @Html.Raw(string.Format(CommonResources.PleaseContactUsAt, "<a href='mailto:support@payforanswer.com'>support@payforanswer.com</a>") )
+</p>
+

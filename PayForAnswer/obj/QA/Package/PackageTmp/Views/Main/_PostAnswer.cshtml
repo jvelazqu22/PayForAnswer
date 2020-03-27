@@ -1,0 +1,82 @@
+﻿@model Domain.Models.ViewModel.QuestionDetailsViewModel
+@using Domain.Constants;
+@using Domain.App_GlobalResources;
+
+
+@if (Model.StatusId == StatusValues.Accepted ||
+    Model.StatusId == StatusValues.AcceptedByRequester || Model.StatusId == StatusValues.Paid)
+{
+    <div class="display-field">
+        @{
+    var answer = Model.Answers.Where(a => a.StatusId == StatusValues.Accepted ||
+        a.StatusId == StatusValues.AcceptedByRequester ||
+        a.StatusId == StatusValues.Paid).FirstOrDefault();
+        }
+        <table class="table table-striped">
+            <tr class="success">
+                <td>
+                    <h4>
+                        @CommonResources.DetailQuestionViewLblAnswersPosted <span class="label label-default">@answer.CreatedOn</span>  @CommonResources.DetailQuestionViewLblByUser <span class="badge badge-inverse">@answer.User.UserName</span>
+                    </h4>
+                </td>
+                <td>
+                    <h4>
+                        <strong>@CommonResources.DetailQuestionViewLblCurrentStatus</strong> <span class="label label-success">@answer.Status.DisplayName</span>
+                    </h4>
+                </td>
+            </tr>
+        </table>
+        @Html.Raw(answer.Description)
+        @if (answer.StatusId == StatusValues.Paid)
+        {
+            <h3 class="text-danger"><strong><u>@CommonResources.DetailQuestionViewPaidAnswerLbl</u></strong>  </h3>
+        }
+        else
+        {
+            <h3 class="text-danger"><strong><u>@CommonResources.DetailQuestionViewAcceptedAnswerLbl</u></strong>  </h3>
+        }
+        <br />
+
+    </div>
+
+}
+else
+{
+    <div class="display-field">
+        <h3>@CommonResources.DetailQuestionViewAnswerLabel</h3>
+
+        <br />
+
+        @using (Html.BeginForm("NewAnswer", "Answer", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true)
+
+            @Html.Partial("_UploadFiles", Model)  
+            @*<textarea id="NewPostedAnswer" name="NewPostedAnswer" class="mceEditor"></textarea>*@
+            @Html.EditorFor(model => model.NewPostedAnswer)
+            @*@Html.TextAreaFor(model => model.NewPostedAnswer, new { @class = "mceEditor" })*@
+            @Html.Hidden("QuestionId", Model.Id)
+            @Html.Hidden("QuestionTitle", Model.Title)
+            @Html.HiddenFor(model => model.EmailAddressOfUserWhoPostedQuestion)
+            <br />
+            <p>
+                @if (WebSecurity.IsAuthenticated)
+                {
+                    <button type="submit" class="btn btn-primary btn-lg">@CommonResources.DetailQuestionViewBtnPost</button>
+
+                }
+                else
+                {
+                    <button disabled type="submit" class="btn btn-primary btn-lg">@CommonResources.DetailQuestionViewBtnPost</button>
+                    <br />
+                    <small>
+                        @Html.Raw(CommonResources.lblEnablePostButton)
+                    </small>
+                }
+            </p>
+        }
+
+    </div>
+}
+<hr />

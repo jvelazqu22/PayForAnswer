@@ -1,0 +1,39 @@
+﻿@model Domain.Models.Account.LoginModel
+@using Domain.App_GlobalResources;
+
+@{
+    ViewBag.Title = CommonResources.LoginViewBrowswerTitle;
+}
+
+<!-- Custom styles for this template -->
+<link href="~/Content/signin.css" rel="stylesheet">
+
+<div class="container">
+    @using (Html.BeginForm(null, null, new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-signin" }))
+    {
+        @Html.AntiForgeryToken()
+        <h2 class="form-signin-heading">@CommonResources.PleaseSignIn</h2>
+        @Html.TextBoxFor(model => model.UserName, new { @class = "form-control", placeholder = CommonResources.UserNameOrEmailAddress, autofocus = "" })
+        @Html.ValidationMessageFor(m => m.UserName, "", new { @class = "text-danger" })
+
+        @Html.PasswordFor(m => m.Password, new { @class = "form-control", placeholder = "Password" })
+        @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+        <br />
+        @Html.CheckBoxFor(m => m.RememberMe)
+        <span>   @CommonResources.RememberMe</span>
+
+        <button class="btn btn-lg btn-primary btn-block" type="submit">@CommonResources.SignIn</button>
+        <p>
+            <br />
+            @Html.ActionLink(CommonResources.Register, "Register") @CommonResources.IfYouDontHaveAnAccount
+            <br />
+            @Html.ActionLink(CommonResources.LblForgotPassword, "ForgotPassword", "Account")
+        </p>
+
+    }
+</div> <!-- /container -->
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

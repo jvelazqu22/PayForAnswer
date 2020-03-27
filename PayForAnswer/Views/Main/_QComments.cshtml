@@ -1,0 +1,27 @@
+﻿@model Domain.Models.ViewModel.QuestionDetailsViewModel
+@using Domain.App_GlobalResources;
+
+<strong> @CommonResources.Comments: </strong>
+<div id="divComments" class="display-field" style="max-height: 200px; overflow: auto;">
+
+    <table class="table table-bordered table-striped">
+        @Html.Raw(Model.Comments)
+    </table>
+</div>
+<hr />
+<div class="display-field">
+    <input type="text" id="txtQuestionComment" class="form-control input-sm" placeholder="@CommonResources.MsgAddCommentsPlaceHolder" />
+    @if (WebSecurity.IsAuthenticated)
+    {
+        <a href="#" class="AddQuestionComment" data-id="@Model.Id" data-toggle="tooltip" title="@CommonResources.MsgAddCommentsToolTip"><span class="btn btn-default btn-xs">@CommonResources.MsgAddCommentsButton</span></a>
+    }
+    else
+    {
+        <button disabled type="submit" class="btn btn-default btn-xs">@CommonResources.MsgAddCommentsButton</button>
+        <br />
+        <small>
+            @Html.Raw(CommonResources.lblEnablePostButton)
+        </small>
+    }
+</div>
+<hr />

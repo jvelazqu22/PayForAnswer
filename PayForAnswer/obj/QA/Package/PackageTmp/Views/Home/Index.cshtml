@@ -1,0 +1,71 @@
+﻿@using Domain.App_GlobalResources
+@model PagedList.IPagedList<Domain.Models.Question>
+@using PagedList.Mvc
+
+
+@{
+    ViewBag.Title = CommonResources.ViewHomeIndexBrowserTitle;
+}
+
+
+ <!-- Main jumbotron for a primary marketing message or call to action -->
+    <div class="jumbotron">
+      <div class="container">
+        <h1> @CommonResources.ViewHomeIndexMainHeader </h1>
+        <br/>
+        <p>@CommonResources.ViewHomeIndexMainSubHeader</p>
+        <p><a href="@Url.Action("Basics", "Help")" target="_blank" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
+      </div>
+    </div>
+
+    @*<div>
+        <iframe src="//www.slideshare.net/slideshow/embed_code/42379013" width="476" height="400" frameborder="0" marginwidth="0" marginheight="0" scrolling="no"></iframe>
+    </div>*@
+    <div class="container">
+      <!-- Example row of columns -->
+      <div class="row">
+        <div class="col-lg-4">
+            <h2>@CommonResources.ViewHomeIndexSubHeader1</h2>
+            <p>@CommonResources.ViewHomeIndexSubHeader1Text </p>
+            <p><a class="btn btn-success" href="@Url.Action("Basics", "Help")" target="_blank">View details &raquo;</a></p>
+        </div>
+
+        <div class="col-lg-4">
+            <h2>@CommonResources.ViewHomeIndexSubHeader2</h2>
+            <p>@CommonResources.ViewHomeIndexSubHeader2Text </p>
+            <p><a class="btn btn-success" href="@Url.Action("Basics", "Help")" target="_blank">View details &raquo;</a></p>
+       </div>
+
+        <div class="col-lg-4">
+            <h2>@CommonResources.ViewHomeIndexSubHeader3</h2>
+            <p>@CommonResources.ViewHomeIndexSubHeader3Text </p>
+            <p><a class="btn btn-success" href="@Url.Action("Basics", "Help")" target="_blank">View details &raquo;</a></p>
+        </div>
+
+      </div>
+
+      <div class="row">
+        <div class="col-lg-4">
+            <h2>@CommonResources.ViewHomeIndexSubHeader4</h2>
+            <p>@CommonResources.ViewHomeIndexSubHeader4Text </p>
+            <p><a class="btn btn-success" href="@Url.Action("Basics", "Help")" target="_blank">View details &raquo;</a></p>
+        </div>
+
+        <div class="col-lg-4">
+            <h2>@CommonResources.ViewHomeIndexSubHeader5</h2>
+            <p>@CommonResources.ViewHomeIndexSubHeader5Text </p>
+            <p><a class="btn btn-success" href="@Url.Action("Basics", "Help")" target="_blank">View details &raquo;</a></p>
+        </div>
+
+        <div class="col-lg-4">
+            <h2>@CommonResources.ViewHomeIndexSubHeader6</h2>
+            <p>@CommonResources.ViewHomeIndexSubHeader6Text </p>
+            <p><a class="btn btn-success" href="@Url.Action("Basics", "Help")" target="_blank">View details &raquo;</a></p>
+       </div>
+      </div>
+
+    <hr>
+        
+    @Html.Partial("~/Views/Shared/_Questions.cshtml", Model)
+
+  </div> <!-- /container -->

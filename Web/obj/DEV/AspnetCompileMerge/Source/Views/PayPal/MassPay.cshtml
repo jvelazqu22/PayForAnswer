@@ -1,0 +1,73 @@
+﻿@using PayPal.PayPalAPIInterfaceService.Model
+@model Domain.Models.PayPalMassPayResponse
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>PayPal SDK - API Response</title>
+    <link rel="stylesheet" type="text/css" href="APICalls/sdk.css" />
+</head>
+<body>
+    <div id="wrapper">
+        <h3>
+            @Html.DisplayTextFor(model => model.apiName)
+        </h3>
+       
+        @if (Model.errorMessages != null)
+        {
+            <div class="section_header">
+                Error messages</div>
+            <div class="note">
+                Investigate the response object for further error information</div>
+            <ul>
+                    @foreach (ErrorType error in Model.errorMessages)
+                    {
+                        <li>
+                            @error.LongMessage
+                        </li>
+                    }
+            </ul>
+        }
+        
+        <div class="section_header">
+            Key values from response</div>
+        <div class="note">
+            Consult response object and reference doc for complete list of response values.</div>
+        <table>
+            @foreach (KeyValuePair<String, String> entry in Model.responseValues)
+            {
+                <tr>
+                    <td class="label">
+                        @entry.Key
+                        :
+                    </td>
+                    <td>
+                        <div id="@entry.Key">
+                            @entry.Value
+                        </div>
+                    </td>
+                </tr>
+            }
+        </table>
+
+        @if (Model.requestMessage != null)
+        {
+            <div class="section_header">
+                Request Message</div>
+            <textarea id="requestMessageDump" rows="8" cols="80" readonly="readonly">@Model.requestMessage</textarea>
+        }
+        @if (Model.requestMessage != null)
+        {
+        <div class="section_header">
+            Response Message</div>
+        <textarea id="responseMessageDump" rows="8" cols="80" readonly="readonly">@Model.responseMessage</textarea>
+        }
+        <br />
+        <br />
+    </div>
+</body>
+</html>

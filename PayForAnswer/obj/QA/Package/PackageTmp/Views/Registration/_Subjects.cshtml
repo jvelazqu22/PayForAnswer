@@ -1,0 +1,38 @@
+﻿@model IEnumerable<Domain.Models.SubjectListViewModel>
+@using Domain.Constants;
+@using Domain.App_GlobalResources;
+
+
+<div id="subjectList" class="display-label">
+    
+    @if(Model.Count() >= Size.NumberOfRegistrationSubjects)
+    {
+        <strong>
+            <a href="@Url.Action("BySubject", "Main")" class="btn btn-primary btn-lg">@CommonResources.BtnFinishRegistration</a>
+        </strong>
+    }
+    else
+    {
+        int numOfSubjectsLeft = Size.NumberOfRegistrationSubjects - Model.Count();
+        int percentCompleted = (Model.Count() / Size.NumberOfRegistrationSubjects);
+        
+        <div class="alert alert-info">
+          <strong>@numOfSubjectsLeft.ToString() @CommonResources.LblSubjectsLeft</strong> 
+        </div>        
+    }
+    <strong>
+        <br/><br />
+        @CommonResources.LblMySubjects
+    </strong>
+
+    <table>
+        <tr>
+    @foreach (var subject in Model) {
+            <td>
+                <span class="label label-info">@subject.SubjectName</span>
+            </td>
+    }
+        </tr>
+    </table>
+
+</div>

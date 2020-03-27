@@ -1,0 +1,38 @@
+﻿@model Domain.Models.PayPalModel
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width" />
+        <title>Index</title>
+        @Scripts.Render("~/PayPal/js")
+    </head>
+    <body>
+        <form id="frm" action="@ViewBag.actionURL">
+            @Html.HiddenFor(model => model.cmd)
+            @Html.HiddenFor(model => model.business)
+            @Html.HiddenFor(model => model.no_shipping)
+            @Html.HiddenFor(model => model.@return)
+            @Html.HiddenFor(model => model.cancel_return)
+            @Html.HiddenFor(model => model.notify_url)
+            @Html.HiddenFor(model => model.current_code)
+            @Html.HiddenFor(model => model.item_name)
+            @Html.HiddenFor(model => model.amount)
+            @Html.HiddenFor(model => model.custom)
+        </form>
+        <p style="text-align:center">
+            <h4>Redirecting to PayPal...</h4>
+        </p>
+    </body>
+</html>
+
+<script type="text/javascript">
+    $(this.document).ready(function () {
+        var frm = $("form");
+        frm.submit();
+    });
+</script>

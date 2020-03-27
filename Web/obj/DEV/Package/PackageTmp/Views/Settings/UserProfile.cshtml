@@ -1,0 +1,79 @@
+﻿@model Domain.Models.Account.ProfileViewModel
+@using Domain.App_GlobalResources;
+
+@{
+    ViewBag.Title = CommonResources.MyProfile;
+}
+
+<script type="text/javascript">
+$(function () {
+    $('[data-toggle="tooltip"]').tooltip({
+        placement: 'top'
+    });
+});
+</script>
+
+<h2>@CommonResources.MyProfile</h2>
+
+@using (Html.BeginForm("UserProfile", "Settings"))
+{
+    @Html.AntiForgeryToken()
+   
+    @Html.HiddenFor(model => model.UserID)
+    @Html.HiddenFor(model => model.Email)
+    @Html.HiddenFor(model => model.UserName)
+
+    <hr />    
+
+    <h5>
+        <strong>@CommonResources.UserProfileModelUserName</strong>
+    </h5>
+        @Html.DisplayFor(u => u.UserName)
+    <h5>
+        <strong>@CommonResources.LblEmailAddress</strong>
+    </h5>
+    @Html.DisplayFor(u => u.Email)
+    <br/><br/>
+    <div class="bs-example tooltip-demo">
+        @CommonResources.LblEmailAddress
+        <a href="#" data-toggle="tooltip" title="@string.Format(CommonResources.PaypalEmailNeededMsg,"PayPal")">@CommonResources.LblPayPalPayments</a>
+    </div>
+
+    <h5>
+        <strong>@CommonResources.NewEmailAddress</strong>
+    </h5>
+   
+    <div class="row">
+        <div class="col-lg-3">
+            <div class="input-group merged">
+                <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
+                @Html.TextBoxFor(u => u.NewEmail, new { @class="form-control", type = "email", placeholder = CommonResources.TxtPlaceHolderRegistrationEmail, autofocus="" })
+                @Html.ValidationMessageFor(u => u.NewEmail, "", new { @class = "text-danger" })
+            </div>
+
+            <strong>@CommonResources.ConfirmNewEmailAddress</strong>
+            <div class="input-group merged">
+                <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
+                @Html.TextBoxFor(u => u.ConfirmNewEmail, new { oncopy = "return false", onpaste = "return false", @class = "form-control", type = "email", placeholder = CommonResources.TxtPlaceHolderRegistrationEmail, autofocus = "" })
+            </div>
+        </div>
+    </div>
+    <div class ="row">
+        <div class="col-lg-3">
+            @Html.ValidationMessageFor(u => u.ConfirmNewEmail, "", new { @class = "text-danger" })
+            <br/>
+            @{
+                var payPalLink = string.Format(Domain.Constants.Html.LINK_PLACE_HOLDER_NEW_WINDOW, "https://www.paypal.com/signup/account", "PayPal");
+                string emailMsg = string.Format(CommonResources.PaypalEmailNeededMsg, payPalLink);
+            }
+            @Html.Raw(@emailMsg)
+        </div>
+    </div>
+
+    <br /> <br />
+    <input type="submit" value="@CommonResources.BtnSave" class="btn btn-lg btn-primary" />
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

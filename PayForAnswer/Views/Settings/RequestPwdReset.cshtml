@@ -1,0 +1,31 @@
+﻿@model Domain.Models.Account.RegisterModel
+@using Domain.App_GlobalResources;
+
+@{
+    ViewBag.Title = CommonResources.RequestPwdResetViewBrowserTitle;
+}
+
+<h2>@CommonResources.RequestPwdResetViewTitle</h2>
+
+@using (Html.BeginForm("RequestPwdReset", "Settings")) {
+    @Html.AntiForgeryToken()
+   
+    <hr />
+    
+    <strong>@CommonResources.LblEmailAddress</strong>
+    <br />
+   
+    <div class="row">
+        <div class="col-lg-3">
+        <div class="input-group merged">
+            <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
+            @Html.PasswordFor(m => m.EmailAddress, new { type = "email", @class="form-control", autofocus = ""})
+        </div>
+        @Html.ValidationMessageFor(m => m.EmailAddress) <br />
+        </div>
+    </div>
+        
+    <br /> <br />
+    <button type="submit" class="btn btn-primary btn-lg">@CommonResources.BtnRequestPwdReset</button>
+    
+}

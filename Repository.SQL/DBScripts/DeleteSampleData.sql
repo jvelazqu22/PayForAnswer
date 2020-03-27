@@ -1,0 +1,8 @@
+DELETE Logs
+DELETE Comments
+DELETE MarketingCampaigns
+DELETE QuestionPaymentDetails
+DELETE Payments
+DELETE Attachments
+DELETE Answers
+DELETE Questions

@@ -1,0 +1,40 @@
+﻿@model Domain.Models.ViewModel.QuestionsBySubjectModel
+@using Domain.App_GlobalResources;
+@using PagedList;
+@using Domain.Constants;
+
+<link href="~/Content/Modals.css" rel="stylesheet">
+<script type="text/javascript" src="~/Scripts/Custom/Modals.js"></script>
+<script type="text/javascript">
+
+    $('document').ready(function () {
+        var t = $("#tag").tagging();
+        $("#btnSubmit").click(function () {
+            var commaDelimitedSubjects = $.trim(t[0].tagging("getTags")).toLowerCase();
+            $("#dlgUpdatePage").show().dialog("open");
+            $.post("/UnauthSubject/UpdateSubjects", { "commaDelimitedSubjects": commaDelimitedSubjects },
+                    function (data) {
+                        location = data.url;
+                    });
+        });
+    });
+
+</script>
+
+<h2>@CommonResources.ViewUnauthFilterBySubjectsTitle</h2>
+
+<div id="dlgUpdatePage" class="dialog">@CommonResources.UpdatingDataMsg</div>
+<div class="example-wrapper">
+    <div class="tags well">
+        <label for="tag" class="control-label">@CommonResources.LblMySubjects</label>
+        <div class="tagging-js tagging form-control" data-tags-input-name="taggone" id="tag">
+            @Model.CommaSpaceDelimitedSubjects
+        </div>
+        <p class="help-block">@CommonResources.HowToUseSubjectBoxDescription</p>
+        <strong>
+            <button id="btnSubmit" type="submit" class="btn btn-success btn">@CommonResources.UpdateQuestionList</button>
+        </strong>
+    </div>
+</div>
+
+@Html.Partial("~/Views/Shared/_Questions.cshtml", Model.Questions.ToPagedList(Model.PageNumber, Size.QuestionPagerPageSize))

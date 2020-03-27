@@ -1,0 +1,167 @@
+﻿@model Domain.Models.ViewModel.MarketingCampaignViewModel
+@using Domain.App_GlobalResources;
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+
+@using (Html.BeginForm()) { 
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Marketing Campaign</legend>
+
+        @Html.HiddenFor(model => model.QuestionPaymentDetailID)
+        @Html.HiddenFor(model => model.QuestionTitle)
+        @Html.HiddenFor(model => model.CampaignManagerId)
+        @Html.HiddenFor(model => model.QuestionAmountIncrease)
+        @Html.HiddenFor(model => model.CreatedOn)
+        @Html.HiddenFor(model => model.RowVersion)
+
+        <strong>Status</strong>
+        <div class="row">
+            <div class="col-lg-3">
+                <div class="input-group merged">
+                    @Html.DropDownList("StatusId", null, new { @class = "form-control" })
+                </div>
+                @Html.ValidationMessageFor(model => model.StatusId, "", new { @class = "text-danger" }) <br />
+            </div>
+        </div>
+        <br/>
+
+        <strong>Campaign_Manager_UserName_Question_ID_and_Campaign_ID</strong>
+        <div class="control-label">
+            @Html.DisplayFor(model => model.CMUserName_QuestionID_QuestionMarketingID)
+        </div>
+        <br />
+
+        <strong>Headline</strong>
+        <div class="control-label">
+            @Html.DisplayFor(model => model.Headline)
+        </div>
+        <br />
+
+        <strong>Title (Description line 1)</strong>
+        <div class="control-label">
+            @Html.DisplayFor(model => model.QuestionTitle)
+        </div>
+        <br />
+
+        <strong>Subjects (Description line 2)</strong>
+        <div class="control-label">
+            @foreach (var subject in Model.QuestionSubjects)
+            {
+                <span>@subject </span>
+            }
+        </div>
+        <br />
+
+        <strong>Display URL</strong>
+        <div class="control-label">
+            @Html.DisplayFor(model => model.DisplayUrl)
+        </div>
+        <br />
+
+        <strong>Destination URL</strong>
+        <div class="control-label">
+            <a href="@Model.QuestionUrl" target="_blank">@Model.QuestionUrl</a>
+        </div>
+        <br />
+
+        <strong>Keywords</strong>
+        <div class="control-label">
+            @foreach (var keyword in Model.SearchKeywords)
+            {
+                @Html.DisplayFor(model => keyword.Keywords) <br />
+            }
+        </div>
+        <br />
+
+        <strong>Budget Per Day</strong>
+        <div class="control-label">
+            @Html.DisplayFor(model => model.PerDayBudget)
+        </div>
+        <br />
+
+        <strong>Number of days to run</strong>
+        <div class="control-label">
+            @Html.DisplayFor(model => model.NumberOfDaysToRun)
+        </div>
+        <br />
+
+        <strong>Total marketing budget</strong>
+        <div class="control-label">
+            @Html.DisplayFor(model => model.TotalMarketingBudget)
+        </div>
+        <br />
+
+        <strong>Amount</strong>
+        <div class="control-label">
+            @Html.DisplayFor(model => model.Amount)
+        </div>
+        <br />
+
+        <strong>Start date</strong>
+        <div class="row">
+            <div class="col-lg-3">
+                <div class="input-group">
+                    @Html.TextBoxFor(model => model.StartDate, new { @class = "form-control" })
+                </div>
+            </div>
+        </div>
+        @Html.ValidationMessageFor(model => model.StartDate, "", new { @class = "text-danger" })
+        <br />
+
+        <strong>End date</strong>
+        <div class="control-label">
+            @Html.DisplayFor(model => model.EndDateString)
+        </div>
+        <br />
+
+        <strong>Created on</strong>
+        <div class="control-label">
+            @Html.DisplayFor(model => model.CreatedOnString)
+        </div>
+        <br />
+
+        <strong>Question ID</strong>
+        <div class="control-label">
+            @Html.DisplayFor(model => model.QuestionID)
+        </div>
+        <br />
+
+        <strong>Campaign ID</strong>
+        <div class="control-label">
+            @Html.DisplayFor(model => model.QuestionPaymentDetailID)
+        </div>
+        <br />
+
+        <strong>User name</strong>
+        <div class="control-label">
+            @Html.DisplayFor(model => model.QuestionPosterUserName)
+        </div>
+        <br />
+
+        <strong>User email address</strong>
+        <div class="control-label">
+            @Html.DisplayFor(model => model.QuestionPosterEmailAddress)
+        </div>
+        <br />
+
+        <br/>
+        <p>
+            <button type="submit" class="btn btn-primary btn-lg">@CommonResources.BtnSave</button>
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "NotStartedList", "MarketingCampaign")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

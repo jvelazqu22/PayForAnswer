@@ -1,0 +1,41 @@
+﻿@model Domain.Models.CreateQuestionViewModel
+@using Domain.App_GlobalResources;
+@using Domain.Constants;
+
+<link href="~/Content/Modals.css" rel="stylesheet">
+<script type="text/javascript" src="~/Scripts/Custom/CreateQuestion.js"></script>
+<script type="text/javascript" src="~/Scripts/Custom/Modals.js"></script>
+<script type="text/javascript">
+    $('document').ready(function () {
+        SubjectsRelatedFunctionsSetUp("@Size.GoogleDescrLineMaxCharacters", "@CommonResources.GoogleAdLine4TempData");
+    });
+
+    $(function () {
+        TitleChanges("@CommonResources.GoogleAdHeadlineTempData", "@CommonResources.GoogleAdLine3TempData", "@CommonResources.GoogleTopAd",
+                        "@CommonResources.GoogleAdLinkTooltip", "@CommonResources.GoogleAdHeadlinePrefix",
+                        "@CommonResources.GoogleAdHeadlineSuffix", "@CommonResources.GoogleAdLine2");
+
+        AmountChanges("@CommonResources.GoogleAdLine3TempData", "@CommonResources.GoogleAdHeadlineTempData", "@CommonResources.GoogleSideAd",
+                        "@CommonResources.GoogleAdLinkTooltip", "@CommonResources.GoogleAdHeadlinePrefix", "@CommonResources.GoogleAdHeadlineSuffix",
+                        "@CommonResources.GoogleAdLine2", "@CommonResources.GoogleTopAd");
+    });
+</script>
+
+@{
+    ViewBag.Title = CommonResources.CreateQuestionViewBrowswerTitle;
+}
+
+<h2>@CommonResources.lblQuestion</h2>
+
+<div id="dlgUpdatePage" class="dialog">@CommonResources.MsgUpdateAjaxPage</div>
+@using (Html.BeginForm("Create", "NewQuestion", FormMethod.Post, new { id = "newQuestionForm", enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(model => model.CommaDelimitedSubjects);
+    
+    @Html.Partial("_TopQuestionFields", Model)
+    @Html.Partial("_GoogleAds")
+    @Html.Partial("_UploadFiles", Model)    
+    @Html.Partial("_BottomQuestionFields", Model)    
+}
+

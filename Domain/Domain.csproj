@@ -1,0 +1,225 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{ACCE06D2-E5F5-4553-AB0F-63601B8D7587}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Domain</RootNamespace>
+    <AssemblyName>Domain</AssemblyName>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'QA|AnyCPU'">
+    <OutputPath>bin\QA\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'DEV|AnyCPU'">
+    <OutputPath>bin\DEV\</OutputPath>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net, Version=1.2.10.0, Culture=neutral, PublicKeyToken=1b44e1d426115821, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\log4net.1.2.10\lib\2.0\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Core">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.1.0\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.EntityFramework">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.2.1.0\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Data.Edm, Version=5.6.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.Data.Edm.5.6.2\lib\net40\Microsoft.Data.Edm.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Data.OData, Version=5.6.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.Data.OData.5.6.2\lib\net40\Microsoft.Data.OData.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Data.Services.Client, Version=5.6.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.Data.Services.Client.5.6.2\lib\net40\Microsoft.Data.Services.Client.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.WindowsAzure.Configuration, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.WindowsAzure.ConfigurationManager.2.0.3\lib\net40\Microsoft.WindowsAzure.Configuration.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.WindowsAzure.Storage, Version=4.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\WindowsAzure.Storage.4.3.0\lib\net40\Microsoft.WindowsAzure.Storage.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.5.0.8\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="PayPalCoreSDK, Version=1.3.5.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\PayPalCoreSDK.1.3.5\lib\PayPalCoreSDK.dll</HintPath>
+    </Reference>
+    <Reference Include="PayPalMerchantSDK, Version=2.6.106.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\PayPalMerchantSDK.2.6.106\lib\PayPalMerchantSDK.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Spatial, Version=5.6.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\System.Spatial.5.6.2\lib\net40\System.Spatial.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Mvc, Version=4.0.0.1, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.4.0.20710.0\lib\net40\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WebMatrix.WebData, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_GlobalResources\CommonResources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CommonResources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Constants\Emails.cs" />
+    <Compile Include="Constants\Errors.cs" />
+    <Compile Include="Constants\General.cs" />
+    <Compile Include="Constants\Html.cs" />
+    <Compile Include="Constants\ParsingDelimitedCharacters.cs" />
+    <Compile Include="Constants\PayPalValues.cs" />
+    <Compile Include="Constants\Roles.cs" />
+    <Compile Include="Constants\Size.cs" />
+    <Compile Include="Constants\StatusValues.cs" />
+    <Compile Include="Constants\StorageValues.cs" />
+    <Compile Include="Constants\SubjectEntityValues.cs" />
+    <Compile Include="Constants\Urls.cs" />
+    <Compile Include="Exceptions\AddMoneyPrevalidationException.cs" />
+    <Compile Include="Exceptions\AnswerNotFoundException.cs" />
+    <Compile Include="Exceptions\EmptyDescriptionException.cs" />
+    <Compile Include="Exceptions\InvalidQuestionAmountException.cs" />
+    <Compile Include="Exceptions\InvalidUserException.cs" />
+    <Compile Include="Exceptions\NewAnswerException.cs" />
+    <Compile Include="Exceptions\NotifyFromPayPalException.cs" />
+    <Compile Include="Exceptions\PayPalPaymentStatusNotCompleteException.cs" />
+    <Compile Include="Exceptions\PayPalRedirectNoSuccessResponseException.cs" />
+    <Compile Include="Exceptions\PrevalidatedQuestionDoesNotHaveOneMarketingCampaign.cs" />
+    <Compile Include="Exceptions\PrevalidateQuestionFirstCampaignIsNull.cs" />
+    <Compile Include="Exceptions\RequestIdMissingInPayPalResponseException.cs" />
+    <Compile Include="Exceptions\RequestNotFoundException.cs" />
+    <Compile Include="Exceptions\QuestionPrevalidationException.cs" />
+    <Compile Include="Exceptions\RequestTotalAndPayPalGrossTotalMissmatchException.cs" />
+    <Compile Include="Exceptions\UpdateAnswerStatusAttack.cs" />
+    <Compile Include="Interfaces\ICalculateFeesModel.cs" />
+    <Compile Include="Models\Account\ExternalLoginConfirmationViewModel.cs" />
+    <Compile Include="Models\Account\ExternalLoginListViewModel.cs" />
+    <Compile Include="Models\Account\ForgotUserNameOrPasswordViewModel.cs" />
+    <Compile Include="Models\Account\ManageUserViewModel.cs" />
+    <Compile Include="Models\Account\ProfileViewModel.cs" />
+    <Compile Include="Models\Account\ResetPasswordViewModel.cs" />
+    <Compile Include="Models\Entities\Identity\ApplicationRole.cs" />
+    <Compile Include="Models\Entities\Identity\ApplicationRoleStore.cs" />
+    <Compile Include="Models\Entities\Identity\ApplicationUser.cs" />
+    <Compile Include="Models\Entities\Identity\ApplicationUserClaim.cs" />
+    <Compile Include="Models\Entities\Identity\ApplicationUserLogin.cs" />
+    <Compile Include="Models\Entities\Identity\ApplicationUserRole.cs" />
+    <Compile Include="Models\Entities\Identity\ApplicationUserStore.cs" />
+    <Compile Include="Models\Entities\Feedback.cs" />
+    <Compile Include="Models\Entities\Notifications.cs" />
+    <Compile Include="Models\Entities\SearchKeyword.cs" />
+    <Compile Include="Models\Helper\Alert.cs" />
+    <Compile Include="Models\Helper\Comment.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Models\Entities\Attachment.cs" />
+    <Compile Include="Models\Calculation\MarketingCampaignTotals.cs" />
+    <Compile Include="Models\Helper\EmailModel.cs" />
+    <Compile Include="Models\Helper\Error.cs" />
+    <Compile Include="Models\Helper\TestModel.cs" />
+    <Compile Include="Models\Helper\UploadFile.cs" />
+    <Compile Include="Models\Entities\Log.cs" />
+    <Compile Include="Models\Account\LoginModel.cs" />
+    <Compile Include="Models\Entities\Answer.cs" />
+    <Compile Include="Models\Entities\Payment.cs" />
+    <Compile Include="Models\Entities\QuestionPaymentDetail.cs" />
+    <Compile Include="Models\Entities\MarketingCampaign.cs" />
+    <Compile Include="Models\Helper\PayPalModel.cs" />
+    <Compile Include="Models\Helper\PayPalResponse.cs" />
+    <Compile Include="Models\Entities\Question.cs" />
+    <Compile Include="Models\Entities\Status.cs" />
+    <Compile Include="Models\Entities\Subject.cs" />
+    <Compile Include="Models\Table.Entities\Question\UserQuestion.cs" />
+    <Compile Include="Models\Table.Entities\SubjectEntity.cs" />
+    <Compile Include="Models\Table.Entities\Subject\SubjectQuestion.cs" />
+    <Compile Include="Models\ViewModel\AdminViewModel.cs" />
+    <Compile Include="Models\ViewModel\UpdateQuestionViewModel.cs" />
+    <Compile Include="Models\ViewModel\QuestionsBySubjectModel.cs" />
+    <Compile Include="Models\ViewModel\NewAnswerViewModel.cs" />
+    <Compile Include="Models\ViewModel\AddMoneyViewModel.cs" />
+    <Compile Include="Models\ViewModel\MarketingSummaryBase.cs" />
+    <Compile Include="Models\ViewModel\QuestionDetailsViewModel.cs" />
+    <Compile Include="Models\ViewModel\MarketingCampaignViewModel.cs" />
+    <Compile Include="Models\ViewModel\QuestionMarketingHistoryViewModel.cs" />
+    <Compile Include="Models\ViewModel\AlertViewModel.cs" />
+    <Compile Include="Models\ViewModel\RedirectFromPayPalViewModel.cs" />
+    <Compile Include="Models\ViewModel\ValidateAddMoneyViewModel.cs" />
+    <Compile Include="Models\ViewModel\ValidateQuestionViewModel.cs" />
+    <Compile Include="Models\ViewModel\CreateQuestionViewModel.cs" />
+    <Compile Include="Models\ViewModel\VariousSmallViewModels.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Models\Account\RegisterModel.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="App_GlobalResources\CommonResources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>CommonResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

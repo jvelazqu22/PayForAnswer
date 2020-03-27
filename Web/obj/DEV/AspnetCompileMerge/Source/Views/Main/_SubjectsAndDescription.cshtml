@@ -1,0 +1,27 @@
+﻿@model Domain.Models.ViewModel.QuestionDetailsViewModel
+@using Domain.App_GlobalResources;
+
+<strong>
+    @CommonResources.SubjectsColon
+</strong>
+
+<div class="table-responsive">
+    <div class="dialog">
+            @foreach (var subject in Model.Subjects)
+            {
+                <button class="btn btn-warning active" type="button">
+                    @subject.SubjectName 
+                </button>
+            }
+        </div>
+</div>
+<hr />
+
+<div id="divDescription" class="display-field">
+    <strong>
+        @CommonResources.QuestionDescription
+    </strong>
+    <br/>
+    @Html.Raw(Model.Description)
+</div>
+<hr />

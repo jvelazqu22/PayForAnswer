@@ -1,0 +1,19 @@
+﻿@model Domain.Models.ViewModel.QuestionDetailsViewModel
+@using Domain.App_GlobalResources;
+
+<div>
+    <strong> @CommonResources.AttachedFiles:</strong>
+    <table>
+        @foreach (var attachment in Model.Attachments)
+        {
+            <tr>
+                <td>
+                    <a href=@attachment.PrimaryUri><span class="btn btn-link">@attachment.Name</span></a>
+                </td>
+            </tr>
+        }
+    </table>
+</div>
+<hr />
+
+<hr />

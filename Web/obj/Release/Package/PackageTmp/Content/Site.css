@@ -1,0 +1,49 @@
+﻿body {
+    padding-top: 60px;
+    padding-bottom: 40px;
+}
+
+.dropdown-menu > li > a:hover {
+  color: #ffffff;
+  text-decoration: none;
+  background-color: #0081c2;
+  background-image: none;
+}
+
+.dropdown-backdrop{
+    position: static;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.top-left-pfa-lable {
+  display: block;
+  /*float: left;*/
+  padding: 10px 20px 10px;
+  /*margin-left: -20px;*/
+  font-size: 20px;
+  font-weight: 200;
+  color: #B5F36D;
+  text-shadow: 0 1px 0 #ffffff;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+/*input,
+select,
+textarea {
+    max-width: 280px;
+}*/
+
+.share-buttons{
+	list-style: none;
+}
+
+.share-buttons li{
+	display: inline;
+}
+
+

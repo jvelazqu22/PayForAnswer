@@ -1,0 +1,35 @@
+﻿@model Domain.Models.LoginModel
+@using Domain.App_GlobalResources;
+
+@{
+    ViewBag.Title = CommonResources.LoginViewBrowswerTitle;
+}
+
+<!-- Custom styles for this template -->
+<link href="~/Content/bootstrap/signin.css" rel="stylesheet">
+
+<div class="container">
+    @using (Html.BeginForm(null, null, new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-signin" }))
+    {
+        @Html.AntiForgeryToken()
+        <h2 class="form-signin-heading">Please sign in</h2>
+        @Html.TextBoxFor(model => model.UserName, new { @class="form-control", placeholder = CommonResources.lblUserName, autofocus = ""} )
+        @Html.ValidationMessageFor(m => m.UserName)
+
+        @Html.PasswordFor(m => m.Password, new { @class="form-control", placeholder = "Password"} )
+        @Html.ValidationMessageFor(m => m.Password)
+        <br />
+        @Html.CheckBoxFor(m => m.RememberMe) 
+        <span>   Remember me?</span>
+
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+        <p> 
+            <br />
+            @Html.ActionLink(CommonResources.LoginViewRegisterLink, "Register") if you don't have an account.
+            <br />
+            @Html.ActionLink(CommonResources.LblForgotPassword, "RequestPwdReset", "Settings")
+        </p>
+
+    }
+</div> <!-- /container -->
+

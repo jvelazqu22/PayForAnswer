@@ -1,0 +1,31 @@
+﻿@model Domain.Models.ViewModel.AddMoneyViewModel
+@using Domain.App_GlobalResources;
+@using Domain.Constants;
+
+@{
+    ViewBag.Title = CommonResources.AddMoney;
+}
+
+<h2>@CommonResources.txtIncreaseAmount</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(model => model.CommaDelimitedSubjects);
+    @Html.HiddenFor(model => model.QuestionId);
+    @Html.HiddenFor(model => model.Amount);
+    
+    <h3>
+        @Model.Title (<span class="text-success"><strong>$@Model.Amount</strong></span>)
+    </h3>     
+
+    if (Model.CanUserViewSummary)
+    {
+        @Html.Partial("_Summary", Model)            
+    }
+
+    @Html.Partial("_TopFields", Model)            
+    @Html.Partial("_MiddleFields", Model)            
+    @Html.Partial("_BottomFields", Model)            
+}
+

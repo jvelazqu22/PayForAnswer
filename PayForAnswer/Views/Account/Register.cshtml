@@ -1,0 +1,83 @@
+﻿@model Domain.Models.Account.RegisterModel
+@using Domain.App_GlobalResources;
+@using CaptchaMvc.HtmlHelpers
+
+@{
+    ViewBag.Title = CommonResources.strRegister;
+}
+
+<script type="text/javascript">
+$(function () {
+    $(".pop-top").popover({
+        placement : 'top'
+    });
+    $(".pop-right").popover({
+        placement : 'right'
+    });
+    $(".pop-bottom").popover({
+        placement : 'bottom'
+    });
+    $(".pop-left").popover({
+        placement : 'left'
+    });
+});
+</script>
+
+<!-- Custom styles for this template -->
+<link href="~/Content/bootstrap/signin.css" rel="stylesheet">
+
+<div class="container">
+    @using (Html.BeginForm("Register", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-signin" }))
+    {
+        @Html.AntiForgeryToken()
+        <h2 class="form-signin-heading">Create a new account</h2>
+        @Html.TextBoxFor(model => model.UserName, new { @class = "form-control", placeholder = CommonResources.TxtPlaceHolderRegistrationUserName, autofocus = "" })
+        @Html.ValidationMessageFor(m => m.UserName)
+
+        @Html.PasswordFor(m => m.Password, new { @class = "form-control", placeholder = "Password" })
+        @Html.ValidationMessageFor(m => m.Password)
+
+        @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control", placeholder = "Confirm Password" })
+        @Html.ValidationMessageFor(m => m.ConfirmPassword)
+        
+        <br />
+        @*@CommonResources.LblEmailAddress
+        <a href="#" class="pop-right" data-toggle="popover" title="@CommonResources.ViewRegisterPopOverPayPalTitle" data-content="@CommonResources.ViewRegisterPopOverPayPalText">@CommonResources.LblPayPalPayments  </a> 
+        @Html.TextBoxFor(m => m.EmailAddress, new { @class = "form-control", type = "email", placeholder = CommonResources.TxtPlaceHolderRegistrationEmail })
+        @Html.ValidationMessageFor(m => m.EmailAddress)*@
+
+        <div class="bs-example tooltip-demo">
+            @CommonResources.LblEmailAddress
+            <a href="#" data-toggle="tooltip" title="@CommonResources.ViewRegisterPopOverPayPalText">@CommonResources.LblPayPalPayments</a>
+            @Html.TextBoxFor(m => m.EmailAddress, new { @class = "form-control", type = "email", placeholder = CommonResources.TxtPlaceHolderRegistrationEmail })
+            @Html.ValidationMessageFor(m => m.EmailAddress)
+        </div>
+        <br />
+        
+        
+        <br />
+        <div>
+            <a href="@Url.Action("ToS", "Help")" target="_blank">Terms of Service</a> &
+            <a href="@Url.Action("Privacy", "Help")" target="_blank">Privacy Policy</a>
+            <p>
+                <small>
+                    @Html.Raw(CommonResources.LblAcceptTermsText)
+                </small>
+            </p>
+        </div>
+
+        @Html.Captcha("Get a another image", "Enter the security key value you see above:", 5, "Is required field.", true)
+        @Html.ValidationMessage("CaptchaInputText")
+        <br />@*
+
+        <input type="submit" value="@CommonResources.LoginViewRegisterLink" class="btn btn-large btn-warning" />*@
+        
+
+        <button class="btn btn-lg btn-warning btn-block" type="submit">@CommonResources.LoginViewRegisterLink</button>
+        <p> 
+            <br />
+            @Html.ActionLink(CommonResources.LblForgotPassword, "RequestPwdReset", "Settings")
+        </p>
+
+    }
+</div> <!-- /container -->

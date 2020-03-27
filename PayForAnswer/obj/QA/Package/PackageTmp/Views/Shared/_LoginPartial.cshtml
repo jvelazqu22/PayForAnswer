@@ -1,0 +1,24 @@
+﻿@using System.Activities.Expressions
+
+<div class="navbar-form pull-right">
+
+    @if (Request.IsAuthenticated) {
+        <div class="btn-group">
+            <a class="btn btn-primary" href="#"><i class="glyphicon glyphicon-user"></i> @User.Identity.Name</a>
+            <a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="#"><span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                    <li><a href="javascript:document.getElementById('logoutForm').submit()"><i class="icon-user"></i> Log off</a></li>
+                </ul>
+        </div>
+    } else {
+            <div class="btn-group">
+            <a href="@Url.Action("Login", "Account")" class="btn btn-primary">Log in</a>&nbsp;
+            </div><!-- /btn-group -->
+        
+            
+            <div class="btn-group">
+            <a href="@Url.Action("Register", "Account")" class="btn btn-warning">Register</a>
+            </div><!-- /btn-group -->
+    }
+
+</div>

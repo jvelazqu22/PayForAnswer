@@ -1,0 +1,35 @@
+﻿@using Domain.Models.Helper;
+
+@{
+
+    if (!string.IsNullOrWhiteSpace((HttpContext.Current.Application["TopAlertMsg"] as string)) &&
+    !string.IsNullOrWhiteSpace((HttpContext.Current.Application["TopAlertType"] as string)))
+    {
+        string topAlertType = (HttpContext.Current.Application["TopAlertType"] as string);
+        string message = (HttpContext.Current.Application["TopAlertMsg"] as string);
+        <div class="alert alert-@topAlertType">
+            <strong>@message</strong>
+        </div>
+    }
+
+    var alerts = TempData.ContainsKey(Alert.TempDataKey)
+                ? (List<Alert>)TempData[Alert.TempDataKey]
+                : new List<Alert>();
+
+    if (alerts.Any())
+    {
+        <hr />
+    }
+
+    foreach (var alert in alerts)
+    {
+        var dismissableClass = alert.Dismissable ? "alert-dismissable" : null;
+        <div class="alert alert-@alert.AlertStyle @dismissableClass">
+            @if (alert.Dismissable)
+            {
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            }
+            @Html.Raw(alert.Message)
+        </div>
+    }
+}

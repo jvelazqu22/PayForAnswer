@@ -1,0 +1,44 @@
+﻿@model PagedList.IPagedList<Domain.Models.Entities.Question>
+@using Domain.Constants
+@using PagedList.Mvc
+
+<div class="table-responsive">
+    <table >
+        @foreach (var item in Model) {
+            <tr>
+                <td class="text-center">
+                    <h4>@item.Answers.Count</h4> 
+                     Answers <br />
+                    @if (item.StatusId == StatusValues.Accepted || item.StatusId == StatusValues.AcceptedByRequester)
+                    {
+                        <span class="label label-success">@item.Status.DisplayName</span>
+                    }
+                    else if (item.StatusId == StatusValues.Paid)
+                    {
+                        <span class="label label-danger">@item.Status.DisplayName</span>
+                    }
+                    else if (item.StatusId == StatusValues.PayPalIPNNotifyConfirmed || item.StatusId == StatusValues.PayPalRedirectConfirmed)
+                    {
+                        <span class="label label-success">@item.Status.DisplayName</span>
+                    }
+                    else
+                    {
+                        <span class="label label-warning">@item.Status.DisplayName</span>
+                    }
+                </td>
+                <td>
+                    <strong>@Html.ActionLink(item.Title, "Details", "Main", new { id=item.Id }, null) </strong>
+                    <br />
+                    @foreach(var subject in item.Subjects)
+                    {
+                        <span class="label label-primary">@subject.SubjectName</span>
+                    }
+                </td>
+                <td class="text-center success">
+                    <h3><span class="text-success"><strong>$@item.Amount</strong></span></h3>
+                </td>
+            </tr>
+        }
+    </table>
+</div>
+@Html.PagedListPager( Model, page => Url.Action(ViewBag.MethodName, new { page }) )

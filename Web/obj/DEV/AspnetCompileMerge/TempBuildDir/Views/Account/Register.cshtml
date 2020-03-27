@@ -1,0 +1,71 @@
+﻿@model Domain.Models.Account.RegisterModel
+@using Domain.App_GlobalResources;
+@using CaptchaMvc.HtmlHelpers
+
+@{
+    ViewBag.Title = CommonResources.Register;
+}
+<script type="text/javascript">
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip({
+            placement: 'top'
+        });
+    });
+</script>
+
+<!-- Custom styles for this template -->
+<link href="~/Content/signin.css" rel="stylesheet">
+
+<div class="container">
+    @using (Html.BeginForm("Register", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-signin" }))
+    {
+        @Html.AntiForgeryToken()
+        <h2 class="form-signin-heading">Create a new account</h2>
+        
+        @Html.TextBoxFor(model => model.UserName, new { @class = "form-control", placeholder = CommonResources.TxtPlaceHolderRegistrationUserName, autofocus = "" })
+        @Html.ValidationMessageFor(m => m.UserName, "", new { @class = "text-danger" })
+
+        @Html.PasswordFor(m => m.Password, new { @class = "form-control", placeholder = "Password" })
+        @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+
+        @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control", placeholder = "Confirm Password" })
+        @Html.ValidationMessageFor(m => m.ConfirmPassword, "", new { @class = "text-danger" })
+
+        <br />
+
+        <div class="bs-example tooltip-demo">
+            @CommonResources.LblEmailAddress
+            <a href="#" data-toggle="tooltip" title="@CommonResources.ViewRegisterPopOverPayPalText">@CommonResources.LblPayPalPayments</a>
+            @Html.TextBoxFor(m => m.EmailAddress, new { @class = "form-control", type = "email", placeholder = CommonResources.TxtPlaceHolderRegistrationEmail })
+            @Html.ValidationMessageFor(m => m.EmailAddress, "", new { @class = "text-danger" })
+        </div>
+        <br />
+
+        <br />
+        <div>
+            <a href="@Url.Action("ToS", "Help")" target="_blank">Terms of Service</a> &
+            <a href="@Url.Action("Privacy", "Help")" target="_blank">Privacy Policy</a>
+            <p>
+                <small>
+                    @Html.Raw(CommonResources.LblAcceptTermsText)
+                </small>
+            </p>
+        </div>
+
+        @Html.Captcha(CommonResources.GetAnotherImage, CommonResources.EnterSecurityValueAbove, 5, CommonResources.IsRequiredField, true)
+        @Html.ValidationMessage("CaptchaInputText", "", new { @class = "text-danger" })
+
+        <br />
+
+        <button class="btn btn-lg btn-warning btn-block" type="submit">@CommonResources.Register</button>
+        <p>
+            <br />
+            @Html.ActionLink(CommonResources.LblForgotPassword, "RequestPwdReset", "Settings")
+        </p>
+
+    }
+</div> <!-- /container -->
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

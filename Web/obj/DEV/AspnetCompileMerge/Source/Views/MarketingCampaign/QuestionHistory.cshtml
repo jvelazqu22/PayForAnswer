@@ -1,0 +1,74 @@
+﻿@model PagedList.IPagedList<Domain.Models.ViewModel.QuestionMarketingHistoryViewModel>
+@using PagedList.Mvc
+
+@{
+    ViewBag.Title = "History";
+}
+
+<h2>@Model.FirstOrDefault().QuestionTitle</h2>
+    <table class="table table-bordered table-responsive">
+        <tr>
+            <th>
+                Created on:
+            </th>
+            <th>
+                Start date:
+            </th>
+            <th>
+                Budget per day:
+            </th>
+            <th>
+                Number of days to run:
+            </th>
+            <th>
+                Total marketing budget
+            </th>
+            <th>
+                Question amount increase
+            </th>
+            <th>
+                Question amount before increase
+            </th>
+            <th>
+                Status:
+            </th>
+            <th>
+                End date:
+            </th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CreatedOnString)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.StartDateString)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PerDayBudget)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NumberOfDaysToRun)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TotalMarketingBudget)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.QuestionAmountIncrease)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.QuestionAmountBeforeIncrease)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Status)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EndDateString)
+                </td>
+            </tr>
+        }
+
+    </table>
+@Html.PagedListPager(Model, page => Url.Action(ViewBag.MethodName, new { page }))

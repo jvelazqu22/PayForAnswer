@@ -1,0 +1,7 @@
+﻿@model PagedList.IPagedList<Domain.Models.Question>
+@using PagedList.Mvc
+
+<h2>@ViewBag.Title</h2>
+
+@Html.Partial("~/Views/Shared/_Questions.cshtml", Model)
+@*@Html.PagedListPager( Model, page => Url.Action(ViewBag.MethodName, new { page }) )*@

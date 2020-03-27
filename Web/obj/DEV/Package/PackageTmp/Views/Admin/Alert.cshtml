@@ -1,0 +1,28 @@
+﻿@model Domain.Models.ViewModel.AlertViewModel
+@{
+    ViewBag.Title = "Alert";
+}
+<h2>Alert</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-group">
+        <label for="txtAlert">Alert Message</label>
+        @Html.TextAreaFor(model => model.Message, new { @class = "form-control" })
+    </div>
+    
+    <div class="row">
+        <div class="col-lg-4">
+            <div class="input-group">
+                <label for="txAlertType">Alert Type</label>
+                @Html.TextBoxFor(model => model.AlertStyle, new { @class = "form-control", placeholder = "success, warning, danger, info" })
+            </div>
+        </div>
+    </div>
+
+<br />
+<button type="submit" class="btn btn-primary btn-lg">Post Alert</button>
+    
+}

@@ -1,0 +1,31 @@
+﻿@model Domain.Models.CreateQuestionViewModel
+@using Domain.App_GlobalResources;
+@using Domain.Constants;
+
+<br />
+<strong>
+    @CommonResources.QuestionDescription
+    <a href="#" data-toggle="tooltip" title="@CommonResources.lblQDescriptionTooltip">@CommonResources.QuestionMarkLinkSymbol</a>
+</strong>
+@Html.Raw(CommonResources.lblQDescriptionTooltip)
+<div class="editor-field">
+    @Html.TextAreaFor(model => model.Description)
+</div>
+@Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+
+<br />
+
+<p>
+    @if (Request.IsAuthenticated)
+    {
+        <button type="submit" class="btn btn-primary btn-lg">@CommonResources.lblPrePost</button>
+    }
+    else
+    {
+        <button disabled type="submit" class="btn btn-primary btn-lg">@CommonResources.lblPrePost</button>
+        <br />
+        <small>
+            @Html.Raw(CommonResources.lblEnablePostButton)
+        </small>
+    }
+</p>

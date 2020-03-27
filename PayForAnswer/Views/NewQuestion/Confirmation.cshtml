@@ -1,0 +1,42 @@
+﻿@model Domain.Models.Entities.Question
+
+@{
+    ViewBag.Title = "Confirmation";
+}
+
+<h2>Confirmation</h2>
+
+@using (Html.BeginForm("PostToPayPal", "PayPal")) {
+    @Html.AntiForgeryToken()
+
+    <fieldset>
+        <legend>Order Summary</legend>
+        
+         @*<table border="0" cellpadding="0" cellspacing="0">*@
+         <table>
+            <tr>
+                <td>
+                    Question Title: 
+                </td>
+                <td>
+                    <input type="text" name="item" value="question" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Price:
+                </td>
+                <td>
+                    <input type="text" name="amount" value="5" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                </td>
+                <td>
+                    <input type="submit" name="btnsubmit" value="Pay wiht Paypal" class="btn btn-primary"/>
+                </td>
+            </tr>
+        </table>
+    </fieldset>
+}

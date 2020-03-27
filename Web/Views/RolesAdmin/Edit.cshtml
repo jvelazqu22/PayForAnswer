@@ -1,0 +1,39 @@
+﻿@model Domain.Models.ViewModel.RoleViewModel
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit.</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        @Html.ValidationSummary(true)
+        @Html.HiddenFor(model => model.Id)
+
+        <h4>Role</h4>
+        <div class="row">
+            <div class="col-lg-3">
+                <div class="input-group merged">
+                    @Html.TextBoxFor(m => m.Name, new { @class = "form-control", autofocus = "" })
+                </div>
+                @Html.ValidationMessageFor(m => m.Name, "", new { @class = "text-danger" }) <br />
+            </div>
+        </div>
+
+        <input type="submit" class="btn btn-primary" value="Save"  />
+        <br/><br/>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

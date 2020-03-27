@@ -1,0 +1,85 @@
+﻿@model Domain.Models.CreateQuestionViewModel
+    @using Domain.App_GlobalResources;
+
+<strong>
+    @CommonResources.GoogleAdsWillLookLikeThese
+</strong>
+    
+<div id="googleAdHeadlineAndLine2" class="editor-field">
+    <small>@CommonResources.GoogleSideAd</small> <br />
+    @{
+        if(Model != null && Model.Amount > 0)
+        {
+            <a href="#" data-toggle="tooltip" title="@CommonResources.GoogleAdLinkTooltip"><strong>@CommonResources.GoogleAdHeadlinePrefix@Model.Amount @CommonResources.GoogleAdHeadlineSuffix</strong></a> <br />
+        }
+        else
+        {
+            <a href="#" data-toggle="tooltip" title="@CommonResources.GoogleAdLinkTooltip"><strong>@CommonResources.GoogleAdHeadlinePrefix@CommonResources.GoogleAdHeadlineTempData @CommonResources.GoogleAdHeadlineSuffix</strong></a> <br />
+        }
+    }
+    <span class="text-success">@CommonResources.GoogleAdLine2 </span><br />
+</div>
+<div id="googleAdLine3" class="editor-field">
+    @{
+        if (Model != null && !string.IsNullOrWhiteSpace(@Model.Title))
+        {
+            @Model.Title
+        }
+        else
+        {
+            @CommonResources.GoogleAdLine3TempData<br />
+        }
+    }
+
+</div>
+<div id="googleAdLine4" class="editor-field">
+    @{
+        if (Model != null && !string.IsNullOrWhiteSpace(@Model.CommaDelimitedSubjects))
+        {
+            @Model.SpaceDelimitedSubjects
+        }
+        else
+        {
+            @CommonResources.GoogleAdLine4TempData<br />
+        }
+    }
+</div>
+
+<div id="googleTopAdHeadlineAndLine2" class="editor-field">
+    <br /><small>@CommonResources.GoogleTopAd</small> <br />
+    <a href="#" data-toggle="tooltip" title="@CommonResources.GoogleAdLinkTooltip">
+        <strong>
+            @if (Model != null && @Model.Amount > 0)
+            {
+                @CommonResources.GoogleAdHeadlinePrefix@Model.Amount
+            }
+            else
+            {
+                @CommonResources.GoogleAdHeadlinePrefix@CommonResources.GoogleAdHeadlineTempData
+            }
+            @CommonResources.GoogleAdHeadlineSuffix - 
+            @if(Model != null && !string.IsNullOrWhiteSpace(@Model.Title))
+            {
+                @Model.Title;
+            }
+            else
+            {
+                @CommonResources.GoogleAdLine3TempData
+            }
+        </strong>
+    </a> <br />
+    <span class="text-success">@CommonResources.GoogleAdLine2 </span><br />
+</div>
+<div id="googleTopAdLine4" class="editor-field">
+    @{
+        if (Model != null && !string.IsNullOrWhiteSpace(@Model.CommaDelimitedSubjects))
+        {
+            @Model.SpaceDelimitedSubjects
+        }
+        else
+        {
+            @CommonResources.GoogleAdLine4TempData<br />
+        }
+    }
+</div>
+<br/>

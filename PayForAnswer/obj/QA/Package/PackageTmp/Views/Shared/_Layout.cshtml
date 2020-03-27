@@ -1,0 +1,44 @@
+﻿<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>@ViewBag.Title</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="">
+        <meta name="author" content="">
+
+
+        <!-- Styles -->
+        @Styles.Render("~/Content/css")
+        @Styles.Render("~/Content/themes/base/css")
+
+        @Scripts.Render("~/bundles/modernizr")        
+        @Scripts.Render("~/Scripts/js")
+        @Scripts.Render("~/Scripts/bootstrap-jq")
+@*        @Scripts.Render("~/Scripts/tinymce")*@
+        <script type="text/javascript" src="~/Scripts/tinymce/tinymce.min.js"></script>
+    </head>
+
+    <body>
+        <div class="container">
+
+        <header>
+            @Html.Partial("_Header")
+        </header>
+
+        <div id="body">
+            @RenderSection("featured", required: false)
+            @Html.Partial("_alerts")
+            @Html.Partial("_validationSummary")
+            <section class="content-wrapper main-content clear-fix">
+                @RenderBody()
+            </section>
+        </div>
+
+@*        @Scripts.Render("~/Scripts/js")
+        @Scripts.Render("~/Scripts/bootstrap-jq")*@
+
+        @RenderSection("scripts", required: false)
+        </div>
+    </body>
+</html>

@@ -1,0 +1,49 @@
+﻿@model PagedList.IPagedList<Domain.Models.Entities.Answer>
+@using PagedList.Mvc
+
+@using Domain.Constants;
+@using Domain.App_GlobalResources;
+
+@{
+    ViewBag.Title = "My Paid Answers";
+}
+
+<h2>My Paid Answers</h2>
+
+<hr />
+
+<div class="display-label">
+    <h3>
+            @Model.Count() @CommonResources.DetailQuestionViewLblAnswers
+    </h3>
+</div>
+<hr />
+
+<table>
+    @foreach (var item in Model)
+    {
+    <tr id="row-@item.Id">
+        <td>
+            <h4>
+                @CommonResources.DetailQuestionViewLblAnswersPosted <span class="badge">@item.CreatedOn</span>  
+            </h4>
+        </td>
+        <td>
+            <a href="@Url.Action("Details", "Main", new { id=item.QuestionId })" class="Accept" data-id="@item.QuestionId"><span class="btn-link">@CommonResources.lblQuestion</span></a>
+        </td>
+        <td id="item-status-@item.Id">
+            <strong>@CommonResources.DetailQuestionViewLblCurrentStatus</strong> 
+            <button class="btn @item.StatusStyle btn-xs active" type="button"> @item.Status.DisplayName </button>
+        </td>
+    </tr>
+    <tr>
+        <td colspan="5">
+            @Html.Raw(item.Description)
+        </td>
+    </tr>
+    }
+</table>
+<hr />
+
+@Html.PagedListPager( Model, page => Url.Action("MyPaidAnswers", new { page }) )
+

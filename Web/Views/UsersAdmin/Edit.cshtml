@@ -1,0 +1,53 @@
+﻿@model Domain.Models.ViewModel.EditUserViewModel
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit.</h2>
+
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+
+    <h4>Edit User Form.</h4>
+    <hr />
+    @Html.ValidationSummary(true)
+    @Html.HiddenFor(model => model.Id)
+
+    <strong>Username</strong>
+    <div class="control-label">
+        @Html.DisplayFor(model => model.UserName)
+    </div>
+    <br />
+
+    <div class="row">
+        <div class="col-lg-3">
+            <div class="input-group merged">
+                <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
+                @Html.TextBoxFor(m => m.Email, new { @class = "form-control", autofocus = "" })
+            </div>
+            @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" }) <br />
+        </div>
+    </div>
+
+    <h4>Roles:</h4>
+
+    foreach (var item in Model.RolesList)
+    {
+        <input type="checkbox" name="SelectedRole" value="@item.Value" checked="@item.Selected" class="checkbox-inline" />
+        @Html.Label(item.Value, new { @class = "control-label" })
+    }
+
+    <br /><br />
+    <input type="submit" value="Save" class="btn btn-primary" />
+    <br /><br/>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

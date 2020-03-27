@@ -1,0 +1,20 @@
+﻿@model Domain.Models.LocalPasswordModel
+@using Domain.App_GlobalResources;
+
+@{
+    ViewBag.Title = CommonResources.ViewManageBrowswerTitle;
+}
+
+<hgroup class="title">
+    <h1>@ViewBag.Title.</h1>
+</hgroup>
+
+@if (ViewBag.HasLocalPassword)
+{
+    @Html.Partial("_ChangePasswordPartial")
+}
+else
+{ 
+    @Html.Partial("_SetPasswordPartial")
+}
+

@@ -1,0 +1,157 @@
+﻿@model Domain.Models.ViewModel.QuestionDetailsViewModel
+@using Domain.Constants;
+@using Domain.App_GlobalResources;
+@using PagedList
+@using PagedList.Mvc
+
+@{
+    ViewBag.Title = CommonResources.DetailQuestionViewBrowswerTitle;
+}
+<style type="text/css">
+    .dlg-no-close .ui-dialog-titlebar-close  {
+        display: none;
+    }
+
+    .dlg-no-title .ui-dialog-titlebar {
+        display: none;
+    }
+</style>
+
+<script type="text/javascript" src="~/Scripts/Custom/Util.js"></script>
+<script type="text/javascript">
+
+    $('document').ready(function () {
+        //document.getElementById("includedContent").innerHTML = '<object type="text/html" data="http://payforanswer.blob.core.windows.net/comments/1/comment.html" ></object>';
+        //$("#includedContent").load("test.html");
+        //$("#includedContent").html('<object data="http://payforanswer.blob.core.windows.net/comments/1/comment.html">');
+        @*var test = "'<object data='" + "@Model.DescriptionUrl" + "'>'";
+        alert(test);
+        @Html.Raw("test");
+        $("#divDescription").html(@Html.Raw("'<object data='" + @Model.DescriptionUrl + "'>'"));*@
+        //$("#divDescription").html('<object data=' + "@Model.DescriptionUrl" + '>');
+        @*@Html.Raw(Model.Description)*@
+
+        @*LoadHtmlContent("@Model.DescriptionUrl", "divDescription");
+        LoadHtmlContentInTable("@Model.CommentsUrl", "divComments");*@
+
+        //$.ajax({
+        //    url: 'http://payforanswer.blob.core.windows.net/comments/5/comments.html',
+        //    //url: 'http://payforanswer.blob.core.windows.net/descriptions/5/description.html',
+        //    type: 'GET',
+        //    dataType: 'html',
+        //    success: function (data) {
+        //        alert(data);
+        //        //$(data).find('#reviews .card').appendTo('#reviews');
+        //    },
+        //    error: function (xhr, ajaxOptions, thrownError) {
+        //        alert(xhr.status);
+        //    }
+        //});
+    });
+
+    $(function () {
+
+        // Document.ready -> link up remove event handler
+        @*        $(".Accept").click(function () {
+            // Get the id from the link
+            var recordToUpdate = $(this).attr("data-id");
+            if (recordToUpdate != '') {
+
+                // Perform the ajax post
+                $.post("/Answer/AcceptAnswer", { "id": recordToUpdate },
+                    function (data) {
+                        // Successful requests get here
+                        // Update the page elements
+                        //$('#item-status-' + data.AnswerId).text('Current status: ' + data.AnswerStatusMessage);
+                        $('#item-status-' + data.AnswerId).html("<strong>@CommonResources.DetailQuestionViewLblCurrentStatus</strong> <span class='label label-info'>" + data.AnswerStatusMessage + "</span>");
+
+                        if (data.DoesQuestionNeedToBePay) {
+                            // Call PayPal to pay for this answer
+                            $.post("/PayPal/MassPay", { "id": recordToUpdate }, null);
+                        }
+                    });
+                }
+        });*@
+        $("#dlgUpdatePage").dialog({
+            modal: true,
+            minWidth: 400,
+            width: 400,
+            maxWidth: 400,
+            title: 'show:slide / hide:slide',
+            overlay: { opacity: 0.5, background: "black" },
+            show: "slide",
+            hide: "slide",
+            autoResize: true,
+            autoOpen: false,
+            closeOnEscape: false,
+            dialogClass: "dlg-no-title"
+        });
+
+        $(".Accept").click(function () {
+            // Get the id from the link
+            var recordToUpdate = $(this).attr("data-id");
+            if (recordToUpdate != '') {
+                // Perform the ajax post
+                $("#dlgUpdatePage").show().dialog("open");
+                $.post("/Answer/AcceptAnswer", { "id": recordToUpdate },
+                    function (data) {
+                        location = data.url;
+                    });
+            }
+        });
+
+        $(".Unrelated").click(function () {
+            // Get the id from the link
+            var recordToUpdate = $(this).attr("data-id");
+            if (recordToUpdate != '') {
+                // Perform the ajax post
+                $("#dlgUpdatePage").show().dialog("open");
+                $.post("/Answer/UnrelatedAnswer", { "id": recordToUpdate },
+                    function (data) {
+                        location = data.url;
+                    });
+            }
+        });
+
+        $(".AddQuestionComment").click(function () {
+            // Get the id from the link
+            var recordToUpdate = $(this).attr("data-id");
+            var comment = $('#txtQuestionComment').val();
+            if (recordToUpdate != '' && comment != '') {
+                // Perform the ajax post
+                $("#dlgUpdatePage").show().dialog("open");
+                $.post("/NewQuestion/AddQuestionComment", { "questionId": recordToUpdate, "comment": comment },
+                    function (data) {
+                        location = data.url;
+                    });
+            }
+        });
+
+        $(".AddAnswerComment").click(function () {
+            // Get the id from the link
+            var recordToUpdate = $(this).attr("data-id");
+            var comment = $('#answer-comment-' + recordToUpdate).val();
+            if (recordToUpdate != '' && comment != '') {
+                // Perform the ajax post
+                $("#dlgUpdatePage").show().dialog("open");
+                $.post("/Answer/AddAnswerComment", { "answerId": recordToUpdate, "comment": comment },
+                    function (data) {
+                        location = data.url;
+                    });
+            }
+        });
+    });
+
+</script>
+
+<div id="dlgUpdatePage" class="dialog">@CommonResources.MsgUpdateAjaxPage</div>
+<h3>@Model.Title (<span class="text-success"><strong>$@Model.Amount</strong></span>)</h3> 
+@CommonResources.DetailQuestionViewLblQuestion <strong>@Model.CreatedOn</strong>  @CommonResources.DetailQuestionViewLblByUser <strong>@Model.User.UserName</strong><br /><br />
+
+@Html.Partial("_Summary")
+@Html.Partial("_Attachments", Model)
+@Html.Partial("_SubjectsAndDescription", Model)
+@Html.Partial("_QComments", Model)
+@Html.Partial("_PostAnswer", Model)
+@Html.Partial("_Answers", Model)
+
